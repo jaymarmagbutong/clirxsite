@@ -1,0 +1,19 @@
+modify
+viewing
+draft = after update the page
+approve.
+
+
+every status has a timestamp
+Add notification using socket.io
+
+
+fix image in accreditaion page id
+
+
+
+dapat hindi sya mag double add nang same page
+add search for username 
+
+
+

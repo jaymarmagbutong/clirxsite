@@ -1,0 +1,40 @@
+[
+    {
+      "href": "/manual",
+      "icon": "LiaSwatchbookSolid",
+      "label": "Manuals",
+      "submenu": [
+        { "href": "/manual/overview", "label": "Overview" },
+        { "href": "/manual/contents", "label": "Contents" },
+        { "href": "/manual/compliance-review", "label": "Compliance Review" }
+      ]
+    },
+    {
+      "href": "/posts",
+      "icon": "MdPostAdd",
+      "label": "Posts"
+    },
+    {
+      "href": "/accreditation",
+      "icon": "CiViewList",
+      "label": "Accreditation"
+    },
+    {
+      "href": "/media",
+      "icon": "MdOutlinePermMedia",
+      "label": "Media"
+    },
+    {
+      "href": "/admin",
+      "icon": "MdOutlineAdminPanelSettings",
+      "label": "Admin"
+    },
+    {
+      "href": "/user",
+      "icon": "TbUsers",
+      "label": "Users"
+    }
+
+    
+  ]
+  
