@@ -14,17 +14,15 @@ const viewer = () => {
       <div className={`flex flex-col mt-2`}>
       {/* Parent item clickable area */}
       <div className={`flex w-full items-center text-white  justify-between lg:justify-start gap-4  py-2 hover:bg-gray-100 hover:text-gray-700 rounded-md md:px-2`}>
-        <Link href={'/accreditation'} className="flex w-full items-center justify-center md:justify-start gap-4">
-        <FaBook/>
-          <span className="hidden lg:block">Accreditation</span>
+        <Link href={'/appt'} className="flex w-full items-center justify-center md:justify-start gap-4">
+          <FaBook/>
+          <span className="hidden lg:block">Appt Interaction</span>
         </Link>
       </div>
 
-      
-
       <div className={`flex w-full items-center text-white  justify-between lg:justify-start gap-4  py-2 hover:bg-gray-100 hover:text-gray-700 rounded-md md:px-2`}>
         <Link href={'/annoucements'} className="flex w-full items-center justify-center md:justify-start gap-4">
-        <IoMdNotificationsOutline size={20}/>
+          <IoMdNotificationsOutline size={20}/>
           <span className="hidden lg:block">Annoucements</span>
         </Link>
       </div>

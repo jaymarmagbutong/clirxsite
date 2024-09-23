@@ -26,10 +26,10 @@ import FroalaEditor from 'react-froala-wysiwyg';
 
 
 
-const ApptForm = () => {
+const ApptForm = ({contents}) => {
 
     const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+    const [description, setDescription] = useState(contents);
     const [loading, setLoading ] = useState(false);
   
   

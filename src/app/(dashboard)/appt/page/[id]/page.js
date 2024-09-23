@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Breadcrumbs from "@/components/breadcrumbs"
 import BackButton from "@/components/backButton"
-import ModifyPage from '@/components/accreditation/modifyPage';
+import ModifyPage from '@/components/appt/modifyPage';
 
 export default function Page({params}) {
 

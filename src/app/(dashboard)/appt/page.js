@@ -1,8 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import CategoryList from '@/components/accreditation/categoryList';
-import PageList  from '@/components/accreditation/pageList';
+import CategoryList from '@/components/appt/categoryList';
+import PageList  from '@/components/appt/pageList';
 import Skeleton from 'react-loading-skeleton';
   
 const Accreditation = () => {
@@ -21,7 +21,7 @@ const Accreditation = () => {
 		const getUserPages = async () => {
 			setLoading(true)
 			try {
-				const page = await fetch(`/api/accreditation/get/user/${user_id}`, { next: { revalidate: 3600 } });
+				const page = await fetch(`/api/appt/get/user/${user_id}`, { next: { revalidate: 3600 } });
 				const data = await page.json();
 				setcartegories(data || []); // Fallback to an empty array if data is undefined
 			} catch (error) {

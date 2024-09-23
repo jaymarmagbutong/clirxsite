@@ -53,14 +53,13 @@ const ModifyPage = ({content, title}) => {
             </button>
 
         <Modal
-        
+
             isOpen={modalIsOpen}
             onRequestClose={handleRequestClose}// Close modal when clicking outside or pressing ESC
             contentLabel="Example Modal"
             className="bg-white p-6  shadow-lg max-w-full max-h-full overflow-y-scroll"
             overlayClassName="fixed inset-0 bg-black bg-opacity-50"
             closeTimeoutMS={500}
-            
         >
             
             <div className='grid grid-cols-2 gap-5'>
@@ -74,15 +73,15 @@ const ModifyPage = ({content, title}) => {
                 <div >
                     <h1 className='font-bold text-3xl'>{title}</h1>
                     <div className='mt-5'>
-                        <ApptForm/>
+                        <ApptForm contents={content}/>
                     </div>
-                  
+                   
                 </div>
             </div>
             <button onClick={handleRequestClose} className="bg-transparent border px-4 py-2 rounded mt-4"> Close Modal </button>
       </Modal>
     </div>
-  )
+  ) 
 }
 
 export default ModifyPage 

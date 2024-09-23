@@ -15,9 +15,9 @@
       "label": "Posts"
     },
     {
-      "href": "/accreditation",
+      "href": "/appt",
       "icon": "CiViewList",
-      "label": "Accreditation"
+      "label": "Appt Interaction"
     },
     {
       "href": "/media",

@@ -16,7 +16,7 @@ const PageList = ({pageDetails}) => {
             <td className="px-4 py-2 text-sm ">{formatDate(pageDetails.AccDateCreated)}</td>
             <td className="px-4 py-2 flex items-center justify-start space-x-2">
 
-            <Link href={`accreditation/page/${pageDetails.PageId} `}>
+            <Link href={`/appt/page/${pageDetails.PageId} `}>
             <button className='flex items-center border px-1 rounded-sm'>
                   <CiRead color='green'/> <span className='text-[12px] ml-1'>Preview</span>  
             </button> </Link>

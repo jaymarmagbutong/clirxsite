@@ -25,6 +25,6 @@ export async function POST(request){
         )
     } catch (error) {
        console.error('Error creating Accreditaion:', error); // Log error details for debugging
-      return NextResponse.json({ error: 'Failed to create Accreditaion' }, { status: 500 });
+      return NextResponse.json({ error: 'Failed to create appt' }, { status: 500 });
     }
 }
