@@ -14,7 +14,7 @@ export default function UsersList({option, page_id}) {
         const getAccreditation =  async () => {
 
             try {
-                const accreditation = await fetch(`/api/accreditation/get/${page_id}`);
+                const accreditation = await fetch(`/api/appt/get/${page_id}`);
                 const data = await accreditation.json();
                 setAccreditation(data)
             } catch (error) {

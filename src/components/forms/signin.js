@@ -25,7 +25,7 @@ const SignIn = () => {
         
           router.push('/dashboard')
         } else {
-          router.push('/accreditation')
+          router.push('/appt')
         }
        
       }

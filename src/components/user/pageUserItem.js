@@ -20,7 +20,7 @@ const PageUserItem = ({ user, page_id, users_id }) => {
         };
 
         try {
-            const response = await fetch('/api/accreditation/create', {
+            const response = await fetch('/api/appt/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

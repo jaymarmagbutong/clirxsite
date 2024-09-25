@@ -13,9 +13,10 @@ export async function GET(request, { params }) {
                     Pgs.title as PageTitle,
                     Cat.name as CategoryTitle,
                     Cat.id as CategoryId,
-                    Acc.date_created as AccDateCreated
+                    Acc.date_created as AccDateCreated,
+                    Acc.response as AccResponse
                 FROM 
-                    accreditation as Acc
+                    appt as Acc
                 INNER JOIN
                     pages as Pgs
                 ON

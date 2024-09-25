@@ -7,7 +7,7 @@ export async function POST(request){
 
         const response = await new Promise((resolve, reject)=> {
             DB.query(
-                'INSERT INTO accreditation (user_id, page_id) VALUES (?, ?)', 
+                'INSERT INTO appt (user_id, page_id) VALUES (?, ?)', 
                 [user_id, page_id],
                 (err, results) => {
                     if(err) {
@@ -24,7 +24,7 @@ export async function POST(request){
             {status:200}
         )
     } catch (error) {
-       console.error('Error creating Accreditaion:', error); // Log error details for debugging
+       console.error('Error creating Appt:', error); // Log error details for debugging
       return NextResponse.json({ error: 'Failed to create appt' }, { status: 500 });
     }
 }

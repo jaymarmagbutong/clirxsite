@@ -12,6 +12,7 @@ export default function Page({params}) {
 
     const [content, setContent] = useState(''); // Initialize with an empty string
     const [title, setTitle] = useState('');
+    const [apptDetails, setApptDetails] = useState([]);
 
 
     useEffect(() => {
@@ -21,12 +22,13 @@ export default function Page({params}) {
                 const data = await page.json();
                 setContent(data.description || ''); // Handle case if description is undefined
                 setTitle(data.title || ''); // Handle case if title is undefined
+                setApptDetails(data);
             } catch (error) {
                 console.error('Failed to fetch page details:', error);
             }
         }
         getPageDetails();
-    });
+    }, []);
 
 
 
@@ -54,10 +56,10 @@ export default function Page({params}) {
             
             
             <div className='mt-5'>
-                    <div className='bg-white  rounded-md p-4'>
-                        <ModifyPage content={content} title={title}/> 
-                    </div>
+                <div className='bg-white  rounded-md p-4'>
+                    <ModifyPage content={content} title={title} apptDetails={apptDetails}/> 
                 </div>
+            </div>
 
         </div>
 

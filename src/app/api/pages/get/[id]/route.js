@@ -9,7 +9,7 @@ export async function GET(request, { params }) {
         // Fetch page details from the database
         const results = await new Promise((resolve, reject) => {
             DB.query(
-                'SELECT * FROM Pages WHERE id = ?',
+                `SELECT * FROM Pages WHERE id = ?`,
                 [id],
                 (err, results) => {
                     if (err) {

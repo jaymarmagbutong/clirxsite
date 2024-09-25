@@ -9,7 +9,7 @@ export async function GET(request, { params }) {
         // Use parameterized queries to prevent SQL injection
         const results = await new Promise((resolve, reject) => {
             DB.query(
-                'SELECT user_id FROM accreditation WHERE page_id = ?',
+                'SELECT user_id FROM appt WHERE page_id = ?',
                 [id],
                 (err, results) => {
                     if (err) {

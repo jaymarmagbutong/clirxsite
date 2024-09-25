@@ -6,7 +6,6 @@ const SinglePage = ({ id }) => {
     const [content, setContent] = useState(''); // Initialize with an empty string
     const [title, setTitle] = useState('');
 
-
     useEffect(() => {
         const getPageDetails = async () => {
             try {
