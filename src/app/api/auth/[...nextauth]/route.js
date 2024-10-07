@@ -1,7 +1,5 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import connectMongoDB from "../../../../../libs/mongodb";
-import User from "@/app/model/user";
 import bcrypt from "bcryptjs"
 import FacebookProvider from "next-auth/providers/facebook";
 

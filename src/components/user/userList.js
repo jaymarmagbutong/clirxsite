@@ -7,27 +7,27 @@ import PageUserItem from './pageUserItem';
 export default function UsersList({option, page_id}) {
 	const [userLists, setUserLists] = useState();
 
-	const [accreditation, setAccreditation] = useState();
+	const [appt, setAppt] = useState();
 
 
 	useEffect( ()  => {
-        const getAccreditation =  async () => {
+        const getAppt =  async () => {
 
             try {
                 const accreditation = await fetch(`/api/appt/get/${page_id}`);
                 const data = await accreditation.json();
-                setAccreditation(data)
+                setAppt(data)
             } catch (error) {
                 console.error('Failed to fetch page details:', error);
             }
         }
 
-        getAccreditation();
+        getAppt();
     }, [page_id])
 
 
 
-
+console.log(appt)
 
 
 	useEffect(() => {
@@ -66,7 +66,7 @@ export default function UsersList({option, page_id}) {
 			<>
 			{userLists?.map(user => (
 				<div key={user.id}>
-				<PageUserItem key={user.id}  user={user} page_id={page_id} users_id={accreditation}/>
+				<PageUserItem key={user.id}  user={user} page_id={page_id} users_id={appt}/>
 				</div>
 			))}
 			</>

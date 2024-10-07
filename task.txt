@@ -17,3 +17,44 @@ add search for username
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+Adding function for viewing the response of each users
+
+1) dapat sa ilalim nang original content yung mga na modify na content
+2) Make it collapsable card https://www.google.com/search?sca_esv=029398843723f323&sca_upv=1&sxsrf=ADLYWILMX_dEBmKOy0CuiZWcVrTlhAoiZg:1727678380922&q=card+grid+expanding+flex+cards+expandable+cards+design+webpage&uds=ADvngMjcH0KdF7qGWtwTBrP0nt7d5IjmyvLMyvIIVSp9ZdhyJr36Eue-m5MaIUdnyjq5iqmeDIyoDIslzD2pbrPhN0O90A2ciwDRCYKSLGHNvxOo0-KcieA__MAyhDd9teAPdFruyIs9qwLDLiHecQKh0AG1pbXTcUsXTufNcEdKW9iFXGBg3kVKrgSJXawNjLOOMJ3vhKVe5759zYAhthgASvzn5BUnJoWb3JARrMRTH5H7ljTMUko&udm=2&sa=X&ved=2ahUKEwis-rjBh-qIAxUssFYBHTEaPGUQxKsJegQIChAB&ictx=0&biw=1920&bih=951&dpr=1#vhid=9siIzxXPXUY3jM&vssid=mosaic
+3) Add fields for add page. 
+    1) Reference number.
+4) in muanaul adding page, create fields to add files
+5) Create activity in single page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

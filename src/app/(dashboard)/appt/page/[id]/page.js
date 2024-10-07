@@ -20,9 +20,12 @@ export default function Page({params}) {
             try {
                 const page = await fetch(`/api/pages/get/${params.id}`, { next: { revalidate: 3600 } });
                 const data = await page.json();
-                setContent(data.description || ''); // Handle case if description is undefined
-                setTitle(data.title || ''); // Handle case if title is undefined
-                setApptDetails(data);
+                
+
+                console.log(data)
+                setContent(data.pages.description || ''); // Handle case if description is undefined
+                setTitle(data.pages.title || ''); // Handle case if title is undefined
+                setApptDetails(data.pages);
             } catch (error) {
                 console.error('Failed to fetch page details:', error);
             }

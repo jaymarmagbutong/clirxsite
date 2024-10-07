@@ -14,13 +14,14 @@ const SignIn = () => {
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+    const [info, setInfo] = useState({text: '', background:''});
+    const [isLogin, setIsLogin] = useState(false);
 
     const {data: session, status: sessionStatus } = useSession();
     useEffect(()=> {
       if(sessionStatus === "authenticated"){
-        setError("");
-
+        setInfo({text: "Redirecting...", background: 'bg-green-500'});
+        setIsLogin(true)
         if(session?.user?.role == 1){
         
           router.push('/dashboard')
@@ -35,7 +36,7 @@ const SignIn = () => {
 
         e.preventDefault();
         if(!email || !password ){
-            setError("All fields are necessary.")
+            setInfo({text:"All fields are necessary.", background: 'bg-red-500'})
             return false;
         }  
 
@@ -47,17 +48,21 @@ const SignIn = () => {
           });
 
           if (result.error) {
-              setError("Error Email or Password");
+              setInfo({text:"Error Email or Password", background: 'bg-red-500'});
           } else {
+            setInfo({text: "Redirecting...", background: 'bg-green-500'});
+            setIsLogin(true)
               router.push('/admin');
           }
       } catch (error) {
           console.log("Error During Sign-In", error);
-          setError("An unexpected error occurred.");
+          setInfo({text:"An unexpected error occurred." , background: 'bg-red-500'});
       }
     
     }
 
+
+    console.log(info)
 
   return (
    
@@ -67,12 +72,16 @@ const SignIn = () => {
 
       <div className="w-full max-w-sm py-8 px-6 bg-white rounded-md shadow-md">
 
-        {error && (
-          <div className='w-full p-4 bg-red-500 text-white rounded-md'>
-            {error}
+        {info.text && (
+          <div className={`w-full p-4 ${info.background} text-white rounded-md`}>
+            {info.text}
           </div>
         )}
         
+
+      { !isLogin && (   <>
+
+ 
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Log In</h2>
         
         <form onSubmit={formSubmitFunction}>
@@ -116,8 +125,8 @@ const SignIn = () => {
                 <Link href="/signup" className='flex items-center justify-center mt-3'>Don't have an account <span className='underline ml-2'> Register</span></Link>
 
           </form>
+          </>  )}
 
-        
       </div>
 
       <div className="flex items-center justify-center mt-5">
@@ -126,6 +135,7 @@ const SignIn = () => {
         <FaLinkedin size={40} className='p-2  mx-1'/>
       </div>
     </div>
+
   );
 };
 

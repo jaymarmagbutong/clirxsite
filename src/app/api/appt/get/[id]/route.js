@@ -4,7 +4,7 @@ import DB from "@/app/api/config/db";
 export async function GET(request, { params }) {
     const { id } = params;
 
-    console.log(id)
+    console.log(params)
     try {
         // Use parameterized queries to prevent SQL injection
         const results = await new Promise((resolve, reject) => {
@@ -20,6 +20,9 @@ export async function GET(request, { params }) {
                 }
             );
         });
+
+
+
 
         return NextResponse.json(results, { status: 200 }); // Status 200 for success
     } catch (error) {

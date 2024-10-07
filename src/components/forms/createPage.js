@@ -29,6 +29,7 @@ export default function createFormPage({attachments, category}) {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [referenceNumber, setSeferenceNumber] = useState('');
   const [loading, setLoading ] = useState(false);
 
 
@@ -44,7 +45,8 @@ export default function createFormPage({attachments, category}) {
       title,
       description,
       attachments,
-      category
+      category,
+      referenceNumber
     };
 
     try {
@@ -76,6 +78,19 @@ export default function createFormPage({attachments, category}) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+         <div>
+        <label htmlFor="reference" className="block text-sm font-medium text-gray-700">
+          Reference Number
+        </label>
+        <input
+          id="reference"
+          type="text"
+          value={referenceNumber}
+          onChange={(e) => setSeferenceNumber(e.target.value)}
+          className="mt-1 block w-20 px-3 py-2 border  border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
+          required
+        />
+      </div>
       <div>
         <label htmlFor="title" className="block text-sm font-medium text-gray-700">
           Title
