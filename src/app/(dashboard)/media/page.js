@@ -3,7 +3,7 @@ import React from 'react'
 import Media from '@/components/media'
 import { useState } from 'react'
 import ImageList from '@/components/imageList'
-const page = () => {
+const Page = () => {
 
   const [refreshTrigger, setRefreshTrigger ] = useState(0);
 
@@ -18,4 +18,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-
+import dynamic from 'next/dynamic';
 import 'froala-editor/js/froala_editor.pkgd.min.js';
 import 'froala-editor/js/plugins/image.min.js';
 import 'froala-editor/js/plugins/table.min.js'; // Import the table plugin
@@ -21,10 +21,10 @@ import 'froala-editor/js/plugins/video.min.js'; // Import video plugin
 import 'froala-editor/js/plugins/paragraph_style.min.js'; // Import paragraph style plugin
 import 'froala-editor/js/plugins/colors.min.js'; // Font color plugin JavaScript
 import 'froala-editor/css/plugins/colors.min.css'; // Font color plugin CSS
-import FroalaEditor from 'react-froala-wysiwyg';
-
-
-export default function createFormPosts({attachments}) {
+const FroalaEditor = dynamic(() => import('react-froala-wysiwyg'), {
+  ssr: false,
+});
+export default function CreateFormPosts({attachments}) {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');

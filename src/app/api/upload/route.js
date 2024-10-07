@@ -5,12 +5,6 @@ import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid'; // Import UUID for unique identifiers
 
-export const config = {
-  api: {
-    bodyParser: false, // Disable the default body parser
-  },
-};
-
 export async function POST(req) {
   try {
     const formData = await req.formData();

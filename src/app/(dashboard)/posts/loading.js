@@ -4,7 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const Loading = () => {
   return (
-    <>
+    <div>
     <h1 className='font-bold text-4xl p-4 bg-white'><Skeleton /></h1>
   
     <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
@@ -25,7 +25,7 @@ const Loading = () => {
       </div>
     </div>
     
-    </>
+    </div>
   )
 }
 

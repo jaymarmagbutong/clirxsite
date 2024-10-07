@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function createUser() {
+export default function CreateUser() {
     const roles = ['Admin', 'Editor', 'Viewer'];
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -64,7 +64,6 @@ export default function createUser() {
             if (res.ok) {
                 const data = await res.json();
                 router.push('/user');
-                console.log(data);
             } else {
                 setError("User already exists.");
             }

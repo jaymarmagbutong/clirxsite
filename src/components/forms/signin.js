@@ -61,9 +61,6 @@ const SignIn = () => {
     
     }
 
-
-    console.log(info)
-
   return (
    
 

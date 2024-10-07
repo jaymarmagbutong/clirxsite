@@ -64,7 +64,7 @@ const ApptForm = ({ contents, apptDetails }) => {
             }
         }
         getPagePerUser();
-    }, []);
+    }, [apptDetails.id, user.id]);
 
 
     const handleModelChange = (model) => {

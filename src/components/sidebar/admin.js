@@ -32,7 +32,7 @@ const  Sidebar =  () => {
     };
 
     fetchMenuItems();
-  }, [MenuItem]);
+  }, []);
 
   const handleToggle = (index) => {
     setExpandedMenu(expandedMenu === index ? null : index);

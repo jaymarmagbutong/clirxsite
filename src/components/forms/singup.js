@@ -47,7 +47,6 @@ const SignUp = () => {
             if(res.ok){
 
                 const data = await res.json();
-                console.log(data.message); // Handle success
                 const form = e.target;
                 // form.reset();
             } else {

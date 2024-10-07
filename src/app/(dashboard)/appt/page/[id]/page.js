@@ -7,9 +7,6 @@ import ModifyPage from '@/components/appt/modifyPage';
 
 export default function Page({params}) {
 
-
-
-
     const [content, setContent] = useState(''); // Initialize with an empty string
     const [title, setTitle] = useState('');
     const [apptDetails, setApptDetails] = useState([]);
@@ -21,8 +18,6 @@ export default function Page({params}) {
                 const page = await fetch(`/api/pages/get/${params.id}`, { next: { revalidate: 3600 } });
                 const data = await page.json();
                 
-
-                console.log(data)
                 setContent(data.pages.description || ''); // Handle case if description is undefined
                 setTitle(data.pages.title || ''); // Handle case if title is undefined
                 setApptDetails(data.pages);
@@ -31,7 +26,7 @@ export default function Page({params}) {
             }
         }
         getPageDetails();
-    }, []);
+    }, [params.id]);
 
 
 

@@ -4,7 +4,6 @@ import DB from "@/app/api/config/db";
 export async function GET(request, { params }) {
     const { id } = params;
 
-    console.log(params)
     try {
         // Use parameterized queries to prevent SQL injection
         const results = await new Promise((resolve, reject) => {

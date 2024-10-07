@@ -4,7 +4,7 @@ import { slugify } from '@/app/libs/slugily';
 import toast from 'react-hot-toast';
 import LoadingBar from 'react-top-loading-bar';
 
-const categoryForm = ({ triggerResponse }) => {
+const CategoryForm = ({ triggerResponse }) => {
   const [categoryName, setCategoryName] = useState('');
   const [description, setDescription] = useState('');
   const [slug, setSlug] = useState('');
@@ -95,4 +95,4 @@ const categoryForm = ({ triggerResponse }) => {
   );
 };
 
-export default categoryForm;
+export default CategoryForm;

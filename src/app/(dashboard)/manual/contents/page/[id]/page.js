@@ -30,7 +30,7 @@ export default function Page({ params }) {
             }
         }
         getPageDetails();
-    }, []);
+    }, [id]);
 
 	const showModal = () => {
 		setModalStatus(prevModalStatus => !prevModalStatus);

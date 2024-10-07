@@ -3,10 +3,10 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
-const imageList = ({ refreshTrigger }) => {
+const ImageList = ({ refreshTrigger }) => {
     const [images, setImages] = useState([]);
     useEffect(()=> {
-        const fetchImageList = async () => {
+        const fetcIImageList = async () => {
             try {
                 const res = await fetch('api/image/');
                 if(res.ok){
@@ -53,4 +53,4 @@ const imageList = ({ refreshTrigger }) => {
   )
 }
 
-export default imageList
+export default ImageList

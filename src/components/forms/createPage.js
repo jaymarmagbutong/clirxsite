@@ -25,7 +25,7 @@ import 'froala-editor/css/plugins/colors.min.css'; // Font color plugin CSS
 import FroalaEditor from 'react-froala-wysiwyg';
 
 
-export default function createFormPage({attachments, category}) {
+export default function CreateFormPage({attachments, category}) {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
