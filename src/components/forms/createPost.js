@@ -1,47 +1,53 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import 'froala-editor/js/froala_editor.pkgd.min.js';
-import 'froala-editor/js/plugins/image.min.js';
-import 'froala-editor/js/plugins/table.min.js'; // Import the table plugin
-import 'froala-editor/js/plugins/code_view.min.js'; // Import the code editor plugin
-import 'froala-editor/css/froala_editor.pkgd.min.css';
-import 'froala-editor/css/froala_style.min.css';
-import 'froala-editor/css/plugins/image.min.css';
-import 'froala-editor/css/plugins/table.min.css'; // Import table plugin styles
-import 'froala-editor/css/plugins/code_view.min.css'; // Import code editor plugin styles
-import 'froala-editor/js/plugins/font_family.min.js'; // Import font family plugin
-import 'froala-editor/js/plugins/print.min.js';
-import 'froala-editor/js/plugins/lists.min.js';
-import 'froala-editor/js/plugins/font_size.min.js'; // Import font size plugin
-import 'froala-editor/js/plugins/paragraph_format.min.js'; // Import the paragraph format plugin
 
-import 'froala-editor/js/plugins/video.min.js'; // Import video plugin
-
-import 'froala-editor/js/plugins/paragraph_style.min.js'; // Import paragraph style plugin
-import 'froala-editor/js/plugins/colors.min.js'; // Font color plugin JavaScript
-import 'froala-editor/css/plugins/colors.min.css'; // Font color plugin CSS
+// Dynamically import FroalaEditor with SSR disabled
 const FroalaEditor = dynamic(() => import('react-froala-wysiwyg'), {
   ssr: false,
 });
-export default function CreateFormPosts({attachments}) {
 
+export default function CreateFormPosts({ attachments }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    // Only import Froala editor plugins when on the client side
+    if (typeof window !== 'undefined') {
+      // Import Froala JS and CSS files
+      import('froala-editor/js/froala_editor.pkgd.min.js');
+      import('froala-editor/js/plugins/image.min.js');
+      import('froala-editor/js/plugins/table.min.js');
+      import('froala-editor/js/plugins/code_view.min.js');
+      import('froala-editor/js/plugins/font_family.min.js');
+      import('froala-editor/js/plugins/print.min.js');
+      import('froala-editor/js/plugins/lists.min.js');
+      import('froala-editor/js/plugins/font_size.min.js');
+      import('froala-editor/js/plugins/video.min.js');
+      import('froala-editor/js/plugins/paragraph_format.min.js');
+      import('froala-editor/js/plugins/paragraph_style.min.js');
+      import('froala-editor/js/plugins/colors.min.js');
+      
+      import('froala-editor/css/froala_editor.pkgd.min.css');
+      import('froala-editor/css/froala_style.min.css');
+      import('froala-editor/css/plugins/image.min.css');
+      import('froala-editor/css/plugins/table.min.css');
+      import('froala-editor/css/plugins/code_view.min.css');
+      import('froala-editor/css/plugins/colors.min.css');
+    }
+  }, []);
 
   const handleModelChange = (model) => {
     setDescription(model);
   };
 
   const handleSubmit = async (e) => {
-    
     e.preventDefault();
     const postData = {
       title,
       description,
-      attachments 
+      attachments,
     };
-
 
     try {
       const response = await fetch('/api/posts', {
@@ -83,15 +89,13 @@ export default function CreateFormPosts({attachments}) {
           Description
         </label>
         <FroalaEditor
-            tag="textarea"
-            model={description}
-            onModelChange={handleModelChange}
-            
-            className="h-screen"
-            config={{
-              heightMin: 400, 
-            }}
-          />
+          tag="textarea"
+          model={description}
+          onModelChange={handleModelChange}
+          config={{
+            heightMin: 400,
+          }}
+        />
       </div>
       <button
         type="submit"
@@ -99,7 +103,6 @@ export default function CreateFormPosts({attachments}) {
       >
         Create Post
       </button>
-  
     </form>
   );
 }

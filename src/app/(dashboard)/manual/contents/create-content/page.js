@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-// import ImageSelectorModal from '@/components/modals/ImageSelectorModal';
+import ImageSelectorModal from '@/components/modals/ImageSelectorModal';
 import Image from 'next/image';
 import { FaPlusCircle } from "react-icons/fa";
 import Breadcrumbs from '@/components/breadcrumbs';
@@ -67,11 +67,11 @@ export default function ContentCreate() {
                             <FaPlusCircle className='mr-2' /> Add Attachments
                         </button>
 
-                        {/* <ImageSelectorModal
+                         <ImageSelectorModal
                             isOpen={modalIsOpen}
                             onRequestClose={closeModal}
                             onSelectImage={handleImageSelection}
-                        /> */}
+                        /> 
 
                         {attachment && (
                             <div className="w-full h-60 overflow-hidden mt-2 bg-gray-100 border border-gray-300 flex flex-wrap justify-center items-center"> 

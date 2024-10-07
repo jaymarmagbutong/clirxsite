@@ -1,7 +1,7 @@
 "use client"
 import CreateFormPosts from '@/components/forms/createPost';
 import { useState } from 'react';
-// import ImageSelectorModal from '@/components/modals/ImageSelectorModal';
+import ImageSelectorModal from '@/components/modals/ImageSelectorModal';
 import Image from 'next/image';
 import { FaPlusCircle } from "react-icons/fa";
 import Breadcrumbs from '@/components/breadcrumbs';
@@ -72,11 +72,11 @@ export default function Posts() {
 
 
             <button onClick={openModal} className='flex items-center justify-center bg-gray-200 px-2 p-1 rounded-lg'> <FaPlusCircle className='mr-2'/> Add Attachments</button> 
-            {/* <ImageSelectorModal
+            <ImageSelectorModal
               isOpen={modalIsOpen}
               onRequestClose={closeModal}
               onSelectImage={handleImageSelection}
-            /> */}
+            /> 
 
             
             

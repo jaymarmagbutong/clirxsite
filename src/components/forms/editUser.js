@@ -50,7 +50,6 @@ export default function EditUserForm({ id, onUpdate }) {
 		onUpdate(); // Call onUpdate callback to notify parent component
 	};
 
-	console.log(formData)
 
 	if (!user) return (
 		<div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md mx-auto mt-5">
