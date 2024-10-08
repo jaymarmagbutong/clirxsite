@@ -4,7 +4,7 @@ import DB from "../../config/db";
 export async function GET(){
     try {
         const results = await new Promise((resolve, reject)=> {
-            DB.query("SELECT * FROM User", (err, results)=> {
+            DB.query("SELECT * FROM user", (err, results)=> {
                 if(err){
                     reject(err)
                 } else {

@@ -6,7 +6,7 @@ export async function GET() {
         // Fetch all categories from the database
         const categoryLists = await new Promise((resolve, reject) => {
             DB.query(
-                'SELECT * FROM Category', // Fetch all columns from the Category table
+                'SELECT * FROM category', // Fetch all columns from the Category table
                 (err, results) => {
                     if (err) {
                         reject(err);

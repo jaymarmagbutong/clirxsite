@@ -30,7 +30,7 @@ const SignIn = () => {
         }
        
       }
-    }, [sessionStatus, router]);
+    }, [sessionStatus, router, session?.user?.role]);
 
     const formSubmitFunction = async (e) => {
 

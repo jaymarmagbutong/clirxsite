@@ -27,7 +27,7 @@ export async function POST(request) {
 
     // Insert the new page into the database
     const result = await query(
-      'INSERT INTO Pages (title, description, reference_number, category, attachments) VALUES (?, ?, ?, ?, ?)',
+      'INSERT INTO pages (title, description, reference_number, category, attachments) VALUES (?, ?, ?, ?, ?)',
       [title, description, referenceNumber, category, attachments]
     );
 

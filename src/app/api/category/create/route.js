@@ -15,7 +15,7 @@ export async function POST(request) {
       // Check if the category already exists
       const existingCategory = await new Promise((resolve, reject) => {
           DB.query(
-              'SELECT id FROM Category WHERE name = ?',
+              'SELECT id FROM category WHERE name = ?',
               [categoryName],
               (err, results) => {
                   if (err) {
