@@ -6,7 +6,7 @@ import Image from 'next/image'
 const ImageList = ({ refreshTrigger }) => {
     const [images, setImages] = useState([]);
     useEffect(()=> {
-        const fetcIImageList = async () => {
+        const fetchImageList = async () => {
             try {
                 const res = await fetch('api/image/');
                 if(res.ok){
