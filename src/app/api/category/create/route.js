@@ -34,7 +34,7 @@ export async function POST(request) {
       // Insert the new category into the database
       const result = await new Promise((resolve, reject) => {
           DB.query(
-              'INSERT INTO Category (name, description, slug) VALUES (?, ?, ?)',
+              'INSERT INTO category (name, description, slug) VALUES (?, ?, ?)',
               [categoryName, description, slug],
               (err, results) => {
                   if (err) {
