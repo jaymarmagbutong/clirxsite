@@ -1,27 +1,24 @@
-import { getSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 
-// Function to get user info from the session without req
-async function getUserInfo() {
-  try {
-    const session = await getSession(); // Get the session without needing req
+// // Custom hook to get user info from the session
+// export const getUserInfo = () => {
+//   const { data: session, status } = useSession(); // Get the session
 
-    if (!session || !session.user) {
-      return null; // Return null if no session or user
-    }
+//   if (status === "loading") {
+//     return null; // Return null if the session is still loading
+//   }
 
-    // Extract user info from the session
-    const user = {
-      id: session.user.id,
-      email: session.user.email,
-      name: session.user.name,
-      role: session.user.role
-    };
+//   if (status === "unauthenticated" || !session?.user) {
+//     return null; // Return null if there's no session or user
+//   }
 
-    return user; // Return user info from the session
-  } catch (error) {
-    console.error('Error getting user info from session:', error);
-    throw new Error('Failed to retrieve user information');
-  }
-}
+//   // Extract user info from the session
+//   const user = {
+//     id: session.user.id,
+//     email: session.user.email,
+//     name: session.user.name,
+//     role: session.user.role
+//   };
 
-export default getUserInfo;
+//   return user; // Return user info from the session
+// };

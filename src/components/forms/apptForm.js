@@ -1,41 +1,58 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import dynamic from 'next/dynamic';
 
-import 'froala-editor/js/froala_editor.pkgd.min.js';
-import 'froala-editor/js/plugins/image.min.js';
-import 'froala-editor/js/plugins/table.min.js'; // Import the table plugin
-import 'froala-editor/js/plugins/code_view.min.js'; // Import the code editor plugin
-import 'froala-editor/css/froala_editor.pkgd.min.css';
-import 'froala-editor/css/froala_style.min.css';
-import 'froala-editor/css/plugins/image.min.css';
-import 'froala-editor/css/plugins/table.min.css'; // Import table plugin styles
-import 'froala-editor/css/plugins/code_view.min.css'; // Import code editor plugin styles
-import 'froala-editor/js/plugins/font_family.min.js'; // Import font family plugin
-import 'froala-editor/js/plugins/print.min.js';
-import 'froala-editor/js/plugins/lists.min.js';
-import 'froala-editor/js/plugins/font_size.min.js'; // Import font size plugin
-import 'froala-editor/js/plugins/paragraph_format.min.js'; // Import the paragraph format plugin
+const FroalaEditor = dynamic(() => import('react-froala-wysiwyg'), {
+    ssr: false,
+  });
 
-import 'froala-editor/js/plugins/video.min.js'; // Import video plugin
-
-import 'froala-editor/js/plugins/paragraph_style.min.js'; // Import paragraph style plugin
-import 'froala-editor/js/plugins/colors.min.js'; // Font color plugin JavaScript
-import 'froala-editor/css/plugins/colors.min.css'; // Font color plugin CSS
-import FroalaEditor from 'react-froala-wysiwyg';
 import { useSession } from "next-auth/react";
-
+import io from 'socket.io-client';
 
 
 const ApptForm = ({ contents, apptDetails }) => {
-
-    const [description, setDescription] = useState(apptDetails.description);
-
-    const { data: session, status } = useSession();
-    const { user } = session;
-
+    
 
     useEffect(() => {
+        // Only import Froala editor plugins when on the client side
+        if (typeof window !== 'undefined') {
+            // Import Froala JS and CSS files
+            import('froala-editor/js/froala_editor.pkgd.min.js');
+            import('froala-editor/js/plugins/image.min.js');
+            import('froala-editor/js/plugins/table.min.js');
+            import('froala-editor/js/plugins/code_view.min.js');
+            import('froala-editor/js/plugins/font_family.min.js');
+            import('froala-editor/js/plugins/print.min.js');
+            import('froala-editor/js/plugins/lists.min.js');
+            import('froala-editor/js/plugins/font_size.min.js');
+            import('froala-editor/js/plugins/video.min.js');
+            import('froala-editor/js/plugins/paragraph_format.min.js');
+            import('froala-editor/js/plugins/paragraph_style.min.js');
+            import('froala-editor/js/plugins/colors.min.js');
+            
+            import('froala-editor/css/froala_editor.pkgd.min.css');
+            import('froala-editor/css/froala_style.min.css');
+            import('froala-editor/css/plugins/image.min.css');
+            import('froala-editor/css/plugins/table.min.css');
+            import('froala-editor/css/plugins/code_view.min.css');
+            import('froala-editor/css/plugins/colors.min.css');
+        }
+    }, []);
+
+ 
+    const [description, setDescription] = useState('');
+    const { data: session, status } = useSession();
+    const { user } = session;
+    const socket = io('http://localhost:8080');
+
+
+    useEffect(()=> {
+        setDescription(apptDetails.description)
+    }, [])
+    
+    useEffect(() => {
+   
         const getPagePerUser = async () => {
             try {
 
@@ -63,6 +80,7 @@ const ApptForm = ({ contents, apptDetails }) => {
                 console.error('Failed to fetch page details:', error);
             }
         }
+
         getPagePerUser();
     }, [apptDetails.id, user.id]);
 
@@ -73,7 +91,6 @@ const ApptForm = ({ contents, apptDetails }) => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-
         // Assuming you have the following values from form inputs or state
         const updateData = {
             user_id: user.id,  // This should be the ID of the accreditation you want to update
@@ -97,6 +114,9 @@ const ApptForm = ({ contents, apptDetails }) => {
             const results = await response.json();
             console.log('Accreditation Updated Successfully', results);
             toast.success('Updated successfully!');
+
+            socket.emit('message', updateData);
+
         } catch (error) {
             console.error('Error updating accreditation:', error);
         }
@@ -110,16 +130,11 @@ const ApptForm = ({ contents, apptDetails }) => {
                 tag="textarea"
                 model={description}
                 onModelChange={handleModelChange}
-
-            // className="h-screen"
-            // config={{
-            //   heightMin: 400, 
-            // }}
             />
 
             <button type="submit" 
-            onClick={handleUpdate} 
-            className="bg-clirxColor mt-3 text-white py-2 px-4 rounded hover:bg-clirxLightColor focus:outline-none focus:bg-clirxColor">Submit Changes</button>
+                onClick={handleUpdate} 
+                className="bg-clirxColor mt-3 text-white py-2 px-4 rounded hover:bg-clirxLightColor focus:outline-none focus:bg-clirxColor">Submit Changes</button>
         </div>
     )
 }

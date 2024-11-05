@@ -4,8 +4,6 @@ import { getToken } from 'next-auth/jwt';
 // Function to get user info from session in an API route
 async function getUserServerInfo(request) {
 
-    
-
     try {
         const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
 

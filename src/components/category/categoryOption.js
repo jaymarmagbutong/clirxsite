@@ -13,7 +13,10 @@ const CategoryOption = ({isCategory = null , params = null,  getValue= null}) =>
 
         const getAllCategory = async () => {
             try {
-                const response = await fetch('/api/category/get');
+                const response = await fetch('/api/category/get', {
+                    headers: { 'Cache-Control': 'no-store' },
+                    next: { revalidate: 0 }
+                });
                 const data = await response.json()
 
                 setCategoryLists(data);
