@@ -121,6 +121,7 @@ export default function CreateFormPage({ attachments, category }) {
             config={{
               heightMin: 400,
             }}
+            style={{ width: '100%' }}
           />
         </div>
       </div>

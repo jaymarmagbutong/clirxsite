@@ -98,7 +98,7 @@ const SingleContent = ({ pages }) => {
         <>
             <div className="w-full mt-5 p-4 bg-white rounded-md flex flex-col">
                 <h1 className='font-bold text-3xl flex items-center justify-between w-full'><span>{pages.title}</span> <span>{(pages.reference_number !== '' && pages.reference_number !== undefined) ? `(${pages?.reference_number})` : ''}</span></h1>
-                <div className={(editable) ? 'flex flex-col items-end mt-6 ' : `border p-4 mt-6 shadow-md flex flex-col items-end`}>
+                <div className={(editable) ? 'w-full flex flex-col items-end mt-6 ' : `border p-4 mt-6 shadow-md flex w-full flex-col items-end`}>
                     <span className='p-2 border rounded-sm cursor-pointer mb-4' onClick={isEditable}><MdEdit /></span>
 
                     {editable ? (
@@ -110,9 +110,10 @@ const SingleContent = ({ pages }) => {
                                 heightMin: 400,
                             }}
                             className='z-[-0] floalas'
+                            style={{ width: '100%' }}
                         />
                     ) : (
-                        <div className=''
+                        <div className='w-full'
                             dangerouslySetInnerHTML={{ __html: pageDescription }}
                         />
                     )}
