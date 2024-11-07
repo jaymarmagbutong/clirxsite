@@ -13,32 +13,37 @@ export default function CreateFormPage({ attachments, category }) {
   const [description, setDescription] = useState('');
   const [referenceNumber, setReferenceNumber] = useState('');
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
+    // Only import Froala editor plugins when on the client side
     if (typeof window !== 'undefined') {
-      // Client-side only Froala imports
-      import('froala-editor/js/froala_editor.pkgd.min.js');
-      import('froala-editor/js/plugins/image.min.js');
-      import('froala-editor/js/plugins/table.min.js');
-      import('froala-editor/js/plugins/code_view.min.js');
-      import('froala-editor/js/plugins/font_family.min.js');
-      import('froala-editor/js/plugins/print.min.js');
-      import('froala-editor/js/plugins/lists.min.js');
-      import('froala-editor/js/plugins/font_size.min.js');
-      import('froala-editor/js/plugins/video.min.js');
-      import('froala-editor/js/plugins/paragraph_format.min.js');
-      import('froala-editor/js/plugins/paragraph_style.min.js');
-      import('froala-editor/js/plugins/colors.min.js');
-      
-      // CSS Imports
-      import('froala-editor/css/froala_editor.pkgd.min.css');
-      import('froala-editor/css/froala_style.min.css');
-      import('froala-editor/css/plugins/image.min.css');
-      import('froala-editor/css/plugins/table.min.css');
-      import('froala-editor/css/plugins/code_view.min.css');
-      import('froala-editor/css/plugins/colors.min.css');
+        // Import Froala JS and CSS files
+        import('froala-editor/js/froala_editor.pkgd.min.js');
+        
+        // Additional plugins
+        import('froala-editor/js/plugins/image.min.js');
+        import('froala-editor/js/plugins/table.min.js');
+        import('froala-editor/js/plugins/code_view.min.js');
+        import('froala-editor/js/plugins/font_family.min.js');
+        import('froala-editor/js/plugins/print.min.js');
+        import('froala-editor/js/plugins/lists.min.js');
+        import('froala-editor/js/plugins/font_size.min.js');
+        import('froala-editor/js/plugins/video.min.js');
+        import('froala-editor/js/plugins/paragraph_format.min.js');
+        import('froala-editor/js/plugins/paragraph_style.min.js');
+        import('froala-editor/js/plugins/colors.min.js');
+        
+        // Import the link plugin
+        import('froala-editor/js/plugins/link.min.js');
+
+        // CSS files
+        import('froala-editor/css/froala_editor.pkgd.min.css');
+        import('froala-editor/css/froala_style.min.css');
+        import('froala-editor/css/plugins/image.min.css');
+        import('froala-editor/css/plugins/table.min.css');
+        import('froala-editor/css/plugins/code_view.min.css');
+        import('froala-editor/css/plugins/colors.min.css');
     }
-  }, []);
+}, []);
 
   const handleModelChange = (model) => {
     setDescription(model);
