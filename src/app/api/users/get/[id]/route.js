@@ -7,7 +7,7 @@ export async function GET(request, { params }) {
         // Use parameterized queries to prevent SQL injection
         const results = await new Promise((resolve, reject) => {
             DB.query(
-                'SELECT id, username, email, role FROM User WHERE id = ? LIMIT 1',
+                'SELECT id, username, email, role FROM user WHERE id = ? LIMIT 1',
                 [id],
                 (err, results) => {
                     if (err) {

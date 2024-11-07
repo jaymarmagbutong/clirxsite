@@ -10,7 +10,7 @@ export async function POST(req) {
         // Check if the email already exists
         const existingUser = await new Promise((resolve, reject) => {
             DB.query(
-                'SELECT id FROM User WHERE email = ?',
+                'SELECT id FROM user WHERE email = ?',
                 [email],
                 (err, results) => {
                     if (err) {
@@ -35,7 +35,7 @@ export async function POST(req) {
         // Insert the new user into the database
         await new Promise((resolve, reject) => {
             DB.query(
-                'INSERT INTO User (username, email, role, password) VALUES (?, ?, ?, ?)',
+                'INSERT INTO user (username, email, role, password) VALUES (?, ?, ?, ?)',
                 [name, email, role, hashedPassword],
                 (err, results) => {
                     if (err) {
