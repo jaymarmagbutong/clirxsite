@@ -10,6 +10,11 @@ const ApptAdminAction = ({ modalFunction, modalStatus, content, pageId, oldPageC
 			setaApptContent(content);
 		}
 	}, [content]);
+	useEffect(() => {
+        // Setting the app element to 'body' when the component mounts
+        Modal.setAppElement('body');
+      }, []); 
+
 
 
 	const haddleApproved = async () => {

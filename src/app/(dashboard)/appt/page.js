@@ -97,13 +97,9 @@ const Accreditation = () => {
 					</tr>
 					</thead>
 					<tbody className="text-gray-700">
-							{	singlePages.map((pagelist, index)=> (
-									<>
-										<PageList key={index} pageDetails={pagelist}/>
-			
-									</>
-								))
-							}
+					{ singlePages.map((pagelist, index) => (
+						<PageList key={index} pageDetails={pagelist}/>
+					))}
 					</tbody>
 					</table>
 				</div>

@@ -13,7 +13,6 @@ import io from 'socket.io-client';
 
 const socket = io('http://localhost:8080/');
 
-
 export default function Page({ params }) {
 
     const [pages, setPages] = useState('');
@@ -22,7 +21,6 @@ export default function Page({ params }) {
 	const [modalContent, setModalContent] = useState();
 	const [pageHistory, setPageHistory] = useState();
 	const [socketAction, setSocketAction] = useState(false);
-
 
 	useEffect(()=> {
 		socket.on('connect', () => {
@@ -35,8 +33,6 @@ export default function Page({ params }) {
 			socketTrigger()
 			
 		});
-	
-	;
 
 		return () => {
 			socket.disconnect();
@@ -48,12 +44,11 @@ export default function Page({ params }) {
 		setModalStatus(prevModalStatus => !prevModalStatus);
 	}
 
-
 	const socketTrigger = () => {
 		setSocketAction(prevModalStatus => !prevModalStatus);
 	}
 
-	const id = params.id;
+	const { id } = React.use(params); // Unwrap params to get id
 	
     useEffect(() => {
         const getPageDetails = async () => {
@@ -69,7 +64,6 @@ export default function Page({ params }) {
         getPageDetails();
 
     }, [id, modalStatus, socketAction]);
-
 
 	useEffect(() => {
 		const pageHistoryF = async () => {
@@ -96,7 +90,6 @@ export default function Page({ params }) {
 					<BackButton />
 				</div>
 			</div>
-
 
 			<div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
 

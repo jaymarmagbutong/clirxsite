@@ -24,7 +24,7 @@ const handle = app.getRequestHandler();
     console.log('New client connected:', socket.id);
 
     socket.on('message', (data) => {
-      console.log('Message received:', data);
+      console.log('Message received:');
       socket.broadcast.emit('message', data); // Broadcasting to all other clients
     });
   

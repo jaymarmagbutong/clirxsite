@@ -12,10 +12,15 @@ const ModifyPage = ({content, title, apptDetails}) => {
     const [isHorizontal, setIsHorizontal] = useState(false); // Toggle for horizontal/vertical view
 
 
-
     // Functions to open and close the modal
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
+
+    useEffect(() => {
+        // Setting the app element to 'body' when the component mounts
+        Modal.setAppElement('body');
+      }, []); 
+
 
     const handleRequestClose = () => {
       closeModal();
@@ -56,7 +61,7 @@ const ModifyPage = ({content, title, apptDetails}) => {
             </button>
 
             <Modal
-    
+       
                 isOpen={modalIsOpen}
                 onRequestClose={handleRequestClose}
                 contentLabel="Example Modal"

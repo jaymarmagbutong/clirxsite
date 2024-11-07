@@ -2,17 +2,17 @@
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import dynamic from 'next/dynamic';
+import { useSocket } from '@/app/context/SocketContext';
 
 const FroalaEditor = dynamic(() => import('react-froala-wysiwyg'), {
     ssr: false,
   });
 
 import { useSession } from "next-auth/react";
-import io from 'socket.io-client';
 
 
 const ApptForm = ({ contents, apptDetails }) => {
-    
+    const socket = useSocket()  
 
     useEffect(() => {
         // Only import Froala editor plugins when on the client side
@@ -44,7 +44,6 @@ const ApptForm = ({ contents, apptDetails }) => {
     const [description, setDescription] = useState('');
     const { data: session, status } = useSession();
     const { user } = session;
-    const socket = io('http://localhost:8080');
 
 
     useEffect(()=> {
@@ -121,9 +120,7 @@ const ApptForm = ({ contents, apptDetails }) => {
             console.error('Error updating accreditation:', error);
         }
     };
-
-
-
+    
     return (
         <div>
             <FroalaEditor
