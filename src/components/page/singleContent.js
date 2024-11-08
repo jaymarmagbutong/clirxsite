@@ -108,6 +108,7 @@ const SingleContent = ({ pages }) => {
                             onModelChange={handleModelChange}
                             config={{
                                 heightMin: 400,
+                                imageUploadURL: '/api/upload/',  // Route to handle image uploads
                             }}
                             className='z-[-0] floalas'
                             style={{ width: '100%' }}
