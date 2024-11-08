@@ -28,7 +28,13 @@ export async function POST(req) {
 
     fs.writeFileSync(filePath, buffer);
 
-    return NextResponse.json({ message: 'File uploaded successfully', filePath: `/img/uploaded/${uniqueFilename}` }, { status: 200 });
+    return NextResponse.json(
+      {
+         message: 'File uploaded successfully',
+         filePath: `/img/uploaded/${uniqueFilename}`,
+         link: `/img/uploaded/${uniqueFilename}` 
+      }, 
+         { status: 200 });
   } catch (error) {
     console.error('Unexpected error:', error);
     return NextResponse.json({ error: 'Unexpected server error' }, { status: 500 });
