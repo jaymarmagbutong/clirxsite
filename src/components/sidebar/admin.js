@@ -8,7 +8,7 @@ import MenuItem from '../MenuItem';
 
 
 
-const  Sidebar =  () => {
+const  Admin =  () => {
 
   const [menuItems, setMenuItems] = useState([]);
   const [expandedMenu, setExpandedMenu] = useState(null);
@@ -72,4 +72,4 @@ const  Sidebar =  () => {
   );
 };
 
-export default Sidebar;
+export default Admin;

@@ -129,7 +129,6 @@ const SingleContent = ({ pages }) => {
                         <button className='bg-clirxColor text-white py-2 px-4 rounded hover:bg-clirxLightColor focus:outline-none focus:bg-clirxColor' onClick={haddleApproved}>Finalize</button>
                     </div>
                 )
-
             }
         </>
 

@@ -20,12 +20,13 @@ export async function middleware(req) {
         case 1:
             role = 'admin';
             break;
-        case 3:
-            role = 'viewer';
-            break;
         case 2:
             role = 'editor';
             break;
+        case 3:
+            role = 'viewer';
+            break;
+    
         default:
             role = 'viewer';
     }
