@@ -38,8 +38,8 @@ const CreateContent = () => {
 						{isOpenManage && (
 							<div className="absolute right-0 mt-2 w-56 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical">
 								<div className="py-1">
-									<Link href="/manual/contents/create-content" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Add Page</Link>
-									<Link href="/manual/contents/create-category" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Add Category</Link>
+									<Link href="/manual/contents/create-content" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Page</Link>
+									<Link href="/manual/contents/category" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Category</Link>
 								</div>
 							</div>
 						)}

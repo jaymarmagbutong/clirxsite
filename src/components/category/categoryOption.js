@@ -25,7 +25,6 @@ const CategoryOption = ({isCategory = null , params = null,  getValue= null}) =>
             } finally {
                 setLoading(false);
             }
-           
         };
 
         getAllCategory();
@@ -56,20 +55,6 @@ const CategoryOption = ({isCategory = null , params = null,  getValue= null}) =>
                     ))
                 }
                 </select>
-            </div>
-          )
-    } else {
-        return (
-            <div> 
-                <ul>
-                {
-                    categoryLists.map((item, index) => (
-                        <li key={item.id} className='list-none border-t-[1px] py-2 text-sm'>
-                            {item.name}
-                        </li>
-                    ))
-                }
-                </ul>
             </div>
           )
     }
