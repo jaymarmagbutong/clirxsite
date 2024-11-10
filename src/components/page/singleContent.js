@@ -98,8 +98,8 @@ const SingleContent = ({ pages }) => {
         <>
             <div className="w-full mt-5 p-4 bg-white rounded-md flex flex-col">
                 <h1 className='font-bold text-3xl flex items-center justify-between w-full'><span>{pages.title}</span> <span>{(pages.reference_number !== '' && pages.reference_number !== undefined) ? `(${pages?.reference_number})` : ''}</span></h1>
-                <div className={(editable) ? 'w-full flex flex-col items-end mt-6 ' : `border p-4 mt-6 shadow-md flex w-full flex-col items-end`}>
-                    <span className='p-2 border rounded-sm cursor-pointer mb-4' onClick={isEditable}><MdEdit /></span>
+                <div className={(editable) ? 'w-full flex flex-col mt-6 ' : `border p-4 mt-6 shadow-md flex w-full flex-col items-end`}>
+                  
 
                     {editable ? (
                         <FroalaEditor
@@ -118,9 +118,20 @@ const SingleContent = ({ pages }) => {
                             dangerouslySetInnerHTML={{ __html: pageDescription }}
                         />
                     )}
-                    <span className='mt-2 text-sm text-gray-500 flex items-center gap-2'><FaGlobeAmericas/> <>{formatDate(pages.date_created)}</></span>
                 </div>
 
+                <div className='flex items-center justify-between mt-4'>
+                    <div>
+                        <span className='mt-2 text-sm text-gray-500 flex items-center gap-2 w-80'><FaGlobeAmericas/> <>{formatDate(pages.date_created)}</></span>
+                    </div>
+                    <div>
+                        <div className='p-2 border rounded-sm cursor-pointer mb-4' onClick={isEditable}>
+                            <MdEdit />
+                        </div>
+
+                    </div>
+                </div>
+                
             </div>
 
             {

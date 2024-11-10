@@ -5,6 +5,7 @@
 .ql-editor.ql-blank {
     min-height: 400px;
 }
+
 .ReactModal__Overlay {
   opacity: 0;
   transition: opacity 500ms ease-in-out;
@@ -41,7 +42,7 @@
 }
 
 
-.fr-wrapper > :first-child{
+/* .fr-wrapper > :first-child{
   display: none !important;
-}
+} */
 

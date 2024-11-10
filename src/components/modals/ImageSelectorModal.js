@@ -9,6 +9,7 @@ export default function ImageSelectorModal({ isOpen, onRequestClose, onSelectIma
     useEffect(() => {
         // Only set to true when we're on the client
         setIsClient(true);
+        Modal.setAppElement('body');
     }, []);
 
     useEffect(()=> {

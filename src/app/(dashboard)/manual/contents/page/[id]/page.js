@@ -100,6 +100,8 @@ export default function Page({ params }) {
 
 				<div className='mt-5'>
 					<div className='bg-white  rounded-md p-4'>
+					<h4 className='font-bold mb-3 '>Users</h4>
+                    <hr className='mb-4'></hr>
 						<UsersList option={'singlepage'} page_id={id}/>
 					</div>
 					<ActivityPage appt_response={apptResponse} modalAction={showModal} setModalContent={setModalContent}/>

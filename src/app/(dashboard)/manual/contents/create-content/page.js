@@ -7,11 +7,14 @@ import Breadcrumbs from '@/components/breadcrumbs';
 import CreateFormPage from '@/components/forms/createPage';
 import CategoryOption from '@/components/category/categoryOption';
 import BackButton from '@/components/backButton';
+import PageVisibility from '@/components/page/pageVisibility';
 
 export default function ContentCreate() {
+
     const [modalIsOpen, setIsOpen] = useState(false);
     const [attachment, setAttachment] = useState('');
     const [category, setCategory] = useState('');
+    const [status, setStatus] = useState('2')
 
     function openModal() {
         setIsOpen(true);
@@ -29,6 +32,12 @@ export default function ContentCreate() {
     const getCatVal = (value) => {
         setCategory(value);
     };
+
+    const getStatus = (value) => {
+        setStatus(value)
+    }
+
+    console.log(status)
 
     return (
         <div>
@@ -48,19 +57,24 @@ export default function ContentCreate() {
                         <CreateFormPage 
                             attachments={attachment}
                             category={category}
+                            status={status}
                         />
                     </div>
                 </div>
 
                 <div className='mt-5'>
                     <div className='bg-white rounded-md p-4'>
+                    <h4 className='font-bold mb-3 '>Page Details</h4>
+                    <hr className='mb-4'></hr>
+                    
                         <div className='mb-5'>
-                            <h4 className='font-bold mb-3'>Page Details</h4>
                             <label htmlFor="title" className="block text-sm font-medium text-gray-700"> Category </label>
-                            <CategoryOption 
-                                params="options" 
-                                getValue={getCatVal}
-                            />
+                            <CategoryOption  getValue={getCatVal} defaultCatValue = {0}/>
+                        </div>
+
+                        <div className='mb-5'>
+                            <label htmlFor="title" className="block text-sm font-medium text-gray-700"> Page Visibility </label>
+                            <PageVisibility getStatus={getStatus} defaultStatus={2}/>
                         </div>
 
                         <button onClick={openModal} className='flex items-center justify-center bg-gray-200 px-2 p-1 rounded-lg'> 
