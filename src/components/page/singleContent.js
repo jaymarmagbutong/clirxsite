@@ -114,7 +114,7 @@ const SingleContent = ({ pages }) => {
                             style={{ width: '100%' }}
                         />
                     ) : (
-                        <div className='w-full'
+                        <div className='w-full fr-view'
                             dangerouslySetInnerHTML={{ __html: pageDescription }}
                         />
                     )}
