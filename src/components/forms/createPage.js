@@ -124,6 +124,7 @@ export default function CreateFormPage({ attachments, category, status }) {
                         onModelChange={handleModelChange}
                         config={{
                             heightMin: 400,
+                            imageUploadURL: '/api/upload/',  // Route to handle image uploads
                         }}
                         style={{ width: '100%' }}
                     />

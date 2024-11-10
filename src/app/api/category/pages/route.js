@@ -23,7 +23,7 @@ export async function GET() {
             categories.map(async (category) => {
                 const pages = await new Promise((resolve, reject) => {
                     DB.query(
-                        'SELECT id, title FROM pages WHERE category = ?',
+                        'SELECT * FROM pages WHERE category = ?',
                         [category.id],
                         (err, results) => {
                             if (err) {

@@ -127,6 +127,10 @@ const ApptForm = ({ contents, apptDetails }) => {
                 tag="textarea"
                 model={description}
                 onModelChange={handleModelChange}
+                config={{
+                    heightMin: 400,
+                    imageUploadURL: '/api/upload/',  // Route to handle image uploads
+                }}
             />
 
             <button type="submit" 

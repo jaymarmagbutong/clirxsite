@@ -95,6 +95,7 @@ export default function CreateFormPosts({ attachments }) {
 					onModelChange={handleModelChange}
 					config={{
 						heightMin: 400,
+						imageUploadURL: '/api/upload/',  // Route to handle image uploads
 					}}
 				/>
 			</div>

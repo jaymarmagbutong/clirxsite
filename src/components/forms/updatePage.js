@@ -148,6 +148,7 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
                         onModelChange={handleModelChange}
                         config={{
                             heightMin: 400,
+                            imageUploadURL: '/api/upload/',  // Route to handle image uploads
                         }}
                         style={{ width: '100%' }}
                     />
