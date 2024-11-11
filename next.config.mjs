@@ -11,7 +11,7 @@ const nextConfig = {
 		},
 		{
 			protocol: 'http',
-			hostname: 'http://10.220.8.85/',
+			hostname: '10.220.8.85',
 			pathname: '/img/**', // Allow all image paths under /img/
 		},
 		{
