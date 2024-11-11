@@ -16,9 +16,9 @@ export async function POST(req) {
     const originalFilename = file.name;
     const fileExtension = path.extname(originalFilename);
     const uniqueFilename = `${Date.now()}_${uuidv4()}${fileExtension}`;
-    const filePath = path.join(process.cwd(), 'public/', uniqueFilename);
+    const filePath = path.join(process.cwd(), 'public/img/uploaded', uniqueFilename);
 
-    const dir = path.join(process.cwd(), 'public/');
+    const dir = path.join(process.cwd(), 'public/img/uploaded');
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
@@ -27,8 +27,8 @@ export async function POST(req) {
 
     const response = NextResponse.json({
       message: 'File uploaded successfully',
-      filePath: `/${uniqueFilename}`,
-      link: `/${uniqueFilename}`,
+      filePath: `/img/uploaded/${uniqueFilename}`,
+      link: `/img/uploaded/${uniqueFilename}`,
     });
 
     // Set Cache-Control headers
