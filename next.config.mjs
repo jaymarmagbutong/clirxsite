@@ -1,40 +1,40 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		remotePatterns: [
-			{
-				protocol: 'http',
-				hostname: '**',
-			},
-			{
-				protocol: 'https',
-				hostname: 'another-domain.com',
-				pathname: '/images/**', // Allow only paths starting with /images/
-			},
-			{
-				protocol: 'https',
-				hostname: 'platform-lookaside.fbsbx.com',
-				pathname: '/**', // Allow all paths from this domain
-			},
-			{
-				protocol: 'http',
-				hostname: '10.220.8.85', // Fixed the format for IP address
-				pathname: '/**', // Allow all paths from this domain
-			},
-			
-		],
+	  domains: ['localhost', 'another-domain.com'], // Allow localhost and any other domain you use for production
+	  remotePatterns: [
+		{
+		  protocol: 'http',
+		  hostname: 'localhost',
+		  port: '3000', // For local development, explicitly set the port
+		  pathname: '/img/**', // Allow all image paths under /img/
+		},
+		{
+			protocol: 'http',
+			hostname: 'http://10.220.8.85/',
+			pathname: '/img/**', // Allow all image paths under /img/
+		},
+		{
+		  protocol: 'https',
+		  hostname: 'your-production-domain.com', // Replace with your production domain
+		  pathname: '/img/**', // Allow all image paths under /img/ in production
+		},
+		{
+		  protocol: 'https',
+		  hostname: 'platform-lookaside.fbsbx.com', // Facebook CDN domain for images
+		  pathname: '/**', // Allow all paths from this domain
+		},
+	  ],
 	},
-
-	reactStrictMode: false,
-
-	async rewrites() {
-		return [
-			{
-				source: "/api/socket/socket",
-				destination: "/api/socket/socket",
-			},
-		];
+  
+	reactStrictMode: true,
+  
+	logging: {
+	  fetches: {
+		fullUrl: true,
+	  },
 	},
-};
-
-export default nextConfig;
+  };
+  
+  export default nextConfig;
+  

@@ -38,7 +38,7 @@ const ApptForm = ({ contents, apptDetails }) => {
             import('froala-editor/css/plugins/code_view.min.css');
             import('froala-editor/css/plugins/colors.min.css');
         }
-    }, []);
+    }, [apptDetails]);
 
  
     const [description, setDescription] = useState('');
@@ -132,7 +132,7 @@ const ApptForm = ({ contents, apptDetails }) => {
                     imageUploadURL: '/api/upload/',  // Route to handle image uploads
                 }}
             />
-
+asdfasdf
             <button type="submit" 
                 onClick={handleUpdate} 
                 className="bg-clirxColor mt-3 text-white py-2 px-4 rounded hover:bg-clirxLightColor focus:outline-none focus:bg-clirxColor">Submit Changes</button>
