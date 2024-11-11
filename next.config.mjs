@@ -27,7 +27,7 @@ const nextConfig = {
 	  ],
 	},
   
-	reactStrictMode: true,
+	reactStrictMode: false,
   
 	logging: {
 	  fetches: {
