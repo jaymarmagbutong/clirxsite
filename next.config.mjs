@@ -4,9 +4,7 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'http',
-				hostname: 'localhost',
-				port: '3000', // Explicitly set the port
-				pathname: '/img/**', // Allow all paths from this domain
+				hostname: '**',
 			},
 			{
 				protocol: 'https',
@@ -18,17 +16,16 @@ const nextConfig = {
 				hostname: 'platform-lookaside.fbsbx.com',
 				pathname: '/**', // Allow all paths from this domain
 			},
+			{
+				protocol: 'http',
+				hostname: '10.220.8.85', // Fixed the format for IP address
+				pathname: '/**', // Allow all paths from this domain
+			},
+			
 		],
 	},
 
 	reactStrictMode: false,
-	// Ensure this section is valid for your custom needs
-	logging: {
-		fetches: {
-			fullUrl: true,
-		},
-	},
-
 
 	async rewrites() {
 		return [
