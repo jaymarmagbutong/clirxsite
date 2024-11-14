@@ -18,7 +18,7 @@ export async function GET(request, { params }) {
         const checkIfSeen = await new Promise((resolve, reject) => {
             const status = 'seen';
             DB.query(
-                `SELECT * FROM appt_status WHERE status = ? AND page_id = ? AND user_id = ? `,
+                `SELECT * FROM appt_status WHERE status = ? AND page_id = ? AND user_id = ?`,
                 [status, page_id, user_id ],
                 (err, results) => {
                     if (err) {
@@ -53,7 +53,7 @@ export async function GET(request, { params }) {
         // Fetch page details from the database
         const results = await new Promise((resolve, reject) => {
             DB.query(
-                `SELECT * FROM pages WHERE id = ?`,
+                `SELECT * FROM pages WHERE id = ?  ORDER BY reference_number DESC`,
                 [id],
                 (err, results) => {
                     if (err) {
@@ -88,7 +88,7 @@ export async function GET(request, { params }) {
                 ON 
                     appt.page_id = pages.id
                 WHERE 
-                    page_id = ? AND response !=''`,
+                    page_id = ? AND response !=''  ORDER BY pages.reference_number DESC`,
                 [id],
                 (err, results) => {
                     if (err) {

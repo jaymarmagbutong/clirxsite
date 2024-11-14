@@ -18,13 +18,7 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
     const [id, setId]= useState('');
     const [page, setPage] = useState([])
 
-
     const [loading, setLoading] = useState(false);
-
-
-
-
-
 
     useEffect(() => {
         if (pageDetails && pageDetails.pages) {
@@ -96,13 +90,13 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
             });
 
             if (response.ok) {
-                toast.success('Page created successfully!');
+                toast.success('Page Updated successfully!');
            
             } else {
-                toast.error('Failed to create page!');
+                toast.error('Failed to update the page!');
             }
         } catch (error) {
-            toast.error('Error occurred while creating page!');
+            toast.error('Error occurred while updating page!');
         } finally {
             setLoading(false);
         }

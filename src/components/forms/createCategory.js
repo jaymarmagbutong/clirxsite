@@ -8,6 +8,7 @@ const CategoryForm = ({ triggerResponse }) => {
 
 	const [categoryName, setCategoryName] = useState('');
 	const [description, setDescription] = useState('');
+	const [refNumber, setRefNumber] = useState('');
 	const [slug, setSlug] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -31,6 +32,7 @@ const CategoryForm = ({ triggerResponse }) => {
 				body: JSON.stringify({
 					categoryName,
 					description,
+					refNumber,
 					slug
 				}),
 			});
@@ -60,18 +62,33 @@ const CategoryForm = ({ triggerResponse }) => {
 			<LoadingBar color="#336eb0" ref={ref} />
 			<form onSubmit={handleSubmit} className="max-full  bg-white p-4  rounded-md">
 				{/* <h2 className="font-bold mb-4 text-gray-800">Add New Category</h2> */}
-				<div className="mb-4">
-					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="categoryName">
-						Category Name
-					</label>
-					<input
-						id="categoryName"
-						type="text"
-						value={categoryName}
-						onChange={(e) => handleTitle(e.target.value)}
-						className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
-						required
-					/>
+				<div className="mb-4 gap-3 flex w-full">
+					<div className='w-full'>
+						<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="categoryName">
+							Category Name
+						</label>
+						<input
+							id="categoryName"
+							type="text"
+							value={categoryName}
+							onChange={(e) => handleTitle(e.target.value)}
+							className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
+							required
+						/>
+					</div>
+					<div className='w-40'>
+						<label className="block text-gray-700 text-sm font-bold mb-2" >
+							Ref Number
+						</label>
+						<input
+							id="refNumber"
+							type="text"
+							value={refNumber}
+							onChange={(e) => setRefNumber(e.target.value)}
+							className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm"
+							required
+						/>
+					</div>
 				</div>
 				<div className="mb-4">
 					<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">

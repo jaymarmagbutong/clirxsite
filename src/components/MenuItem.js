@@ -8,13 +8,15 @@ import { MdPostAdd, MdOutlinePermMedia, MdOutlineAdminPanelSettings } from 'reac
 import { TbUsers } from 'react-icons/tb';
 import { CiCircleChevDown, CiCircleChevUp } from 'react-icons/ci';
 import { CiViewList } from "react-icons/ci";
+import { SiPowerpages } from "react-icons/si";
 const iconMapping = {
   LiaSwatchbookSolid: LiaSwatchbookSolid,
   MdPostAdd: MdPostAdd,
   MdOutlinePermMedia: MdOutlinePermMedia,
   MdOutlineAdminPanelSettings: MdOutlineAdminPanelSettings,
   TbUsers: TbUsers, 
-  CiViewList:CiViewList
+  CiViewList:CiViewList,
+  SiPowerpages:SiPowerpages
   // Add other icons here if needed
 };
 

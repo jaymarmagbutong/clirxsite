@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
+import { useSession } from "next-auth/react";
+import { useRouter } from 'next/navigation';
 
 // Dynamically import FroalaEditor with SSR disabled
 const FroalaEditor = dynamic(() => import('react-froala-wysiwyg'), {
@@ -13,6 +15,11 @@ export default function CreateFormPage({ attachments, category, status }) {
     const [description, setDescription] = useState('');
     const [referenceNumber, setReferenceNumber] = useState('');
     const [loading, setLoading] = useState(false);
+    const { data: session } =  useSession();
+    const router = useRouter(); // Initialize the router
+    const userCreatedId = session?.user?.id;
+ 
+
     useEffect(() => {
         // Only import Froala editor plugins when on the client side
         if (typeof window !== 'undefined') {
@@ -43,7 +50,8 @@ export default function CreateFormPage({ attachments, category, status }) {
             import('froala-editor/css/plugins/code_view.min.css');
             import('froala-editor/css/plugins/colors.min.css');
         }
-    }, []);
+
+    }, [status]);
 
     const handleModelChange = (model) => {
         setDescription(model);
@@ -57,6 +65,7 @@ export default function CreateFormPage({ attachments, category, status }) {
             attachments,
             category,
             referenceNumber,
+            userCreatedId,
             status
         };
 
@@ -75,6 +84,7 @@ export default function CreateFormPage({ attachments, category, status }) {
                 setTitle('');
                 setDescription('');  // Clear Froala editor by setting the description to an empty string
                 setReferenceNumber('');
+                router.push('/page'); 
             } else {
                 toast.error('Failed to create page!');
             }

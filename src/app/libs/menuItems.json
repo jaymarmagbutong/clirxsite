@@ -10,6 +10,11 @@
       ]
     },
     {
+      "href": "/page",
+      "icon": "SiPowerpages",
+      "label": "Pages"
+    },
+    {
       "href": "/posts",
       "icon": "MdPostAdd",
       "label": "Posts"

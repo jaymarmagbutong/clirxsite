@@ -18,7 +18,7 @@ const query = (sql, params) => {
 export async function POST(request) {
   try {
     // Parse the incoming request body
-    const { title, description, referenceNumber, category, attachments, status } = await request.json();
+    const { title, description, referenceNumber, category, attachments, userCreatedId, status } = await request.json();
 
     // Validate the required fields
     if (!title || !description) {
@@ -27,8 +27,8 @@ export async function POST(request) {
 
     // Insert the new page into the database
     const result = await query(
-      'INSERT INTO pages (title, description, reference_number, category, attachments, status) VALUES (?, ?, ?, ?, ?, ?)',
-      [title, description, referenceNumber, category, attachments, status]
+      'INSERT INTO pages (title, description, reference_number, category, attachments, user_created, status) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [title, description, referenceNumber, category, attachments, userCreatedId, status]
     );
 
     // Return the newly created page with the ID from the result

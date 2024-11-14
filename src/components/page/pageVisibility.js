@@ -21,7 +21,7 @@ const PageVisibility = ({ getStatus, defaultStatus = null }) => {
         className='w-full px-3 py-2 mt-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm'
         value={selectedVisible}
       >
-        <option value="1">Public</option>
+        <option value="1">Publish</option>
         <option value="2">Draft</option>
       </select>
     </div>

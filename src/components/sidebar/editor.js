@@ -8,7 +8,7 @@ import MenuItem from '../MenuItem';
 
 
 
-const  Admin =  () => {
+const  Editor =  () => {
 
   const [menuItems, setMenuItems] = useState([]);
   const [expandedMenu, setExpandedMenu] = useState(null);
@@ -72,4 +72,4 @@ const  Admin =  () => {
   );
 };
 
-export default Admin;
+export default Editor;

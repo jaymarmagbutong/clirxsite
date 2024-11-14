@@ -42,14 +42,7 @@ const CategoryItem = ({ category, searchTerm, autoOpen }) => {
                   <TbNotes size={20} className="mr-3" /> {page.title}
                 </p>
               )}
-              <div className="text-base gap-2 flex px-3 items-center">
-                <Link href={`/manual/contents/page/modify/${page.id}`} className="cursor-pointer">
-                  <MdEditNote size={25} />
-                </Link>
-                <span className="cursor-pointer">
-                  <MdDelete size={20} />
-                </span>
-              </div>
+            
             </div>
           ))}
         </div>

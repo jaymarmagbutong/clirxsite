@@ -5,10 +5,10 @@ import DB from "@/app/api/config/db";
 export async function POST(request) {
   try {
       // Parse the incoming request body
-      const { categoryName, description, slug } = await request.json();
+      const { categoryName, description, slug, refNumber } = await request.json();
   
       // Validate the required fields
-      if (!categoryName || !description || !slug) {
+      if (!categoryName || !refNumber || !slug) {
           return NextResponse.json({ error: 'All fields are required' }, { status: 400 });
       }
 
@@ -34,8 +34,8 @@ export async function POST(request) {
       // Insert the new category into the database
       const result = await new Promise((resolve, reject) => {
           DB.query(
-              'INSERT INTO category (name, description, slug) VALUES (?, ?, ?)',
-              [categoryName, description, slug],
+              'INSERT INTO category (name, description, slug, reference_number) VALUES (?, ?, ?, ?)',
+              [categoryName, description, slug, refNumber],
               (err, results) => {
                   if (err) {
                       reject(err);

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-	  domains: ['localhost', 'another-domain.com', '10.220.8.85'], // Allow localhost and any other domain you use for production
+	
 	  remotePatterns: [
 		{
 		  protocol: 'http',
@@ -34,6 +34,15 @@ const nextConfig = {
 		fullUrl: true,
 	  },
 	},
+	 async rewrites() {
+    return [
+      {
+        source: '/uploads/:path*',
+        destination: '/uploads/:path*',
+      },
+    ];
+  },
+ 
   };
   
   export default nextConfig;
