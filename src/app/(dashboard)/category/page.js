@@ -7,7 +7,7 @@ import CategoryPageItem from '@/components/category/type/CategoryPageItem';
 
 import BackButton from '@/components/backButton';
 
-export default function Page() {
+export default function Category() {
 
 	const [isCategory, setIsCategory] = useState(0);
 	const [categoryLists, setCategoryLists] = useState([]);

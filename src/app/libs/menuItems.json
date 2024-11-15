@@ -15,6 +15,11 @@
       "label": "Pages"
     },
     {
+      "href": "/category",
+      "icon": "BiCategoryAlt",
+      "label": "Category"
+    },
+    {
       "href": "/posts",
       "icon": "MdPostAdd",
       "label": "Posts"

@@ -9,6 +9,7 @@ import { TbUsers } from 'react-icons/tb';
 import { CiCircleChevDown, CiCircleChevUp } from 'react-icons/ci';
 import { CiViewList } from "react-icons/ci";
 import { SiPowerpages } from "react-icons/si";
+import { BiCategoryAlt } from "react-icons/bi";
 const iconMapping = {
   LiaSwatchbookSolid: LiaSwatchbookSolid,
   MdPostAdd: MdPostAdd,
@@ -16,7 +17,8 @@ const iconMapping = {
   MdOutlineAdminPanelSettings: MdOutlineAdminPanelSettings,
   TbUsers: TbUsers, 
   CiViewList:CiViewList,
-  SiPowerpages:SiPowerpages
+  SiPowerpages:SiPowerpages,
+  BiCategoryAlt: BiCategoryAlt
   // Add other icons here if needed
 };
 
