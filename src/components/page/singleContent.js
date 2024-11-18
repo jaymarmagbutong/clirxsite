@@ -46,7 +46,7 @@ const SingleContent = ({ pages }) => {
             import('froala-editor/css/plugins/code_view.min.css');
             import('froala-editor/css/plugins/colors.min.css');
         }
-    }, []);
+    }, [pages]);
 
     console.log(session);
 

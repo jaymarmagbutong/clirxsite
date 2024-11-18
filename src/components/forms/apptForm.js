@@ -48,7 +48,7 @@ const ApptForm = ({ contents, apptDetails }) => {
 
     useEffect(()=> {
         setDescription(apptDetails.description)
-    }, [])
+    }, [apptDetails])
     
     useEffect(() => {
    

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast'; // Importing toast from react-hot-toast
+import { MdEditNote, MdDelete } from "react-icons/md";
+
 
 function CategoryPageItem({ categories }) {
     const [categoryLists, setCategoryList] = useState([]);
@@ -98,18 +100,18 @@ function CategoryPageItem({ categories }) {
                             <>
                                 <span>{item.name}</span>
 
-                                <div>
+                                <div className='flex items-center'>
                                     <button
                                         onClick={() => handleEdit(index, item.name)}
                                         className="text-blue-600 ml-2"
                                     >
-                                        Edit
+                                       <MdEditNote className="text-blue-500" size={25} />
                                     </button>
                                     <button
                                         onClick={() => handleDelete(item.id, index)}
                                         className="text-red-600 ml-2"
                                     >
-                                        Delete
+                                        <MdDelete className="text-red-500" size={20} />
                                     </button>
                                 </div>
                             </>
@@ -123,5 +125,6 @@ function CategoryPageItem({ categories }) {
         </div>
     );
 }
+
 
 export default CategoryPageItem;

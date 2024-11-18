@@ -11,6 +11,7 @@ const Page = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState(''); // Search input state
+    const [updatePage, setUpdatePage] = useState(true);
 
     useEffect(() => {
         const getPages = async () => {
@@ -29,7 +30,15 @@ const Page = () => {
         };
 
         getPages();
-    }, []);
+    }, [updatePage]);
+
+
+    const updateTrigger = () => {
+		setUpdatePage(prevUpdatePage => !prevUpdatePage);
+	}
+
+
+
 
     // Filter pages based on the search query
     const filteredPages = pages.filter((page) =>
@@ -78,7 +87,7 @@ const Page = () => {
 
                     {/* Page List */}
                     {filteredPages.map((page, index) => (
-                        <PageItem key={index} page={page} />
+                        <PageItem key={index} page={page} onDelete={updateTrigger}/>
                     ))}
 
                     {/* No results message */}

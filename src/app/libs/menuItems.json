@@ -19,11 +19,7 @@
       "icon": "BiCategoryAlt",
       "label": "Category"
     },
-    {
-      "href": "/posts",
-      "icon": "MdPostAdd",
-      "label": "Posts"
-    },
+
     {
       "href": "/appt",
       "icon": "CiViewList",
@@ -47,4 +43,6 @@
 
     
   ]
+  
+
   
