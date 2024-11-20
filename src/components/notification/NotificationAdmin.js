@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { useSocket } from '@/app/context/SocketContext';
@@ -20,7 +21,7 @@ function NotificationAdmin() {
     
         // Set up the message listener
         socket.on('message', (message) => {
-          console.log('Message from servers:', message);
+          console.log('Message from serverdds:', message);
           // Here, you could update notifications or handle any other real-time updates
         });
     
