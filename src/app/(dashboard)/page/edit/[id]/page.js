@@ -34,6 +34,11 @@ export default function Page({ params }) {
                 if (response?.pages?.category) {
                     setCategory(response.pages.category);
                 }
+
+                if (response?.pages?.attachments) {
+                    setAttachment(response.pages.attachments);
+                }
+                
                 if (response?.pages?.status) {
                     setStatus(response.pages.status);
                 }
@@ -46,8 +51,8 @@ export default function Page({ params }) {
     }, [id]);
 
 
+    console.log(pageDetails)
 
-    
 
     function openModal() {
         setIsOpen(true);

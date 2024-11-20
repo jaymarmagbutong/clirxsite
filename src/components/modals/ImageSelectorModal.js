@@ -58,13 +58,13 @@ export default function ImageSelectorModal({ isOpen, onRequestClose, onSelectIma
                         images.map((src, index) => (
                             <div key={index} className="w-40 h-40 overflow-hidden m-1 bg-gray-100 border border-gray-300 flex flex-wrap justify-center items-center">
                                 <Image
-                                    src={src}
+                                    src={src.url}
                                     alt={`Image ${index}`}
                                     width={388}
                                     height={388}
                                     className="object-cover"
                                     style={{ objectFit: 'cover' }}
-                                    onClick={() => { onSelectImage(src); }}
+                                    onClick={() => { onSelectImage(src.url); }}
                                 />
                             </div>
                         ))

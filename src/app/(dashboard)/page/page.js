@@ -1,17 +1,18 @@
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
 import Breadcrumbs from '@/components/breadcrumbs';
 import BackButton from '@/components/backButton';
 import { CiSquarePlus } from "react-icons/ci";
-import { PageItem } from '@/components/page/pageItem';
 import Link from 'next/link';
+import DataTable from 'react-data-table-component';
+import { MdEditNote, MdDelete } from "react-icons/md";
+import { formatDate } from '../../../../libs/dateUtils';
 
 const Page = () => {
     const [pages, setPages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [searchQuery, setSearchQuery] = useState(''); // Search input state
-    const [updatePage, setUpdatePage] = useState(true);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         const getPages = async () => {
@@ -30,20 +31,99 @@ const Page = () => {
         };
 
         getPages();
-    }, [updatePage]);
+    }, []);
 
+    const handleDelete = async (id, title) => {
+        const confirmDelete = confirm(`Are you sure you want to delete the page "${title}"?`);
+        if (!confirmDelete) return;
 
-    const updateTrigger = () => {
-		setUpdatePage(prevUpdatePage => !prevUpdatePage);
-	}
+        try {
+            const response = await fetch(`/api/pages/delete/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id }),
+            });
 
+            if (!response.ok) {
+                throw new Error('Failed to delete the page');
+            }
 
-
+            // Update the state to remove the deleted page
+            setPages((prevPages) => prevPages.filter((page) => page.id !== id));
+        } catch (error) {
+            console.error(error.message);
+            alert('Failed to delete the page. Please try again.');
+        }
+    };
 
     // Filter pages based on the search query
     const filteredPages = pages.filter((page) =>
         page.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
+    // Define DataTable columns
+    const columns = [
+        {
+            name: 'Title',
+            selector: (row) => row.title, // Use raw data for sorting
+            sortable: true,
+            cell: (row) => (
+                <Link href={`/page/edit/${row.id}`} className="text-blue-900 font-semibold">
+                    {row.title}
+                </Link>
+            ),
+        },
+        {
+            name: 'Author',
+            selector: (row) => row.username,
+            sortable: true,
+        },
+        {
+            name: 'Date',
+            selector: (row) => formatDate(row.date_created),
+            sortable: true,
+        },
+       {
+            name: 'Status',
+            selector: (row) => row.status, // Use raw data for sorting
+            sortable: true,
+            cell: (row) => (
+                <span className="font-semibold">
+                    {row.status === 1 ? 'Publish' : 'Draft'}
+                </span>
+            ),
+        },
+        {
+            name: 'Actions',
+            cell: (row) => (
+                <div className="flex gap-2 items-center">
+                    <Link href={`/page/edit/${row.id}`}>
+                        <MdEditNote className="text-blue-500 cursor-pointer" size={25} />
+                    </Link>
+                    <MdDelete
+                        className="text-red-500 cursor-pointer"
+                        size={20}
+                        onClick={() => handleDelete(row.id, row.title)}
+                    />
+                </div>
+            ),
+        },
+    ];
+
+
+       // Conditional row styling
+    const conditionalRowStyles = [
+        {
+            when: (row) => row.status === 1, // Example: Apply style to published rows
+            classNames: ['!bg-white'],   // Add Tailwind or custom classes
+        },
+        {
+            when: (row) => row.status !== 1, // Example: Apply style to draft rows
+            classNames: ['!bg-gray-100 opacity-45'],     // Add Tailwind or custom classes
+        },
+    ];
 
     return (
         <>
@@ -56,7 +136,7 @@ const Page = () => {
                     <div>
                         <Link href="/page/create/">
                             <CiSquarePlus size={40} className='cursor-pointer' />
-                        </Link> 
+                        </Link>
                     </div>
                     <div>
                         <BackButton />
@@ -76,27 +156,23 @@ const Page = () => {
                     />
                 </div>
 
-                <div className='w-full'>
-                    {/* Header Row */}
-                    <div className="flex items-center bg-gray-100 text-gray-700 text-sm font-medium py-2 px-4 border-b">
-                        <div className="w-3/4 text-base">Title</div>
-                        <div className="w-2/4 text-base">Author</div>
-                        <div className="w-2/4 text-base">Date</div>
-                        <div className="w-1/4 text-base">Actions</div>
-                    </div>
-
-                    {/* Page List */}
-                    {filteredPages.map((page, index) => (
-                        <PageItem key={index} page={page} onDelete={updateTrigger}/>
-                    ))}
-
-                    {/* No results message */}
-                    {filteredPages.length === 0 && (
-                        <div className="py-4 text-center text-gray-500">
-                            No pages found.
-                        </div>
-                    )}
-                </div>
+                {/* DataTable */}
+                {loading ? (
+                    <div className="py-4 text-center text-gray-500">Loading pages...</div>
+                ) : error ? (
+                    <div className="py-4 text-center text-red-500">Failed to load pages: {error}</div>
+                ) : (
+                    <DataTable
+                        columns={columns}
+                        data={filteredPages}
+                        pagination 
+                        paginationPerPage={10}
+                        highlightOnHover
+                        responsive
+                        striped 
+                        conditionalRowStyles={conditionalRowStyles}
+                    />
+                )}
             </div>
         </>
     );

@@ -31,13 +31,13 @@ const Navbar = ({ profile }) => {
 
     return (
 
-        <div className='flex items-center justify-end lg:justify-between p-4 bg-white '>
+        <div className='flex items-center justify-end  p-4 bg-white '>
 
             {/* Search bar */}
-            <div className="hidden lg:flex items-center gap-2 text-sm rounded-full ring-[1.5px] px-2 ring-gray-300 ">
+            {/* <div className="hidden lg:flex items-center gap-2 text-sm rounded-full ring-[1.5px] px-2 ring-gray-300 ">
                 <Image src="/img/search.png" alt='search' width={14} height={14} />
                 <input type="text" placeholder='Search...' className='w-[200px] p-2 bg-transparent outline-none' />
-            </div>
+            </div> */}
 
             {/* Icons and User */}
             <div className='flex items-center gap-6 justify-center'>
