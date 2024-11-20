@@ -8,7 +8,7 @@ async function getUserServerInfo(request) {
         const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
 
         // return token;
-        if (!token) {
+        if (!token) { 
             return null; // Return null if no token
         }
 

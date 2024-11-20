@@ -11,7 +11,7 @@ const Page = () => {
     setRefreshTrigger(refreshTrigger + 1);
   }
   return (
-    <div>
+    <div className='flex gap-3'>
         <Media  onUploadSuccess={handleUploadSuccess}  />
         <ImageList refreshTrigger={refreshTrigger}/>
     </div>

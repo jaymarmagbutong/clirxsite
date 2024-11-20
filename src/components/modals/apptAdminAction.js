@@ -80,7 +80,6 @@ const ApptAdminAction = ({ modalFunction, modalStatus, content, pageId, oldPageC
 				contentLabel="Example Modal"
 				className="bg-white shadow-lg max-w-[90%] md:max-w-[900px] w-full max-h-full overflow-y-auto p-2 rounded-lg z-999999999"
 				overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-99999"
-				closeTimeoutMS={500}
 			>
 				<div className='bg-gray-100'>
 

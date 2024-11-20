@@ -10,8 +10,8 @@ export default function Page({ params }) {
     const [apptDetails, setApptDetails] = useState([]);
 
     // Unwrap params using React.use
-    const unwrappedParams = React.use(params);
-    const pageId = unwrappedParams?.id;
+    const {id} = React.use(params);
+    const pageId = id;
 
     useEffect(() => {
         const getPageDetails = async () => {
