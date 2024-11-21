@@ -39,7 +39,7 @@ const DashboardLayout = async  ({children}) => {
 
         <div className="w-[86%] md:w-[92%] lg:w-[84%] bg-gray-100 overflow-scroll">
             <Navbar profile={session}/>
-            <div className='p-4'>
+            <div className='sm:py-4 sm:px-3 md:py-11 md:px-10'>
               {children}
             </div>
             

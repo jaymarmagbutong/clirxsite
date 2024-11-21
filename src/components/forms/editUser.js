@@ -100,14 +100,14 @@ export default function EditUserForm({ id, onUpdate }) {
     };
 
     if (loading) return (
-        <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md mx-auto mt-5">
+        <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm mx-auto mt-5">
             <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Edit User</h2>
             <Skeleton count={10} />
         </div>
     );
 
     return (
-        <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md mx-auto mt-5">
+        <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm mx-auto mt-5">
             {error && (
                 <div className="mb-4 p-4 bg-red-500 text-white rounded-md">
                     {error}

@@ -31,7 +31,7 @@ export default function Posts() {
 
   return (
     <div>
-      <div className='flex items-center justify-between bg-white py-2 px-4 rounded-md shadow-md'>
+      <div className='flex items-center justify-between bg-white py-2 px-4 rounded-md shadow-sm'>
           <div>
             <h1 className="text-2xl font-bold mb-4">Create New Blog Post</h1>
             <Breadcrumbs/>

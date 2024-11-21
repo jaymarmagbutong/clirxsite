@@ -74,7 +74,7 @@ console.log(appt)
 	} else if(option=='userlist')
 
 		return (
-			<div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+			<div className="p-6 bg-white dark:bg-gray-800 rounded-md shadow-sm">
 				<h2 className="font-bold mb-6 text-gray-900 dark:text-gray-100">Users List</h2>
 				<div className="overflow-x-auto">
 					<table className="min-w-full bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">

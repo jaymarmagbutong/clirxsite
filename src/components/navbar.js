@@ -31,7 +31,7 @@ const Navbar = ({ profile }) => {
 
     return (
 
-        <div className='flex items-center justify-end  p-4 bg-white '>
+        <div className='flex items-center justify-end  p-4 bg-white shadow-md'>
 
             {/* Search bar */}
             {/* <div className="hidden lg:flex items-center gap-2 text-sm rounded-full ring-[1.5px] px-2 ring-gray-300 ">

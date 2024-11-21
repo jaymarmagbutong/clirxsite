@@ -64,7 +64,7 @@ export default function Media({ onUploadSuccess }) {
 
   return (
     <div className="flex items-start justify-center">
-      <div className="bg-white rounded-lg shadow-md p-6  w-[300px]">
+      <div className="bg-white rounded-lg shadow-sm p-6  w-[300px]">
         <h1 className="text-2xl font-bold mb-4 text-center">Upload Files</h1>
         <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 flex justify-center items-center mb-4 flex-col">
           <p className="text-gray-600 mb-3">Drag files to upload</p>

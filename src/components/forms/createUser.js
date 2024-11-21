@@ -73,7 +73,7 @@ export default function CreateUser() {
     };
 
     return (
-        <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md mx-auto mt-5">
+        <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm mx-auto mt-5">
             {error && (
                 <div className='w-full p-4 bg-red-500 text-white rounded-md'>
                     {error}

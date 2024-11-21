@@ -27,7 +27,7 @@ export default function   ActivityPage({ appt_response, modalAction, setModalCon
 
   
   return (
-    <div className="rounded-md mt-3 bg-white p-4  dark:bg-gray-800">
+    <div className="rounded-md shadow-sm mt-3 bg-white p-4  dark:bg-gray-800">
       <h1 className="font-bold text-2xl mb-4">Page Status</h1>
     <ol className="relative border-l border-gray-200 dark:border-gray-700">
       {/* Timeline Item 1 */}

@@ -19,7 +19,7 @@ const RadarChartComponent = () => {
   ];
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md">
+    <div className="p-4 bg-white rounded-lg shadow-sm">
       <h2 className="text-lg font-semibold mb-4">Radar Chart</h2>
       <ReactApexChart
         options={options}

@@ -19,7 +19,7 @@ const ApptHistory = ({ historyLists }) => {
       }
     
     return (
-        <div className="rounded-md mt-3 bg-white p-4  dark:bg-gray-800">
+        <div className="rounded-md shadow-sm mt-3 bg-white p-4  dark:bg-gray-800">
             <h1 className="font-bold text-2xl mb-4">Page History</h1>
             <div className='max-h-72 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200'>
             <ol className="relative border-l border-gray-200 dark:border-gray-700 ml-2">

@@ -19,7 +19,7 @@ const CreateContent = () => {
 
 	return (
 		<>
-			<div className='flex items-center justify-between bg-white py-2 px-4 rounded-md shadow-md'>
+			<div className='flex items-center justify-between bg-white py-2 px-4 rounded-md shadow-sm'>
 
 				<div>
 					<h1 className='font-bold text-2xl'>Contents</h1>
@@ -51,7 +51,7 @@ const CreateContent = () => {
 			</div>
 
 			<div className='grid grid-cols-4 gap-4 mt-5'>
-				<div className={`w-full p-4 bg-white rounded-md shadow-md ${!filter ? 'col-span-4' : 'col-span-3'}`}>
+				<div className={`w-full p-4 bg-white rounded-md shadow-sm ${!filter ? 'col-span-4' : 'col-span-3'}`}>
 					<CategoryPerPage />
 				</div>
 				<div className={`bg-white p-4 rounded-md w-full ${!filter ? 'hidden' : 'block'}`}>

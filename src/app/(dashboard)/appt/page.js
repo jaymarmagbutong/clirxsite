@@ -44,7 +44,7 @@ const Accreditation = () => {
 
 	if(loading){
 		return (
-			<div className="w-full p-4 bg-white rounded-md shadow-md h-100% col-span-4">
+			<div className="w-full p-4 bg-white rounded-md shadow-sm h-100% col-span-4">
 				<h2 className="text-xl font-bold mb-6 "><Skeleton count={1}/></h2>
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-8 lg:grid-cols-8 gap-6 mt-4">
 					<Skeleton count={2}/>
@@ -59,7 +59,7 @@ const Accreditation = () => {
 
 	if(Object.values(cartegories).length ===0 ){
 		return (
-			<div className="w-full p-4 bg-white rounded-md shadow-md h-100% col-span-4">
+			<div className="w-full p-4 bg-white rounded-md shadow-sm h-100% col-span-4">
 				<h2 className="text-xl font-bold mb-6 ">No APPT Yet</h2>
 			</div>
 		)
@@ -67,7 +67,7 @@ const Accreditation = () => {
 
 
 	return (
-		<div className="w-full p-4 bg-white rounded-md shadow-md h-100% col-span-4">
+		<div className="w-full p-4 bg-white rounded-md shadow-sm h-100% col-span-4">
 			<h2 className="text-xl font-bold mb-6">APPT Lists</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-8 lg:grid-cols-8 gap-6 mt-4">
 

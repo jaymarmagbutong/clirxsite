@@ -73,7 +73,7 @@ export default function Page({ params }) {
     
     return (
         <div>
-        <div className='flex items-center justify-between bg-white py-2 px-4 rounded-md shadow-md'>
+        <div className='flex items-center justify-between bg-white py-2 px-4 rounded-md shadow-sm'>
             <div>
                 <h1 className='font-bold text-2xl'>Modify Page</h1>
                 <Breadcrumbs />

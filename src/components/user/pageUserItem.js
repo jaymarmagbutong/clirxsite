@@ -54,7 +54,7 @@ const PageUserItem = ({ user, page_id, users_id }) => {
                     <FaCheck/>
                 </button>
             ) : (
-                <button className="text-white bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded text-sm" onClick={sendAccreditation}>
+                <button className="text-white bg-clirxColor hover:bg-clirxLightColor px-3 py-1 rounded text-sm" onClick={sendAccreditation}>
                   Send
                 </button>
             )}

@@ -67,7 +67,7 @@ const SignIn = () => {
     <div className="flex items-center justify-center flex-col min-h-screen bg-gradient-to-bl from-blue-100 via-cyan-300 via-55% to-sky-700">
   
 
-      <div className="w-full max-w-sm py-8 px-6 bg-white rounded-md shadow-md">
+      <div className="w-full max-w-sm py-8 px-6 bg-white rounded-md shadow-sm">
 
         {info.text && (
           <div className={`w-full p-4 ${info.background} text-white rounded-md`}>

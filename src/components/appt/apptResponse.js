@@ -20,7 +20,7 @@ function AppResponse({ appt_response }) {
   }
 
   return (
-    <div className='w-full mt-5  p-4 bg-white rounded-md'>
+    <div className='w-full mt-5  p-4 bg-white rounded-md shadow-sm'>
         <h1 className='font-bold text-2xl'>APPT Response</h1>
       <div className="w-full mt-5">
         <div className="container mx-auto grid gap-2 grid-cols-4">

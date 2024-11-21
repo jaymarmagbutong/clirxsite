@@ -34,7 +34,7 @@ export default function Page({ params }) {
 
     return (
         <>
-            <div className='flex items-center justify-between bg-white py-2 px-4 rounded-md shadow-md'>
+            <div className='flex items-center justify-between bg-white py-2 px-4 rounded-md shadow-sm'>
                 <div>
                     <h1 className='font-bold text-2xl'>Page Details</h1>
                     <Breadcrumbs />
@@ -48,7 +48,7 @@ export default function Page({ params }) {
                 <div className='col-span-1 md:col-span-3'>
                     <div className="w-full mt-5 p-4 bg-white rounded-md flex flex-col">
                         <h1 className='font-bold text-3xl'>{title}</h1>
-                        <div className='border p-4 mt-6 shadow-md'
+                        <div className='border p-4 mt-6 shadow-sm'
                             dangerouslySetInnerHTML={{ __html: content }} 
                         />
                     </div>

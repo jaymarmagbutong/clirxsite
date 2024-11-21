@@ -7,7 +7,7 @@ export default function UnauthorizedPage() {
 
     return (
       <div className="bg-gray-100 h-screen flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg shadow-md max-w-md text-center">
+        <div className="bg-white p-8 rounded-lg shadow-sm max-w-md text-center">
           <div className="flex justify-center items-center mb-4">
             <svg
               className="w-16 h-16 text-red-500"

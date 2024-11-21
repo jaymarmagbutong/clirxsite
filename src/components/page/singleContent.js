@@ -96,9 +96,9 @@ const SingleContent = ({ pages }) => {
     return (
 
         <>
-            <div className="w-full mt-5 p-4 bg-white rounded-md flex flex-col">
+            <div className="w-full mt-5 p-4 bg-white rounded-md shadow-sm flex flex-col">
                 <h1 className='font-bold text-3xl flex items-center justify-between w-full'><span>{pages.title}</span> <span>{(pages.reference_number !== '' && pages.reference_number !== undefined) ? `(${pages?.reference_number})` : ''}</span></h1>
-                <div className={(editable) ? 'w-full flex flex-col mt-6 ' : `border p-4 mt-6 shadow-md flex w-full flex-col items-end`}>
+                <div className={(editable) ? 'w-full flex flex-col mt-6 ' : `border p-4 mt-6 shadow-sm flex w-full flex-col items-end`}>
                   
 
                     {editable ? (
