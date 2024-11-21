@@ -33,7 +33,7 @@ const DashboardLayout = async  ({children}) => {
         shadow="0 0 10px #2299DD,0 0 5px #2299DD"
       />
         {/* Leaf  t */}
-        <div className="w-[14%] md:w-[8%] lg:w-[16%] p-4  border-gray-200 border-r  bg-blue-950">
+        <div className="w-[14%] md:w-[8%] lg:w-[16%] p-4  border-gray-200 border-r  bg-clirxColor">
             <Sidebar/>
         </div>
 

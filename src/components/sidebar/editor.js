@@ -52,9 +52,9 @@ const  Editor =  () => {
   return (
     <div className='drop-shadow-sm '>
       <div className='pb-6'>
-        <Image src="/img/logo.png" alt="Logo" width={210} height={210} priority/>
+        <Image src="/img/site-logo.png" alt="Logo" width={210} height={210} priority/>
       </div>
-      <ul className='flex flex-col border-t border-blue-900 pt-5'>
+      <ul className='flex flex-col border-t border-clirxLightColor pt-5'>
         {menuItems.map((item, index) => (
           <div key={index}>
             <MenuItem
