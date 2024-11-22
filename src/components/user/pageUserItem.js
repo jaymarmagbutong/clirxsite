@@ -41,7 +41,7 @@ const PageUserItem = ({ user, page_id, users_id }) => {
     };
 
     return (
-        <div key={user.id} className="flex items-center justify-between border-b py-2">
+        <div key={user.id} className="flex items-start flex-col justify-start border-b py-2">
             <div className="flex items-center space-x-4">
                 <div>
                     <div className="text-sm font-medium text-gray-900">{user.username}</div>

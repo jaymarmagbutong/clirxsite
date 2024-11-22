@@ -54,7 +54,7 @@ const Page = () => {
                 </div>
             </div>
 
-            <div className='bg-white py-2 px-2 rounded-md shadow-sm mt-4'>
+            <div className='bg-white p-4 rounded-md shadow-sm mt-4'>
                 <PageItem page={pages}/>
             </div>
         </>
