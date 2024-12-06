@@ -19,8 +19,8 @@ const PageItem = ({ page }) => {
     }, [page])
 
 
-    const handleDelete = async (id) => {
-        const confirmDelete = confirm(`Are you sure you want to delete the page "${page.title}"?`);
+    const handleDelete = async (id, title) => {
+        const confirmDelete = confirm(`Are you sure you want to delete the page "${title}"?`);
         if (!confirmDelete) return;
 
         try {

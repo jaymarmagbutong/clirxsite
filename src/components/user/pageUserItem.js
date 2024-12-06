@@ -41,11 +41,11 @@ const PageUserItem = ({ user, page_id, users_id }) => {
     };
 
     return (
-        <div key={user.id} className="flex items-start flex-col justify-start border-b py-2">
+        <div key={user.id} className="flex items-start  justify-between border-b py-2">
             <div className="flex items-center space-x-4">
                 <div>
-                    <div className="text-sm font-medium text-gray-900">{user.username}</div>
-                    <div className="text-sm font-medium text-gray-400">{user.email}</div>
+                    <div className="text-sm font-medium text-clirxColor">{user.username}</div>
+                    <div className="text-sm font-thin text-gray-400">{user.email}</div>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@ const PageUserItem = ({ user, page_id, users_id }) => {
                 </button>
             ) : (
                 <button className="text-white bg-clirxColor hover:bg-clirxLightColor px-3 py-1 rounded text-sm" onClick={sendAccreditation}>
-                  Send
+                  Allow
                 </button>
             )}
         </div>

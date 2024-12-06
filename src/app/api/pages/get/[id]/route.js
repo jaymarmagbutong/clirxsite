@@ -3,17 +3,19 @@ import DB from "@/app/api/config/db"; // Adjust import path as needed
 import getUserServerInfo from "@/app/libs/getServerUser";
 // Function to get page details by ID
 export async function GET(request, { params }) {
-    const { id } = params;
+   
 
     const userInfo = await getUserServerInfo(request);
 
-    const page_id = id;
-    const user_id = userInfo.id;
    
 
 
 
     try {
+        const { id } = await params;
+        const page_id = id;
+        const user_id = userInfo.id;
+       
         // check if it is seen
         const checkIfSeen = await new Promise((resolve, reject) => {
             const status = 'seen';

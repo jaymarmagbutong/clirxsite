@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react';
 import 'react-loading-skeleton/dist/skeleton.css'; 
 import Skeleton from 'react-loading-skeleton';
 
-const CategoryOption = ({ getValue = null, defaultCatValue=null }) => {
+const CategoryOption = ({ getValue = null, defaultCatValue=null, disabled=null }) => {
     const [categoryLists, setCategoryLists] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState(defaultCatValue);
+
 
     useEffect(() => {
         const getAllCategory = async () => {
@@ -43,6 +44,7 @@ const CategoryOption = ({ getValue = null, defaultCatValue=null }) => {
                 <Skeleton count={5} />
             ) : (
                 <select
+                    disabled = {(disabled) ? true : false}
                     value={selectedCategory} // Set the selected value
                     onChange={handleChange}
                     className='w-full px-3 py-2 mt-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-300 focus:border-blue-300 sm:text-sm'

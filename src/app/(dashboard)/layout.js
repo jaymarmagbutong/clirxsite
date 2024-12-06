@@ -5,7 +5,7 @@ import Navbar from '@/components/navbar'
 import { getServerSession } from 'next-auth';
 import { Toaster } from 'react-hot-toast';
 import NextTopLoader from 'nextjs-toploader'
-
+import { UserProvider } from '../context/UserContext';
 
 
 export const metadata = {
@@ -38,12 +38,15 @@ const DashboardLayout = async  ({children}) => {
         </div>
 
         <div className="w-[86%] md:w-[92%] lg:w-[84%] bg-gray-100 overflow-scroll">
-            <Navbar profile={session}/>
-            <div className='sm:py-4 sm:px-3 md:py-11 md:px-10'>
-              {children}
-            </div>
-            
-        </div>
+        
+               <Navbar profile={session}/>
+                <div className='sm:py-4 sm:px-3 md:py-11 md:px-10'>
+                  <UserProvider>
+                    {children}
+                  </UserProvider>
+              </div>
+              </div>
+           
         <Toaster/>
   </div>
   )

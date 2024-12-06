@@ -11,6 +11,7 @@ export async function GET() {
                 c.name AS category_name, 
                 c.slug AS category_slug, 
                 p.id AS page_id, 
+                p.date_created AS date_created, 
                 p.title AS page_title, 
                 p.reference_number AS page_reference_number, 
                 p.description AS page_content,
@@ -42,7 +43,7 @@ export async function GET() {
 
         // Group the result into categories with their respective pages
         const categoriesWithPages = result.reduce((acc, row) => {
-            const { category_id, category_name, category_slug, page_id, page_title, page_reference_number, page_content, page_status, interaction_count, sent_count } = row;
+            const { category_id, category_name, category_slug, page_id, page_title, page_reference_number, page_content, page_status, interaction_count, sent_count, date_created } = row;
 
             // Check if the category already exists in the accumulator
             const existingCategory = acc.find(cat => cat.id === category_id);
@@ -57,7 +58,8 @@ export async function GET() {
                         content: page_content,
                         status: page_status,
                         interaction_count: interaction_count,
-                        sent_count:sent_count
+                        sent_count:sent_count,
+                        date_created:date_created
                     });
                 }
             } else {
@@ -73,7 +75,8 @@ export async function GET() {
                         content: page_content,
                         status: page_status,
                         interaction_count: interaction_count,
-                        sent_count:sent_count
+                        sent_count:sent_count,
+                        date_created:date_created
                     }] : [] // Initialize with an empty array if no pages exist
                 });
             }

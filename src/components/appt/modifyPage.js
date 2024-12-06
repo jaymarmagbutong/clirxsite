@@ -24,32 +24,7 @@ const ModifyPage = ({content, title, apptDetails}) => {
 
     const handleRequestClose = () => {
       closeModal();
-        // if (hasUnsavedChanges) {
-        //   toast((t) => (
-        //     <span>
-        //       Are you sure you want to close this? You can save your work first.
-        //       <div className="mt-2 flex justify-end gap-2">
-        //         <button
-        //           onClick={() => {
-        //             toast.dismiss(t.id);
-        //             closeModal();
-        //           }}
-        //           className="px-4 py-2 bg-red-500 text-white rounded-md"
-        //         >
-        //           Yes, Close
-        //         </button>
-        //         <button
-        //           onClick={() => toast.dismiss(t.id)}
-        //           className="px-4 py-2 bg-gray-300 rounded-md"
-        //         >
-        //           Cancel
-        //         </button>
-        //       </div>
-        //     </span>
-        //   ));
-        // } else {
-        //   closeModal();
-        // }
+        
     };
 
 

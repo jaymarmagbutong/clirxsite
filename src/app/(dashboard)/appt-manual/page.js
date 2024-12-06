@@ -5,25 +5,25 @@ import CategoryList from '@/components/appt/categoryList';
 import PageList  from '@/components/appt/pageList';
 import Skeleton from 'react-loading-skeleton';
   
-const Accreditation = () => {
+const ApptManual = () => {
 	const { data: session, status } = useSession();
 	const role = parseInt(session?.user?.role);
 	const user_id = session?.user?.id;
 
 	// Initialize pages state as an empty array
 	const [cartegories, setcartegories] = useState([]);
-	const [singlePages, setSinglePages] = useState([]);
 	const [selectedCategory, setSelectedCategory] = useState(null);
 	const [loading, setLoading] = useState(false)
-
+	const [searchTerm, setSearchTerm] = useState(""); 
 	// Feching the userperPage
 	useEffect(() => {
 		const getUserPages = async () => {
 			setLoading(true)
 			try {
-				const page = await fetch(`/api/appt/get/user/${user_id}`, { next: { revalidate: 3600 } });
+				const page = await fetch(`/api/category/pages`, { next: { revalidate: 3600 } });
 				const data = await page.json();
 				setcartegories(data || []); // Fallback to an empty array if data is undefined
+		
 			} catch (error) {
 				console.error('Failed to fetch page details:', error);
 			} finally {
@@ -37,16 +37,22 @@ const Accreditation = () => {
 	}, [user_id]);
 
 
-	const pagesCallback = (data, cat_id) => {
-		setSinglePages(data)
-		setSelectedCategory(cat_id)
-	}
+		// Filter categories based on search term
+		const filteredCategories = cartegories.filter((category) => {
+			const categoryNameMatches = category.name.toLowerCase().includes(searchTerm.toLowerCase());
+			const pagesMatch = category.pages.some((page) =>
+				page.title.toLowerCase().includes(searchTerm.toLowerCase())
+			);
+			return categoryNameMatches || pagesMatch;
+		});
+
+
 
 	if(loading){
 		return (
 			<div className="w-full p-4 bg-white rounded-md shadow-sm h-100% col-span-4">
 				<h2 className="text-xl font-bold mb-6 "><Skeleton count={1}/></h2>
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-8 lg:grid-cols-8 gap-6 mt-4">
+				<div className="mt-4">
 					<Skeleton count={2}/>
 					<Skeleton count={2}/>
 					<Skeleton count={2}/>
@@ -68,45 +74,36 @@ const Accreditation = () => {
 
 	return (
 		<div className="w-full p-4 bg-white rounded-md shadow-sm h-100% col-span-4">
-			<h2 className="text-xl font-bold mb-6">APPT Lists</h2>
-			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-8 lg:grid-cols-8 gap-6 mt-4">
+			<h2 className="text-xl font-bold mb-6">APPT Manual</h2>
+			<div className="w-full p-4 bg-white rounded-md shadow-sm ">
 
+			<div className="mb-4">
+				<input
+					type="text"
+					className="p-2 border rounded w-full"
+					placeholder="Search categories and pages..."
+					value={searchTerm}
+					onChange={(e) => setSearchTerm(e.target.value)}
+				/>
+			</div>
+			<ul>
 				{
-					Object.values(cartegories).map((cartegory, index) => (
+					filteredCategories.map((category, index) => (
 						<CategoryList 
 							key={index} 
-							title={cartegory.CategoryTitle}
-							cat_id={cartegory.CategoryId}
-							pages={cartegory.Pages}
-							callback={pagesCallback}
-							selected={selectedCategory === cartegory.CategoryId}
+							title={category.name}
+							pages={category.pages}
+							searchTerm={searchTerm}
+							autoOpen={searchTerm && category.name.toLowerCase().includes(searchTerm.toLowerCase())}
 						/>
 					))
 				}
+				</ul>
 			</div>
 			
-			{ ( singlePages.length > 0 ) && (
-
-				<div className='mt-6'>
-					<table className="min-w-full table-auto">
-					<thead className="bg-gray-100 text-gray-600">
-					<tr>
-						<th className="px-4 py-2 text-left">File</th>
-						<th className="px-4 py-2  text-left">Date Sent</th>
-						<th className="px-4 py-2 text-left">Actions</th>
-					</tr>
-					</thead>
-					<tbody className="text-gray-700">
-					{ singlePages.map((pagelist, index) => (
-						<PageList key={index} pageDetails={pagelist}/>
-					))}
-					</tbody>
-					</table>
-				</div>
-			)}
-
+		
 		</div>
 	);
 };
 
-export default Accreditation;
+export default ApptManual;

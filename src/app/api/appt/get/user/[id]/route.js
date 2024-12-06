@@ -11,6 +11,7 @@ export async function GET(request, { params }) {
                     Acc.id as AccId,
                     Pgs.id as PageId,
                     Pgs.title as PageTitle,
+                    Pgs.status as PageStatus,
                     Cat.name as CategoryTitle,
                     Cat.id as CategoryId,
                     Acc.date_created as AccDateCreated,
@@ -40,7 +41,7 @@ export async function GET(request, { params }) {
         });
 
         const groupedData = results.reduce((acc, item) => {
-            const { CategoryId, CategoryTitle, PageId, PageTitle, AccId , AccDateCreated} = item;
+            const { CategoryId, CategoryTitle, PageId, PageTitle, AccId , AccDateCreated, PageStatus} = item;
           
             // Check if category already exists
             if (!acc[CategoryId]) {
@@ -56,15 +57,16 @@ export async function GET(request, { params }) {
               PageId,
               PageTitle,
               AccId,
-              AccDateCreated
+              AccDateCreated,
+              PageStatus
             });
           
             return acc;
           }, {});
-
+          const groupedArray = Object.values(groupedData);
         
 
-        return NextResponse.json(groupedData, { status: 200 }); // Status 200 for success
+        return NextResponse.json(groupedArray, { status: 200 }); // Status 200 for success
     } catch (error) {
         return NextResponse.json(
             { message: error.message || 'Internal Server Error' }, // Convert error to string if necessary

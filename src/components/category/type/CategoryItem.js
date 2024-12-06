@@ -16,8 +16,6 @@ const CategoryItem = ({ category, searchTerm, autoOpen }) => {
         page.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-
-
     // If the search term changes, automatically open the category if it matches
     useEffect(() => {
         if (autoOpen) {

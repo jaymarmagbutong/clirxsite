@@ -7,7 +7,7 @@
         { "href": "/manual/overview", "label": "Overview" },
         { "href": "/manual/contents", "label": "Contents" },
         { "href": "/manual/compliance-review", "label": "Compliance Review" },
-        { "href": "/appt", "label": "Appt Interaction" }
+        { "href": "/appt-interaction", "label": "Appt Interaction" }
       ]
     },
 

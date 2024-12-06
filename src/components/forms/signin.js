@@ -26,7 +26,7 @@ const SignIn = () => {
         
           router.push('/dashboard')
         } else {
-          router.push('/appt')
+          router.push('/appt-interaction')
         }
        
       }

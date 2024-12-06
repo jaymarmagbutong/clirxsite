@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react';
 import Breadcrumbs from "@/components/breadcrumbs";
 import BackButton from "@/components/backButton";
 import ModifyPage from '@/components/appt/modifyPage';
+import Comment from '@/components/appt/comments';
 
 export default function Page({ params }) {
     const [content, setContent] = useState(''); // Initialize with an empty string
     const [title, setTitle] = useState('');
     const [apptDetails, setApptDetails] = useState([]);
-
+    const [comments, setComments] = useState([]); // To store comments
     // Unwrap params using React.use
     const {id} = React.use(params);
     const pageId = id;
@@ -31,6 +32,9 @@ export default function Page({ params }) {
             getPageDetails();
         }
     }, [pageId]);
+
+   
+
 
     return (
         <>
@@ -57,6 +61,9 @@ export default function Page({ params }) {
                 <div className='mt-5'>
                     <div className='bg-white rounded-md p-4'>
                         <ModifyPage content={content} title={title} apptDetails={apptDetails}/> 
+                    </div>
+                    <div className='bg-white rounded-md mt-5'>
+                        <Comment commentData={comments} pageId={pageId}/> 
                     </div>
                 </div>
             </div>

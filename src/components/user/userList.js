@@ -27,9 +27,6 @@ export default function UsersList({option, page_id}) {
 
 
 
-console.log(appt)
-
-
 	useEffect(() => {
 		const fetchUsers = async () => {
 			try {
