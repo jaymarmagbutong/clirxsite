@@ -6,7 +6,7 @@ export default function Comment( { commentData,  pageId} ) {
     const [comments, setComments] = useState([]); // To store comments
     const [commentText, setCommentText] = useState(""); // To store the input comment text
     const [loading, setLoading] = useState(false); // For loading states
-    const { userId } = useUser(); // Get user_id from the context
+    const { userData } = useUser(); // Get user_id from the context
     const [fetchComment, setFetchComment] = useState(false);
     
     const toggleComments = () => {
@@ -24,7 +24,7 @@ export default function Comment( { commentData,  pageId} ) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                         text: commentText, 
-                        userId: userId,
+                        userId: userData.user.id,
                         pageId: pageId
                     }),
             });
