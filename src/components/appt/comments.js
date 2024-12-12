@@ -121,8 +121,6 @@ export default function Comment( { commentData,  pageId} ) {
                                 <span className="text-xs text-gray-300">{formatDate(comment.created_at) || "Just now"}</span>
                             </div>
                         </div>
-
-                      
                     ))
                 ) : (
                     <p className="text-center text-gray-500">No comments yet. Be the first to comment!</p>

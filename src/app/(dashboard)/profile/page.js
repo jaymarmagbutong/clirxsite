@@ -1,14 +1,12 @@
-'use client'
-import React from 'react'
-import { useSession } from "next-auth/react";
 
+import ProfileComponent from "@/components/user/profile";
 
-const Profile = () => {
-  const { data: session, status } =  useSession();
+export default function Page() {
 
-  return (
-    <div>Profile Page</div>
-  )
+	return (
+		<div className="mx-auto bg-white rounded-md shadow-sm p-8">
+			<ProfileComponent/>
+		</div>
+
+	);
 }
-
-export default Profile

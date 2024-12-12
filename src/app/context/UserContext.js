@@ -6,16 +6,16 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const { data: session } = useSession();
-  const [userId, setUserId] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     if (session?.user?.id) {
-      setUserId(session.user.id);
-    }
+          setUserData(session);
+      }
   }, [session]);
 
   return (
-    <UserContext.Provider value={{ userId }}>
+    <UserContext.Provider value={ { userData  }}>
       {children}
     </UserContext.Provider>
   );

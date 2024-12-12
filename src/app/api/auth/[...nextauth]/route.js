@@ -22,8 +22,8 @@ const authOptions = {
                     // Query the user by email
                     const user = await new Promise((resolve, reject) => {
                         DB.query(
-                            'SELECT id, username, email, password, role FROM user WHERE email = ?',
-                            [credentials.email],
+                            'SELECT id, username, email, password, role FROM user WHERE email = ? || username = ?',
+                            [credentials.email, credentials.email],
                             (err, results) => {
                                 if (err) {
                                     reject(err);
