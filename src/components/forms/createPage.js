@@ -23,6 +23,8 @@ export default function CreateFormPage({ attachments, category, status }) {
     useEffect(() => {
         // Only import Froala editor plugins when on the client side
         if (typeof window !== 'undefined') {
+
+            
             // Import Froala JS and CSS files
             import('froala-editor/js/froala_editor.pkgd.min.js');
 
@@ -52,6 +54,8 @@ export default function CreateFormPage({ attachments, category, status }) {
         }
 
     }, [status]);
+
+    
 
     const handleModelChange = (model) => {
         setDescription(model);

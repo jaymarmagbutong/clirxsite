@@ -14,7 +14,9 @@ export async function GET(request, { params }) {
                     user.username, 
                     comments.page_id, 
                     comments.content, 
-                    comments.created_at 
+                    comments.created_at,
+                     comments.file_link,
+                     comments.file_name
                  FROM comments 
                  JOIN user ON comments.user_id = user.id 
                  WHERE comments.page_id = ? 

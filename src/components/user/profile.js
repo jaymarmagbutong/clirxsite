@@ -4,18 +4,21 @@ import { useUser } from "@/app/context/UserContext";
 import Image from 'next/image';
 
 const ProfileComponent = ({profileData}) => {
-
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('')
+    
+    const [userData, setUserData] = useState([]); 
 
     
     const user = useUser(); // Get user_id from the context
 
-    const [userData, setUserData] = useState([]); 
     useEffect(()=>{
         setUserData(user.userData)
-    }, [profileData])
+
+    }, [user.userData])
 
 
-    console.log(userData)
+    console.log(user)
 
     return (
         <div>
@@ -25,7 +28,7 @@ const ProfileComponent = ({profileData}) => {
                     <Image src="/img/profile.png" alt="Profile Picture" layout="fill" objectFit="cover" />
                 </div>
                 <div className="ml-6">
-                    <h1 className="text-2xl font-semibold text-gray-800">{userData.user.name}</h1>
+                    <h1 className="text-2xl font-semibold text-gray-800">{userData?.user?.name}</h1>
                     <p className="text-clirxColor">Web Developer</p>
                     <p className="text-gray-500">New York, NY</p>
                 </div>
@@ -70,7 +73,7 @@ const ProfileComponent = ({profileData}) => {
                         <strong>Address:</strong> <span className="text-gray-600">525 E 68th Street, New York, NY</span>
                     </li>
                     <li>
-                        <strong>Email:</strong> <a href={`mailto:${userData.user.email}`} className="text-blue-500">{userData.user.email}</a>
+                        <strong>Email:</strong> <a href={`mailto:${userData?.user?.email}`} className="text-blue-500">{userData?.user?.email}</a>
                     </li>
                     <li>
                         <strong>Site:</strong> <a href="https://www.jeremyrose.com" className="text-blue-500">www.jaymar.com</a>

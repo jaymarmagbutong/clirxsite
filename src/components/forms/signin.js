@@ -64,7 +64,9 @@ const SignIn = () => {
   return (
    
 
-    <div className="flex items-center justify-center flex-col min-h-screen bg-gradient-to-bl from-blue-100 via-cyan-300 via-55% to-sky-700">
+    <div className="flex items-center justify-center flex-col min-h-screen bg-cover bg-center " style={{
+      backgroundImage: "url('/img/signup-background.jpg')",
+    }}>
   
 
       <div className="w-full max-w-sm py-8 px-6 bg-white rounded-md shadow-sm">
@@ -79,7 +81,7 @@ const SignIn = () => {
       { !isLogin && (   <>
 
  
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Log In</h2>
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Sign In</h2>
         
         <form onSubmit={formSubmitFunction}>
             <div className="mb-4">
@@ -87,7 +89,7 @@ const SignIn = () => {
                 Username
               </label>
               <div className="flex items-center border-b-2  focus-within:ring-2 focus-within:ring-clirxColor">
-                <FaUser className="text-gray-500 mx-3" />
+                <FaUser className="text-gray-500 mx-3" color='#336eb0'/>
                 <input
                   type="text"
                   id="username"
@@ -102,7 +104,7 @@ const SignIn = () => {
                 Password
               </label>
               <div className="flex items-center border-b focus-within:ring-2 focus-within:ring-clirxColor">
-                <FaLock className="text-gray-500 mx-3" />
+                <FaLock className="text-gray-500 mx-3" color='#336eb0'/>
                 <input
                   type="password"
                   id="password"
@@ -114,7 +116,7 @@ const SignIn = () => {
             </div>
             <button
               type="submit"
-              className=" bg-clirxColor text-white py-2 px-4 rounded hover:bg-clirxLightColor focus:outline-none focus:bg-clirxColor"
+              className=" bg-clirxColor text-white py-2 px-4 rounded hover:bg-clirxLightColor w-full focus:outline-none focus:bg-clirxColor"
             >
               Sign In
             </button>
@@ -126,11 +128,11 @@ const SignIn = () => {
 
       </div>
 
-      <div className="flex items-center justify-center mt-5">
+      {/* <div className="flex items-center justify-center mt-5">
         <FaFacebook onClick={() => signIn("facebook")} size={40} className='p-2  mx-1'/>
         <FaGoogle size={40} className='p-2  mx-1'/>
         <FaLinkedin size={40} className='p-2  mx-1'/>
-      </div>
+      </div> */}
     </div>
 
   );
