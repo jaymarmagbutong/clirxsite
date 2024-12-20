@@ -17,18 +17,21 @@ export async function GET() {
                 p.description AS page_content,
                 p.status AS page_status,
                 COUNT(CASE WHEN  appt.response IS NOT NULL THEN 1 ELSE NULL END) AS interaction_count,
-                COUNT(appt.id) AS sent_count
+                COUNT(appt.id) AS sent_count,
+                COUNT( DISTINCT  com.id ) as comment_count
             FROM 
                 category c
             LEFT JOIN 
                 pages p ON c.id = p.category
             LEFT JOIN
-     
                 appt appt ON p.id = appt.page_id
-                       GROUP BY 
+            LEFT JOIN
+                comments com ON p.id = com.page_id
+            GROUP BY 
                 c.id, p.id
             ORDER BY 
-                c.id, p.reference_number ASC;
+                c.id, p.reference_number 
+            ASC;
         `;
 
         const result = await new Promise((resolve, reject) => {
@@ -43,7 +46,7 @@ export async function GET() {
 
         // Group the result into categories with their respective pages
         const categoriesWithPages = result.reduce((acc, row) => {
-            const { category_id, category_name, category_slug, page_id, page_title, page_reference_number, page_content, page_status, interaction_count, sent_count, date_created } = row;
+            const { category_id, category_name, category_slug, page_id, page_title, page_reference_number, page_content, page_status, interaction_count, sent_count, date_created, comment_count } = row;
 
             // Check if the category already exists in the accumulator
             const existingCategory = acc.find(cat => cat.id === category_id);
@@ -59,7 +62,8 @@ export async function GET() {
                         status: page_status,
                         interaction_count: interaction_count,
                         sent_count:sent_count,
-                        date_created:date_created
+                        date_created:date_created,
+                        comment_count: comment_count
                     });
                 }
             } else {
@@ -76,7 +80,8 @@ export async function GET() {
                         status: page_status,
                         interaction_count: interaction_count,
                         sent_count:sent_count,
-                        date_created:date_created
+                        date_created:date_created,
+                        comment_count: comment_count
                     }] : [] // Initialize with an empty array if no pages exist
                 });
             }

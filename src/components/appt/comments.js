@@ -2,9 +2,13 @@ import { useState, useRef, useEffect } from "react";
 import { useUser } from "@/app/context/UserContext";
 import { formatDate } from "../../../libs/dateUtils";
 import Link from "next/link";
-import { ImAttachment } from "react-icons/im";
+import { useSocket } from "@/app/context/SocketContext";
+
+
+import { FaFilePdf, FaFileWord, FaFileExcel, FaFileImage, FaFileAudio, FaFileVideo, FaFileAlt } from "react-icons/fa"; // Add more icons if needed
 
 export default function Comment({ commentData, pageId }) {
+
     const [comments, setComments] = useState([]); // To store comments
     const [commentText, setCommentText] = useState(""); // To store the input comment text
     const [loading, setLoading] = useState(false); // For loading states
@@ -14,9 +18,45 @@ export default function Comment({ commentData, pageId }) {
     const [fetchComment, setFetchComment] = useState(false);
     const [buttonSubmit, setButtonSubmit] = useState(true);
 
+    // this is for socketio
+
+    const socket = useSocket();
+        
+    const getFileIcon = (fileName) => {
+        const extension = fileName?.split(".").pop().toLowerCase();
+
+        switch (extension) {
+            case "pdf":
+                return <FaFilePdf className="text-red-500" size={20} />;
+            case "doc":
+            case "docx":
+                return <FaFileWord className="text-blue-500" size={20} />;
+            case "xls":
+            case "xlsx":
+                return <FaFileExcel className="text-green-500" size={20} />;
+            case "jpg":
+            case "jpeg":
+            case "png":
+            case "gif":
+                return <FaFileImage className="text-yellow-500" size={20} />;
+            case "mp3":
+            case "wav":
+                return <FaFileAudio className="text-purple-500" size={20} />;
+            case "mp4":
+            case "mkv":
+            case "avi":
+                return <FaFileVideo className="text-indigo-500" size={20} />;
+            default:
+                return <FaFileAlt className="text-gray-500" size={20} />;
+        }
+    };
+
+
     // Toggle the comments fetching trigger
     const toggleComments = () => {
+
         setFetchComment((prev) => !prev);
+        
     };
 
     // Handle the submission of a new comment
@@ -54,6 +94,10 @@ export default function Comment({ commentData, pageId }) {
             if (response.ok) {
                 setButtonSubmit(true)
                 const newComment = await response.json();
+                socket.emit('comment', {
+                    datas: newComment,
+                    pageId: pageId
+                } ); 
                 setComments((prevComments) => [...prevComments, newComment]);
                 setCommentText("");
                 if (fileInput.current) fileInput.current.value = ""; // Clear file input
@@ -67,7 +111,6 @@ export default function Comment({ commentData, pageId }) {
     };
     
     
-
     // Fetch existing comments when the component mounts or when fetchComment changes
     useEffect(() => {
         const fetchComments = async () => {
@@ -89,7 +132,21 @@ export default function Comment({ commentData, pageId }) {
         };
 
         fetchComments();
-    }, [fetchComment]); // Re-fetch when fetchComment changes
+
+            // Set up the socket listener for real-time updates
+        if (socket) {
+            socket.on(`page_event_${pageId}`, () => {
+                fetchComments();
+            });
+        }
+
+        // Clean up the socket listener when the component unmounts
+        return () => {
+            if (socket) {
+                socket.off("comment");
+            }
+        };
+    }, [fetchComment, socket]); // Re-fetch when fetchComment changes
 
     return (
         <div className="w-full p-4 rounded-md mx-auto bg-white">
@@ -131,40 +188,52 @@ export default function Comment({ commentData, pageId }) {
             {loading && <p className="text-center text-gray-500">Loading comments...</p>}
 
             {/* Comments List */}
-            <div className="space-y-4">
+            <div className="space-y-4 max-h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
                 {comments.length > 0 ? (
-                    comments.map((comment) => (
-                        <div className="flex w-full gap-3 justify-center" key={comment.id}>
-                            <div className="w-[10%]">
-                                <div className="w-[30px] h-[30px]  bg-blue-500 text-white font-bold rounded-full flex items-center justify-center">
+                    comments.map((comment, index) => (
+                        <div
+                            className="flex w-full gap-3 items-start justify-start p-3"
+                            key={comment.id || `comment-${index}`}
+                        >
+                            {/* Profile Section */}
+                            <div className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white font-bold rounded-full flex items-center justify-center">
                                 {comment.username ? comment.username[0].toUpperCase() : "?"}
-                                </div>
                             </div>
-                            <div className="p-3 rounded bg-gray-50 w-[90%]">
-                                <label className="text-sm font-semibold">
+
+                            {/* Comment Section */}
+                            <div className="flex-grow p-3 rounded bg-gray-50">
+                                <label className="text-sm font-semibold block">
                                     {comment.username || "Unknown User"}
                                 </label>
-                                <p className="text-sm text-gray-800 mt-3">{comment.content}</p>
+                                <p className="text-sm text-gray-800 mt-2">{comment.content}</p>
+                                {/* Attachment Section */}
                                 {comment.file_name && (
-                                    <div className="mt-3">
+                                    <div className="mt-3 relative group">
                                         <Link
                                             href={comment.file_link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-blue-500 text-sm underline"
+                                            className="flex items-center gap-3 p-3 border rounded-lg bg-white shadow-sm hover:bg-gray-100 transition"
                                         >
-                                      
-                                          <div className=" gap-2 items-center flex border-1 py-1 px-2 rounded-full">
-                                          <ImAttachment/> 
-                                          <div className="w-48 truncate">
-                                              { comment.file_name || "No File"}
+                                            <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full">
+                                                {getFileIcon(comment.file_name)}
                                             </div>
-                                          </div>
-                                         
+                                            
+                                            {/* File Name Section */}
+                                            <div className="flex flex-col">
+                                                <div className="w-20 truncate ">
+                                                    {comment.file_name || "No File"}
+                                                </div>
+                                                <span className="text-xs text-gray-500">Click to view</span>
+                                            </div>
                                         </Link>
+                                          {/* Tooltip */}
+                                        <div className="absolute left-0 top-full mt-1 hidden w-max rounded bg-gray-800 text-white text-xs px-2 py-1 shadow-lg group-hover:block z-10">
+                                            {comment.file_name}
+                                        </div>
                                     </div>
                                 )}
-                                <span className="text-[11px] text-gray-300">
+                                <span className="text-[11px] text-gray-300 block mt-2">
                                     {formatDate(comment.created_at) || "Just now"}
                                 </span>
                             </div>
@@ -173,6 +242,7 @@ export default function Comment({ commentData, pageId }) {
                 ) : (
                     <p className="text-center text-gray-500">No comments yet. Be the first to comment!</p>
                 )}
+
             </div>
         </div>
     );

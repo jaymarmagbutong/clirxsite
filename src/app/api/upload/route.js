@@ -37,7 +37,6 @@ export async function POST(req) {
 
 		fs.writeFileSync(filePath, buffer);
 
-
 		const uploadResponse = await imagekit.upload({
 			file: buffer, // The file as a buffer
 			fileName: uniqueFilename, // Unique file name

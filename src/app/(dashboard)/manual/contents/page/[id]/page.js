@@ -8,6 +8,9 @@ import ApptResponse from "@/components/appt/apptResponse"
 import ApptAdminAction from '@/components/modals/apptAdminAction';
 import ActivityPage from '@/components/appt/apptActivity';
 import ApptHistory from '@/components/appt/apptHistory';
+import Skeleton from 'react-loading-skeleton';
+import Comment from '@/components/appt/comments';
+
 
 import io from 'socket.io-client';
 
@@ -21,6 +24,7 @@ export default function Page({ params }) {
 	const [modalContent, setModalContent] = useState();
 	const [pageHistory, setPageHistory] = useState();
 	const [socketAction, setSocketAction] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(()=> {
 		socket.on('connect', () => {
@@ -49,34 +53,53 @@ export default function Page({ params }) {
 	}
 
 	const { id } = React.use(params); // Unwrap params to get id
+	 // Fetch both page details and page history
+	 useEffect(() => {
+		const fetchData = async () => {
+
 	
-    useEffect(() => {
-        const getPageDetails = async () => {
-            try {
-                const page = await fetch(`/api/pages/get/${id}`, { next: { revalidate: 3600 } });
-                const data = await page.json();
-				setPages(data.pages || '')
-               	setApptResponse(data.appt_response || '' )
-            } catch (error) {
-                console.error('Failed to fetch page details:', error);
-            }
-        }
-        getPageDetails();
-
-    }, [id, modalStatus, socketAction]);
-
-	useEffect(() => {
-		const pageHistoryF = async () => {
-			try {
-				const pageHistoryData = await fetch(`/api/appt/history/get/${id}`, { next: { revalidate: 3600 } });
-				const data = await pageHistoryData.json();
-				setPageHistory(data || []);
-			} catch (error) {
-				console.error('Failed to fetch page history:', error);
-			}
+		  try {
+			// Fetch Page Details
+			const pageResponse = await fetch(`/api/pages/get/${id}`, {
+			  next: { revalidate: 3600 },
+			});
+			const pageData = await pageResponse.json();
+			setPages(pageData.pages || "");
+			setApptResponse(pageData.appt_response || "");
+	
+			// Fetch Page History
+			const historyResponse = await fetch(`/api/appt/history/get/${id}`, {
+			  next: { revalidate: 3600 },
+			});
+			const historyData = await historyResponse.json();
+			setPageHistory(historyData || []);
+		  } catch (error) {
+			console.error("Failed to fetch data:", error);
+		  } finally {
+			setLoading(true);
+		  }
 		};
-		pageHistoryF();
-	}, [id, modalStatus, socketAction]);
+	
+		fetchData();
+	  }, [id, modalStatus, socketAction]); // Dependencies to refetch when these values change
+	
+	if(!loading){
+		return (
+			 <>
+				<h1 className='font-bold text-4xl p-4 bg-white'><Skeleton/></h1>
+			
+				  <div className='grid mt-4 grid-cols-1 md:grid-cols-4 gap-4'>
+					
+					<div className='col-span-1 md:col-span-3 bg-white  rounded-md p-4'>
+					  <Skeleton count={10}/>
+					</div>
+					<div className='  bg-white  rounded-md p-4'>
+					<Skeleton count={10}/>
+					</div>
+				  </div>
+				</>
+		);
+	}
 
 	return (
 		<>
@@ -96,6 +119,10 @@ export default function Page({ params }) {
 				<div className='col-span-1 md:col-span-3'>
 					<SingleContent pages={pages} modalAction={showModal} />
 					<ApptResponse appt_response={apptResponse}/>
+					<div className="mt-4">
+					<Comment commentData='' pageId={id} />
+					</div>
+					
 				</div>
 
 				<div className='mt-5'>

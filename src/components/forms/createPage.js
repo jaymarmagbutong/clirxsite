@@ -11,6 +11,7 @@ const FroalaEditor = dynamic(() => import('react-froala-wysiwyg'), {
 });
 
 export default function CreateFormPage({ attachments, category, status }) {
+    
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [referenceNumber, setReferenceNumber] = useState('');

@@ -5,10 +5,8 @@ import DataTable from 'react-data-table-component';
 import { MdEditNote, MdDelete } from "react-icons/md";
 import { formatDate } from '../../../libs/dateUtils';
 
-const PageItem = ({ page }) => {
+const PageItem = ({ page, refresh }) => {
 
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [pages, setPages] = useState([])
 
@@ -38,7 +36,7 @@ const PageItem = ({ page }) => {
             }
 
             // Notify parent component if onDelete is provided
-            if (onDelete) onDelete(page.id);
+            refresh()
         } catch (error) {
             console.error(error.message);
             alert('Failed to delete the page. Please try again.');

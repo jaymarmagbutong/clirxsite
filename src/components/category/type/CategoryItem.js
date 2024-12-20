@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { FaRegFolder, FaRegFolderOpen } from "react-icons/fa";
 import { TbNotes } from "react-icons/tb";
 import { RiMailSendLine } from "react-icons/ri";
-import {Tooltip} from "@nextui-org/tooltip";
+import { FaComment } from "react-icons/fa";
 
 
 import { FaUsers } from "react-icons/fa6";
@@ -42,19 +42,27 @@ const CategoryItem = ({ category, searchTerm, autoOpen }) => {
                                         <TbNotes size={20} className="mr-3" /> {page.title}
                                     </Link>
 
-                                    { page.interaction_count > 0 && (
+                                    {  (page.comment_count > 0 || page.sent_count > 0 || page.comment_count > 0) && (
                                         <div className="flex items-center gap-1">
-                                            <div className="px-3 flex gap-1 ">
-                                               
-                                                    <FaUsers size={18} color="orange" /> <span className="text-sm font-semibold">{page.interaction_count}</span>
-                                             
-                                            </div>
 
-                                            <div className="px-3 flex gap-1 ">
-                                               
+                                            {(page.comment_count > 0) && (
+                                                <div className="px-3 flex gap-1 ">
+                                                    <FaComment size={18} color="green" /> <span className="text-sm font-semibold">{page.comment_count}</span>
+                                                </div>
+                                            )}
+                                        
+                                            {(page.interaction_count > 0) && (
+                                                 <div className="px-3 flex gap-1 ">
+                                                 <FaUsers size={18} color="orange" /> <span className="text-sm font-semibold">{page.interaction_count}</span>
+                                              </div>
+                                            )}
+                                           
+                                           {(page.sent_count > 0) && (
+                                                <div className="px-3 flex gap-1 ">
                                                     <RiMailSendLine size={18} color="green"/> <span className="text-sm font-semibold">{page.sent_count}</span>
-                                            
-                                            </div>
+                                                </div>
+                                            )}
+                                           
                          
                                         </div>
                                         

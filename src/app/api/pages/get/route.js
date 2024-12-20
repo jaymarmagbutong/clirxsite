@@ -27,6 +27,7 @@ export async function GET(request, { params }) {
             );
         });
 
+
         // Check if any pages were found
         if (!pages || pages.length === 0) {
             return NextResponse.json({ error: 'Page not found' }, { status: 404 });
