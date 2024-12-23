@@ -4,6 +4,8 @@ import Breadcrumbs from "@/components/breadcrumbs";
 import BackButton from "@/components/backButton";
 import ModifyPage from '@/components/appt/modifyPage';
 import Comment from '@/components/appt/comments';
+import { FaGlobeAmericas } from "react-icons/fa"
+import { formatDate } from '../../../../../../libs/dateUtils';
 
 export default function Page({ params }) {
     const [content, setContent] = useState(''); // Initialize with an empty string
@@ -19,7 +21,7 @@ export default function Page({ params }) {
             try {
                 const page = await fetch(`/api/pages/get/${pageId}`, { next: { revalidate: 3600 } });
                 const data = await page.json();
-                
+                console.log(data)
                 setContent(data.pages?.description || ''); // Handle case if description is undefined
                 setTitle(data.pages?.title || ''); // Handle case if title is undefined
                 setApptDetails(data.pages || {});
@@ -32,8 +34,6 @@ export default function Page({ params }) {
             getPageDetails();
         }
     }, [pageId]);
-
-   
 
 
     return (
@@ -55,16 +55,21 @@ export default function Page({ params }) {
                         <div className='border p-4 mt-6 shadow-sm'
                             dangerouslySetInnerHTML={{ __html: content }} 
                         />
+                        <div>
+                            <span className='mt-2 text-sm text-gray-500 flex items-center gap-2 w-80'><FaGlobeAmericas/> <>{formatDate(apptDetails?.date_created)}</></span>
+                        </div>
                     </div>
-                </div>
-                
-                <div className='mt-5'>
                     <div className='bg-white rounded-md p-4'>
                         <ModifyPage content={content} title={title} apptDetails={apptDetails}/> 
                     </div>
                     <div className='bg-white rounded-md mt-5'>
                         <Comment commentData={comments} pageId={pageId}/> 
                     </div>
+                </div>
+                
+                <div className='mt-5'>
+                    
+                   
                 </div>
             </div>
         </>

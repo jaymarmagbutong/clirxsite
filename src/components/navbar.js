@@ -13,21 +13,17 @@ const Navbar = ({ profile }) => {
     const { data: session, status } = useSession();
     const role = parseInt(session?.user?.role);
 
-
     const userRole = {
         1: 'Admin',
         2: 'Editor',
         3: 'Viewer'
     }
 
-
     const handleLogout = async () => {
         await signOut({ callbackUrl: '/login' });
     };
 
-
     const [isDropdownOpenProfile, setIsDropdownOpenProfile] = useState(false);
-
 
     return (
 
@@ -53,7 +49,6 @@ const Navbar = ({ profile }) => {
 
                 {/* User Icon with Dropdown */}
                 <div className='relative'>
-
 
                     {profile?.user.image ? (
                         <Image

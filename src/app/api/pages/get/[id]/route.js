@@ -77,7 +77,8 @@ export async function GET(request, { params }) {
                     user.username, 
                     pages.title,
                     pages.id,
-                    appt.response_created
+                    appt.response_created,
+                    appt.date_created
                 FROM 
                     appt as appt
                 INNER JOIN 
@@ -91,7 +92,7 @@ export async function GET(request, { params }) {
                     appt.page_id = pages.id
                 WHERE 
                     page_id = ? AND response !=''  ORDER BY pages.reference_number DESC`,
-                [id],
+                [id, user_id],
                 (err, results) => {
                     if (err) {
                         reject(err);

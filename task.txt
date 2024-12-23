@@ -19,5 +19,88 @@ Create Modify View
 
 
 tast tracker
-1) Create Notification table
-2) In appt table I add from_user_id field
+-Create pagination and sort in pages 
+-Create Notification table
+-In appt table I add from_user_id field,
+-Update the query for Category and its page.
+-Add tracking for sent page
+-Add Tracking for interactive page
+ 
+task
+
+- Fix tracking send message not not appearing in pagelist withou interaction
+- Page delete
+- All manual should visible to all users
+- Interaction should specific in a page
+- Add view status for tracking viewers and modifiers
+- Add suggestion comments for specific page
+- Updates roles for books type
+- Indent sub menu to the right manual
+- Add page history modified
+
+
+
+Task
+- user can login username only
+- Add upload PDF, video or any documents file in specific page, any user.
+- Create user profile page that has username email role mobile work address.
+- realtime notification
+
+
+future updates
+
+- Add folder in Media to save images base on reference number
+- Make this manuals dynamic
+
+
+Task 
+
+#user can login username only
+- Update query for login 
+- Create a function that will allow the username can login.
+
+#Add upload PDF, video or any documents file in specific page, any user.
+- Add form field to the comment section
+- Add function that will allow to upload anyfile
+- Add function that will limit the size of the file
+- Create API for submitting the file
+- Update the table for comments
+
+#Create user profile page that has username email role mobile work address.
+- Create layout for the profile page
+- Make the name email dynamic
+- Still working on the address and other fields
+
+#Realtime notification
+- Install socketIO
+- Add socket provider to the whole site.
+
+
+
+
+
+
+
+Task 15-21
+
+
+- Add loading state on manual content page Id 
+
+# Finalize the comment section
+    - Add icon for every file
+    - Add design the attactment section
+    - Create a function to check the file extension
+#Working in realtime proccess across the browser
+    - create general socket connection
+    - Add socketio in comment section.
+     
+
+
+
+#Make the link underline blue
+- Bell Notification Updates
+- 
+
+    
+
+

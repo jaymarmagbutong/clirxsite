@@ -13,6 +13,8 @@ function AppResponse({ appt_response }) {
   }, [appt_response]);
 
 
+  console.log(appt_response)
+
   if(appt_response==''){
     return (
       <></>
@@ -37,12 +39,12 @@ function AppResponse({ appt_response }) {
                   /> */}
                   <div className="p-4">
                     <p className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{card.username}</p>
-                    <h3 className="text-lg font-semibold mb-2">{card.title}</h3>
+                    <h3 className="text-lg font-semibold mb-2">{card?.title}</h3>
 
                     <div
-                        dangerouslySetInnerHTML={{ __html: trimHtml(card.response, 10) }} 
+                        dangerouslySetInnerHTML={{ __html: trimHtml(card?.response, 10) }} 
                     /> 
-                     {card.response.split(' ').length > 50 && (
+                     {card?.response?.split(' ').length > 50 && (
                       <button
                         className="text-blue-500 mt-2 focus:outline-none"
                       >
