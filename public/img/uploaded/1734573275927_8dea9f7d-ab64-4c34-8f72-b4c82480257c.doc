@@ -1,0 +1,61 @@
+Mime-Version: 1.0
+Content-Base: http://localhost/dev_clinicalinfomatrix-local/page.php?page=pt-profile&PATIENT_ID=33686#
+Content-Type: Multipart/related; boundary="NEXT.ITEM-BOUNDARY";type="text/html"
+
+--NEXT.ITEM-BOUNDARY
+Content-Type: text/html; charset="utf-8"
+Content-Location: http://localhost/dev_clinicalinfomatrix-local/page.php?page=pt-profile&PATIENT_ID=33686#
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+
+</style>
+</head>
+<body><div>
+            <table class="table table-bordered" style="font-size: 0.875rem;">
+                <tbody>
+                    <tr>
+                        <td width="32.3%">
+                            <p>
+                                <b>
+                                Dr Jocelyn Sheen-Apostol </b>MD,FRACGP<br><b>
+                                Dr Elham  Potros</b> MBB.CH FRACGP<br><b>
+                                Dr Ayman Armanious</b> MBBCh<br><b>
+                                Dr Sara Razaghi</b> MBBS
+                            </p>
+                        </td>
+                        
+                        <td width="35.3%" style="text-align:center;">
+                            <h5>THE HEALTHCARE CENTRE</h5>
+                            <p><b>Accredited General Practice</b></p>
+                            <small>
+                                ABN: 33 509 140 679<br>
+                                185a - 189 PRINCES DRIVE, OR PO Box 962 MORWELL, VIC 3840<br>
+                                Ph: (03) 5133 9966 Fac: (03) 5134 6635<br>
+                                www.thcc.com.au
+                            </small>
+                        </td>
+                        <td width="32.3%">
+                            <p><b>
+                            Dr Crystal DSouza</b> MD BMSC BBSC<br><b>
+                            Dr Viet Nguyen</b> MBBS<br><b>
+                            Ms Maria Sigal</b> Nurse Practitioner
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            
+</div><div>09/02/2024
+</div><div><br></div><div>Mr
+ Kunda
+Abass
+</div><div>9 Whitby Avenue
+</div><div>Morwell3840
+</div><div><br></div><div><br></div><div>Dear Kunda
+,&nbsp;</div><div><br></div><div><br></div><div>Our system shows that you are:</div><div><br></div><div><br></div><div><span style="white-space: normal;"><span style="white-space:pre">	</span>Letter Reason:<span style="white-space:pre">	</span>Eligible for free Zostavax (Shingles) vaccination.</span></div><div><br></div><div><br></div><div>This is a vaccine designed to protect you against shingles, funded for all Australians aged between 70 and 79 years up until the cut-off date in 2023.&nbsp; &nbsp;</div><div><br></div><div>It is recommended that you should have this vaccine as soon as you turn 70, or any time between the ages of 70 and 79 up until October 31 2023.&nbsp; After this date the vaccine will be funded for 70 year-old's only.&nbsp;&nbsp;</div><div><br></div><div>Please contact the Clinic on 5133 9966 and arrange an appointment with your GP to discuss having this vaccine which will protect you against Shingles for life. If you had this vaccine elsewere, please let us know, so we can keep our records up to date.</div><div><br></div><div>Yours sincerely,&nbsp;</div><div>Dr Emmett Knight</div><div>Registered Nurse</div></body></html>
+--NEXT.ITEM-BOUNDARY--
