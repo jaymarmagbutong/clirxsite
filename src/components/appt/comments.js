@@ -21,6 +21,7 @@ export default function Comment({ commentData, pageId }) {
     // this is for socketio
 
     const socket = useSocket();
+
         
     const getFileIcon = (fileName) => {
         const extension = fileName?.split(".").pop().toLowerCase();
@@ -98,6 +99,9 @@ export default function Comment({ commentData, pageId }) {
                     datas: newComment,
                     pageId: pageId
                 } ); 
+
+
+             
                 setComments((prevComments) => [...prevComments, newComment]);
                 setCommentText("");
                 if (fileInput.current) fileInput.current.value = ""; // Clear file input

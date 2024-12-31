@@ -8,6 +8,8 @@ function NotificationAdmin() {
     const [notificationDropdown, setNotificationDropdown] = useState(false);
 
     const socket = useSocket();
+
+
     
     const notifications = [
         { id: 1, name: 'Jaymar Magbutong', action: 'clapped for', item: 'Really Awesome Article Name!', time: '11 hrs ago' },

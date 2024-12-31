@@ -1,17 +1,26 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import CategoryItem from "./CategoryItem";
 import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton from "react-loading-skeleton";
+import { useSocket } from "@/app/context/SocketContext";
+
 
 const CategoryPerPage = () => {
 	const [categoryListWithPage, setCategoryListWithPage] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [searchTerm, setSearchTerm] = useState(""); // State to track the search term
+	
 
+	const socket = useSocket();
+        
+	console.log(categoryListWithPage);
 
 	useEffect(() => {
+		if (!socket) return;
+    
+  
+
 		const getAllCategoryWithPages = async () => {
 			try {
 				const response = await fetch("/api/category/pages", { next: { revalidate: 3600 } });
@@ -27,8 +36,11 @@ const CategoryPerPage = () => {
 			}
 		};
 
+		
+
 		getAllCategoryWithPages();
-	}, []);
+
+	}, [socket]);
 
 	// Filter categories based on search term
 	const filteredCategories = categoryListWithPage.filter((category) => {

@@ -54,7 +54,7 @@ export default function CreateFormPage({ attachments, category, status }) {
             import('froala-editor/css/plugins/colors.min.css');
         }
 
-    }, [status]);
+    }, []);
 
     
 
