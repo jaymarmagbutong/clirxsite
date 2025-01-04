@@ -1,14 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
-
 // Dynamically import FroalaEditor with SSR disabled
-const FroalaEditor = dynamic(() => import('react-froala-wysiwyg'), {
-    ssr: false,
-});
+import dynamic from 'next/dynamic';
+const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
 
 export default function CreateFormPage({ attachments, category, status }) {
     
@@ -19,37 +16,42 @@ export default function CreateFormPage({ attachments, category, status }) {
     const { data: session } =  useSession();
     const router = useRouter(); // Initialize the router
     const userCreatedId = session?.user?.id;
+
+
  
 
     useEffect(() => {
+        // Only import Froala editor plugins when on the client side
+        if (typeof window !== 'undefined') {
 
-            // Import Froala JS and CSS files
-            import('froala-editor/js/froala_editor.pkgd.min.js');
+            
+            // // Import Froala JS and CSS files
+            // import('froala-editor/js/froala_editor.pkgd.min.js');
 
-            // Additional plugins
-            import('froala-editor/js/plugins/image.min.js');
-            import('froala-editor/js/plugins/table.min.js');
-            import('froala-editor/js/plugins/code_view.min.js');
-            import('froala-editor/js/plugins/font_family.min.js');
-            import('froala-editor/js/plugins/print.min.js');
-            import('froala-editor/js/plugins/lists.min.js');
-            import('froala-editor/js/plugins/font_size.min.js');
-            import('froala-editor/js/plugins/video.min.js');
-            import('froala-editor/js/plugins/paragraph_format.min.js');
-            import('froala-editor/js/plugins/paragraph_style.min.js');
-            import('froala-editor/js/plugins/colors.min.js');
+            // // Additional plugins
+            // import('froala-editor/js/plugins/image.min.js');
+            // import('froala-editor/js/plugins/table.min.js');
+            // import('froala-editor/js/plugins/code_view.min.js');
+            // import('froala-editor/js/plugins/font_family.min.js');
+            // import('froala-editor/js/plugins/print.min.js');
+            // import('froala-editor/js/plugins/lists.min.js');
+            // import('froala-editor/js/plugins/font_size.min.js');
+            // import('froala-editor/js/plugins/video.min.js');
+            // import('froala-editor/js/plugins/paragraph_format.min.js');
+            // import('froala-editor/js/plugins/paragraph_style.min.js');
+            // import('froala-editor/js/plugins/colors.min.js');
 
-            // Import the link plugin
-            import('froala-editor/js/plugins/link.min.js');
+            // // Import the link plugin
+            // import('froala-editor/js/plugins/link.min.js');
 
-            // CSS files
-            import('froala-editor/css/froala_editor.pkgd.min.css');
-            import('froala-editor/css/froala_style.min.css');
-            import('froala-editor/css/plugins/image.min.css');
-            import('froala-editor/css/plugins/table.min.css');
-            import('froala-editor/css/plugins/code_view.min.css');
-            import('froala-editor/css/plugins/colors.min.css');
-        
+            // // CSS files
+            // import('froala-editor/css/froala_editor.pkgd.min.css');
+            // import('froala-editor/css/froala_style.min.css');
+            // import('froala-editor/css/plugins/image.min.css');
+            // import('froala-editor/css/plugins/table.min.css');
+            // import('froala-editor/css/plugins/code_view.min.css');
+            // import('froala-editor/css/plugins/colors.min.css');
+        }
 
     }, []);
 
@@ -97,6 +99,12 @@ export default function CreateFormPage({ attachments, category, status }) {
         }
     };
 
+    const config = {
+        readonly: false, // Start with editable mode
+        toolbar: true, // Show the toolbar
+        buttons: ['bold', 'italic', 'underline', '|', 'ul', 'ol', '|', 'link', 'unlink'], // Custom toolbar
+    };
+
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -130,16 +138,14 @@ export default function CreateFormPage({ attachments, category, status }) {
                     Description
                 </label>
                 <div className="flex flex-col">
-                    <FroalaEditor
-                        tag="textarea"
-                        model={description}
-                        onModelChange={handleModelChange}
-                        config={{
-                            heightMin: 400,
-                            imageUploadURL: '/api/upload/',  // Route to handle image uploads
-                        }}
-                        style={{ width: '100%' }}
-                    />
+                
+                <JoditEditor
+                
+                    value={description}
+                    onChange={(newdescription) => setDescription(newdescription)}
+                />
+
+                
                 </div>
             </div>
             <button
