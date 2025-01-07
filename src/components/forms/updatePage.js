@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
@@ -65,7 +65,9 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
             setLoading(false);
         }
     };
-    const config = {
+
+    
+    const config = useMemo(() => ({
         readonly: false,
         toolbar: true,
         uploader: {
@@ -73,22 +75,16 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
             url: '/api/upload/',
             method: 'POST',
             filesVariableName: () => "file",
-            isSuccess: (resp) => {
-                console.log("Upload success response:", resp);
-                return resp.link; // Ensure this returns the correct image URL
-            },
-            process: function(resp) {
-                return {
-                    files: [{ url: resp.link }],
-                };
-            },
+            isSuccess: (resp) => resp.link,
+            process: (resp) => ({
+                files: [{ url: resp.link }],
+            }),
             onError: (error) => {
                 console.error("Upload failed:", error);
                 toast.error("Image upload failed");
             },
         },
-    };
-    
+    }), []);
     
 
     return (
