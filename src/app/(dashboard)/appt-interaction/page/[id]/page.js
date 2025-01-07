@@ -50,7 +50,7 @@ export default function Page({ params }) {
 
             <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
                 <div className='col-span-1 md:col-span-3'>
-                    <div className="w-full mt-5 p-4 bg-white rounded-md flex flex-col">
+                    <div className="jodit-wysiwyg  w-full mt-5 p-4 bg-white rounded-md flex flex-col">
                         <h1 className='font-bold text-3xl'>{title}</h1>
                         <div className='border p-4 mt-6 shadow-sm'
                             dangerouslySetInnerHTML={{ __html: content }} 

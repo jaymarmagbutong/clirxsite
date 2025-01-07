@@ -78,7 +78,7 @@ const SingleContent = ({ pages }) => {
     return (
 
         <div>
-            <div className="w-full mt-5 p-4 bg-white rounded-md shadow-sm flex flex-col">
+            <div className="w-full mt-5 p-4 bg-white rounded-md shadow-sm flex jodit-wysiwyg flex-col">
                 <h1 className='font-bold text-3xl flex items-center justify-between w-full'><span>{pages.title}</span> <span>{(pages.reference_number !== '' && pages.reference_number !== undefined) ? `(${pages?.reference_number})` : ''}</span></h1>
                 <div className={(editable) ? 'w-full flex flex-col mt-6 ' : `border p-4 mt-6 shadow-sm flex w-full flex-col items-end`}>
                   
@@ -102,9 +102,20 @@ const SingleContent = ({ pages }) => {
                         <span className='mt-2 text-sm text-gray-500 flex items-center gap-2 w-80'><FaGlobeAmericas/> <>{formatDate(pages.date_created)}</></span>
                     </div>
                     <div>
-                        <div className='p-2 border rounded-sm cursor-pointer mb-4' onClick={isEditable}>
-                            <MdEdit />
-                        </div>
+
+                    {
+                        editable ? (
+                            <div className='py-1 px-2 gap-1 border rounded-sm cursor-pointer mb-2 flex items-center justify-center' onClick={isEditable}>
+                                <MdEdit /> <span> Edit Mode</span>
+                            </div>
+                        ) : (
+                            <div className='p-2 border rounded-sm cursor-pointer mb-2' onClick={isEditable}>
+                                <MdEdit />
+                            </div>
+                        )
+                    }
+                        
+                       
 
                     </div>
                 </div>

@@ -57,7 +57,7 @@ const ModifyPage = ({content, title, apptDetails}) => {
                     </div>
 
                     <div className={isHorizontal ? 'flex gap-3 flex-col-reverse' : 'grid grid-cols-2 gap-3'}>
-                        <div className='p-4'>
+                        <div className='p-4 jodit-wysiwyg '>
                             <h1 className='font-bold text-2xl'>{title}</h1>
                             <div className='border bg-white p-4 mt-6 shadow-sm'
                                 dangerouslySetInnerHTML={{ __html: content }} 
