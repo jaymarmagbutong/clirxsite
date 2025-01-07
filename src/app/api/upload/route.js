@@ -47,6 +47,7 @@ export async function POST(req) {
 			message: 'File uploaded successfully',
 			filePath: `/img/uploaded/${uniqueFilename}`,
 			link_upload: `/img/uploaded/${uniqueFilename}`,
+			files : `/img/uploaded/${uniqueFilename}`,
 			link: uploadResponse.url
 		});
 

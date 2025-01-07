@@ -100,9 +100,27 @@ export default function CreateFormPage({ attachments, category, status }) {
     };
 
     const config = {
-        readonly: false, // Start with editable mode
-        toolbar: true, // Show the toolbar
-        buttons: ['bold', 'italic', 'underline', '|', 'ul', 'ol', '|', 'link', 'unlink'], // Custom toolbar
+        readonly: false,
+        toolbar: true,
+        uploader: {
+            insertImageAsBase64URI: true,
+            url: '/api/upload/',
+            method: 'POST',
+            filesVariableName: () => "file",
+            isSuccess: (resp) => {
+                console.log("Upload success response:", resp);
+                return resp.link; // Ensure this returns the correct image URL
+            },
+            process: function(resp) {
+                return {
+                    files: [{ url: resp.link }],
+                };
+            },
+            onError: (error) => {
+                console.error("Upload failed:", error);
+                toast.error("Image upload failed");
+            },
+        },
     };
 
     return (

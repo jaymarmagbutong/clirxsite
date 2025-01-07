@@ -1,14 +1,13 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { MdEdit } from "react-icons/md";
 import { useSession } from "next-auth/react";
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { formatDate } from '../../../libs/dateUtils';
 import { FaGlobeAmericas } from "react-icons/fa"
-const FroalaEditor = dynamic(() => import('react-froala-wysiwyg'), {
-    ssr: false,
-});
+const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
+
 
 
 const SingleContent = ({ pages }) => {
@@ -16,39 +15,6 @@ const SingleContent = ({ pages }) => {
     const [pageDescription, setPageDescription] = useState();
     const { data: session, status } =  useSession();
 
-    useEffect(() => {
-        // Only import Froala editor plugins when on the client side
-        if (typeof window !== 'undefined') {
-            // Import Froala JS and CSS files
-            import('froala-editor/js/froala_editor.pkgd.min.js');
-            
-            // Additional plugins
-            import('froala-editor/js/plugins/image.min.js');
-            import('froala-editor/js/plugins/table.min.js');
-            import('froala-editor/js/plugins/code_view.min.js');
-            import('froala-editor/js/plugins/font_family.min.js');
-            import('froala-editor/js/plugins/print.min.js');
-            import('froala-editor/js/plugins/lists.min.js');
-            import('froala-editor/js/plugins/font_size.min.js');
-            import('froala-editor/js/plugins/video.min.js');
-            import('froala-editor/js/plugins/paragraph_format.min.js');
-            import('froala-editor/js/plugins/paragraph_style.min.js');
-            import('froala-editor/js/plugins/colors.min.js');
-            
-            // Import the link plugin
-            import('froala-editor/js/plugins/link.min.js');
-    
-            // CSS files
-            import('froala-editor/css/froala_editor.pkgd.min.css');
-            import('froala-editor/css/froala_style.min.css');
-            import('froala-editor/css/plugins/image.min.css');
-            import('froala-editor/css/plugins/table.min.css');
-            import('froala-editor/css/plugins/code_view.min.css');
-            import('froala-editor/css/plugins/colors.min.css');
-        }
-    }, [pages]);
-
-    console.log(session);
 
     useEffect(() => {
 
@@ -89,29 +55,40 @@ const SingleContent = ({ pages }) => {
         setEditable(prevModalStatus => !prevModalStatus);
     }
 
-    const handleModelChange = (model) => {
-        setPageDescription(model);
-    };
+
+    const config = useMemo(() => ({
+        readonly: false,
+        toolbar: true,
+        uploader: {
+            insertImageAsBase64URI: true,
+            url: '/api/upload/',
+            method: 'POST',
+            filesVariableName: () => "file",
+            isSuccess: (resp) => resp.link,
+            process: (resp) => ({
+                files: [{ url: resp.link }],
+            }),
+            onError: (error) => {
+                console.error("Upload failed:", error);
+                toast.error("Image upload failed");
+            },
+        },
+    }), []);
 
     return (
 
-        <>
+        <div>
             <div className="w-full mt-5 p-4 bg-white rounded-md shadow-sm flex flex-col">
                 <h1 className='font-bold text-3xl flex items-center justify-between w-full'><span>{pages.title}</span> <span>{(pages.reference_number !== '' && pages.reference_number !== undefined) ? `(${pages?.reference_number})` : ''}</span></h1>
                 <div className={(editable) ? 'w-full flex flex-col mt-6 ' : `border p-4 mt-6 shadow-sm flex w-full flex-col items-end`}>
                   
 
                     {editable ? (
-                        <FroalaEditor
-                            tag="textarea"
-                            model={pageDescription}
-                            onModelChange={handleModelChange}
-                            config={{
-                                heightMin: 400,
-                                imageUploadURL: '/api/upload/',  // Route to handle image uploads
-                            }}
-                            className='z-[-0] floalas'
-                            style={{ width: '100%' }}
+                        
+                        <JoditEditor
+                            config={config} 
+                            value={pageDescription}
+                            onChange={(newdescription) => setPageDescription(newdescription)}
                         />
                     ) : (
                         <div className='w-full fr-view'
@@ -141,7 +118,7 @@ const SingleContent = ({ pages }) => {
                     </div>
                 )
             }
-        </>
+        </div>
 
     );
 }

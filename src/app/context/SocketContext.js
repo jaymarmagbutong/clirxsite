@@ -6,29 +6,28 @@ import { getSocket } from '@/app/libs/socket';
 const SocketContext = createContext();
 
 export function SocketProvider({ children }) {
-  const [socket, setSocket] = useState();
+	const [socket, setSocket] = useState();
 
-  useEffect(() => {
-    const socketInstance = getSocket();
-    setSocket(socketInstance);
+	useEffect(() => {
+		const socketInstance = getSocket();
+		setSocket(socketInstance);
+		// Optional: Log when connected
+		socketInstance.on('connect', () => {
+			console.log('Connected to Socket.IO server');
+		});
 
-    // Optional: Log when connected
-    socketInstance.on('connect', () => {
-      console.log('Connected to Socket.IO server');
-    });
+		return () => {
+			socketInstance.disconnect();
+		};
+	}, []);
 
-    return () => {
-      socketInstance.disconnect();
-    };
-  }, []);
-
-  return (
-    <SocketContext.Provider value={socket}>
-      {children}
-    </SocketContext.Provider>
-  );
+	return (
+		<SocketContext.Provider value={socket}>
+			{children}
+		</SocketContext.Provider>
+	);
 }
 
 export function useSocket() {
-  return useContext(SocketContext);
+	return useContext(SocketContext);
 }

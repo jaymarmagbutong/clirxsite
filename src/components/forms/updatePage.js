@@ -2,8 +2,6 @@
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
-
-// Dynamically import FroalaEditor with SSR disabled
 const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
 
 
@@ -68,14 +66,33 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
         }
     };
     const config = {
-        readonly: false, // Start with editable mode
-        toolbar: true, // Show the toolbar
-        buttons: ['bold', 'italic', 'underline', '|', 'ul', 'ol', '|', 'link', 'unlink'], // Custom toolbar
+        readonly: false,
+        toolbar: true,
+        uploader: {
+            insertImageAsBase64URI: true,
+            url: '/api/upload/',
+            method: 'POST',
+            filesVariableName: () => "file",
+            isSuccess: (resp) => {
+                console.log("Upload success response:", resp);
+                return resp.link; // Ensure this returns the correct image URL
+            },
+            process: function(resp) {
+                return {
+                    files: [{ url: resp.link }],
+                };
+            },
+            onError: (error) => {
+                console.error("Upload failed:", error);
+                toast.error("Image upload failed");
+            },
+        },
     };
+    
+    
 
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    return (
+        <form onSubmit={handleSubmit} className="space-y-4">
             <div>
                 <label htmlFor="reference" className="block text-sm font-medium text-gray-700">
                     Reference Number
@@ -107,10 +124,11 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
                     Description
                 </label>
                 <div className="flex flex-col">
-                <JoditEditor
-                    value={description}
-                    onChange={(newdescription) => setDescription(newdescription)}
-                />
+                    <JoditEditor
+                        config={config} 
+                            value={description}
+                            onChange={(newdescription) => setDescription(newdescription)}
+                    />
                 </div>
             </div>
             <button
@@ -120,7 +138,7 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
                 {loading ? 'Updating...' : 'Update Page'}
             </button>
         </form>
-  )
+    )
 }
 
 export default UpdatePageForm
