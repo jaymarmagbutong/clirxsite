@@ -37,7 +37,7 @@ function AppResponse({ appt_response }) {
                     height={300}
                     className="w-full h-48 object-cover"
                   /> */}
-                  <div className="p-4">
+                  <div className="p-4 jodit-wysiwyg">
                     <p className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{card.username}</p>
                     <h3 className="text-lg font-semibold mb-2">{card?.title}</h3>
 

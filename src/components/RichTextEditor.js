@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
-const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
+const JoditEditor = dynamic(() => import('jodit-pro-react'), { ssr: false });
 
 function MyEditor() {
   const [content, setContent] = useState("");

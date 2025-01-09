@@ -11,7 +11,6 @@ import ApptHistory from '@/components/appt/apptHistory';
 import Skeleton from 'react-loading-skeleton';
 import Comment from '@/components/appt/comments';
 
-
 import io from 'socket.io-client';
 
 const socket = io('http://localhost:8080/');

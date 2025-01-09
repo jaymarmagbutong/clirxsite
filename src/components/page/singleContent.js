@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { formatDate } from '../../../libs/dateUtils';
 import { FaGlobeAmericas } from "react-icons/fa"
-const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
+const JoditEditor = dynamic(() => import('jodit-pro-react'), { ssr: false });
 
 
 
@@ -64,14 +64,7 @@ const SingleContent = ({ pages }) => {
             url: '/api/upload/',
             method: 'POST',
             filesVariableName: () => "file",
-            isSuccess: (resp) => resp.link,
-            process: (resp) => ({
-                files: [{ url: resp.link }],
-            }),
-            onError: (error) => {
-                console.error("Upload failed:", error);
-                toast.error("Image upload failed");
-            },
+            
         },
     }), []);
 

@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import dynamic from 'next/dynamic';
 import { useSocket } from '@/app/context/SocketContext';
 
-const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
+const JoditEditor = dynamic(() => import('jodit-pro-react'), { ssr: false });
 
 
 import { useSession } from "next-auth/react";
@@ -95,18 +95,11 @@ const ApptForm = ({ contents, apptDetails }) => {
         readonly: false,
         toolbar: true,
         uploader: {
-            insertImageAsBase64URI: true,
+            insertImageAsBase64URI: false,
             url: '/api/upload/',
             method: 'POST',
             filesVariableName: () => "file",
-            isSuccess: (resp) => resp.link,
-            process: (resp) => ({
-                files: [{ url: resp.link }],
-            }),
-            onError: (error) => {
-                console.error("Upload failed:", error);
-                toast.error("Image upload failed");
-            },
+          
         },
     }), []);
 

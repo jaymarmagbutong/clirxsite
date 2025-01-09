@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 // Dynamically import FroalaEditor with SSR disabled
 import dynamic from 'next/dynamic';
-const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
+const JoditEditor = dynamic(() => import('jodit-pro-react'), { ssr: false });
 
 export default function CreateFormPage({ attachments, category, status }) {
 
@@ -58,22 +58,15 @@ export default function CreateFormPage({ attachments, category, status }) {
     };
 
     const config = useMemo(() => ({
+        license: 'C0522-23FK2-A96KK-2R1CX',
         readonly: false,
         toolbar: true,
         uploader: {
-          insertImageAsBase64URI: true,
-        //   url: '/api/upload/',  // URL to handle the file upload
-        //   method: 'POST',
-        //   format: 'json',
-        //   filesVariableName: () => "file",
-        //   isSuccess: (response) => {
-           
-        //     return response.success;  // Return the uploaded image URL
-        //   },
-        //   process: (response) => {
-           
-        //     return { files: [response.url] };  // Return the uploaded image URL
-        //   },
+          url: '/api/upload/',  // URL to handle the file upload
+          method: 'POST',
+          format: 'json',
+          filesVariableName: () => "file",
+       
         },
       }), []);
 
