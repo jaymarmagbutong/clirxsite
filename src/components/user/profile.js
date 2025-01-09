@@ -8,7 +8,7 @@ const ProfileComponent = ({profileData}) => {
     const [email, setEmail] = useState('')
     
     const [userData, setUserData] = useState([]); 
-
+    const [isEditing, setIsEditing] = useState(false);
     
     const user = useUser(); // Get user_id from the context
 

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
@@ -8,58 +8,16 @@ import dynamic from 'next/dynamic';
 const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
 
 export default function CreateFormPage({ attachments, category, status }) {
-    
+
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [referenceNumber, setReferenceNumber] = useState('');
     const [loading, setLoading] = useState(false);
-    const { data: session } =  useSession();
+    const { data: session } = useSession();
     const router = useRouter(); // Initialize the router
     const userCreatedId = session?.user?.id;
+    const editor = useRef(null);
 
-
- 
-
-    useEffect(() => {
-        // Only import Froala editor plugins when on the client side
-        if (typeof window !== 'undefined') {
-
-            
-            // // Import Froala JS and CSS files
-            // import('froala-editor/js/froala_editor.pkgd.min.js');
-
-            // // Additional plugins
-            // import('froala-editor/js/plugins/image.min.js');
-            // import('froala-editor/js/plugins/table.min.js');
-            // import('froala-editor/js/plugins/code_view.min.js');
-            // import('froala-editor/js/plugins/font_family.min.js');
-            // import('froala-editor/js/plugins/print.min.js');
-            // import('froala-editor/js/plugins/lists.min.js');
-            // import('froala-editor/js/plugins/font_size.min.js');
-            // import('froala-editor/js/plugins/video.min.js');
-            // import('froala-editor/js/plugins/paragraph_format.min.js');
-            // import('froala-editor/js/plugins/paragraph_style.min.js');
-            // import('froala-editor/js/plugins/colors.min.js');
-
-            // // Import the link plugin
-            // import('froala-editor/js/plugins/link.min.js');
-
-            // // CSS files
-            // import('froala-editor/css/froala_editor.pkgd.min.css');
-            // import('froala-editor/css/froala_style.min.css');
-            // import('froala-editor/css/plugins/image.min.css');
-            // import('froala-editor/css/plugins/table.min.css');
-            // import('froala-editor/css/plugins/code_view.min.css');
-            // import('froala-editor/css/plugins/colors.min.css');
-        }
-
-    }, []);
-
-    
-
-    const handleModelChange = (model) => {
-        setDescription(model);
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -88,7 +46,7 @@ export default function CreateFormPage({ attachments, category, status }) {
                 setTitle('');
                 setDescription('');  // Clear Froala editor by setting the description to an empty string
                 setReferenceNumber('');
-                router.push('/page'); 
+                router.push('/page');
             } else {
                 toast.error('Failed to create page!');
             }
@@ -99,29 +57,25 @@ export default function CreateFormPage({ attachments, category, status }) {
         }
     };
 
-    const config = {
+    const config = useMemo(() => ({
         readonly: false,
         toolbar: true,
         uploader: {
-            insertImageAsBase64URI: true,
-            url: '/api/upload/',
-            method: 'POST',
-            filesVariableName: () => "file",
-            isSuccess: (resp) => {
-                console.log("Upload success response:", resp);
-                return resp.link; // Ensure this returns the correct image URL
-            },
-            process: function(resp) {
-                return {
-                    files: [{ url: resp.link }],
-                };
-            },
-            onError: (error) => {
-                console.error("Upload failed:", error);
-                toast.error("Image upload failed");
-            },
+          insertImageAsBase64URI: true,
+        //   url: '/api/upload/',  // URL to handle the file upload
+        //   method: 'POST',
+        //   format: 'json',
+        //   filesVariableName: () => "file",
+        //   isSuccess: (response) => {
+           
+        //     return response.success;  // Return the uploaded image URL
+        //   },
+        //   process: (response) => {
+           
+        //     return { files: [response.url] };  // Return the uploaded image URL
+        //   },
         },
-    };
+      }), []);
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -156,14 +110,15 @@ export default function CreateFormPage({ attachments, category, status }) {
                     Description
                 </label>
                 <div className="flex flex-col">
-                
-                <JoditEditor
-                
-                    value={description}
-                    onChange={(newdescription) => setDescription(newdescription)}
-                />
 
-                
+                    <JoditEditor
+                        ref={editor}
+                        config={config}
+                        value={description}
+                        onChange={(newdescription) => setDescription(newdescription)}
+                    />
+
+
                 </div>
             </div>
             <button

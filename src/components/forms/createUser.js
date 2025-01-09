@@ -83,7 +83,7 @@ export default function CreateUser() {
             <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Add User</h2>
             <form onSubmit={formSubmitFunction}>
                 <div className="mb-4">
-                    <label className="block text-gray-700 dark:text-gray-300 mb-1" htmlFor="name">Name</label>
+                    <label className="block text-gray-700 dark:text-gray-300 mb-1" htmlFor="name">Username</label>
                     <input
                         type="text"
                         id="name"

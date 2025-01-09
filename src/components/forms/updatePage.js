@@ -28,9 +28,6 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
 
 
  
-    const handleModelChange = (model) => {
-        setDescription(model);
-    };
     const handleSubmit = async (e) => {
         e.preventDefault();
         const postData = {

@@ -77,7 +77,7 @@ const SignUp = () => {
 
             <div className="mb-4">
               <label className="block text-gray-700 text-sm  mb-4" htmlFor="Full Name">
-                Full Name
+                Username
               </label>
               <div className="flex items-center border focus-within:ring-2 focus-within:ring-clirxColor">
                 <FaUser className="text-gray-500 mx-3" />

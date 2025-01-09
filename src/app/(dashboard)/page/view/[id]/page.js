@@ -84,8 +84,8 @@ export default function Page({ params }) {
                         <p className='text-lg font-bold' >{title}</p>
                     </div>
                     <div className='mt-6'>
-                        <div className="flex flex-col">
-                            <div className='w-full fr-view'
+                        <div className="flex flex-col jodit-wysiwyg">
+                            <div className='w-full fr-view '
                                 dangerouslySetInnerHTML={{ __html: description }}
                             />
                         </div>
