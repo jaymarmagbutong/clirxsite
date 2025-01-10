@@ -3,7 +3,6 @@ import { useEffect, useState, useMemo, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
-// Dynamically import FroalaEditor with SSR disabled
 import dynamic from 'next/dynamic';
 const JoditEditor = dynamic(() => import('jodit-pro-react'), { ssr: false });
 
@@ -17,7 +16,6 @@ export default function CreateFormPage({ attachments, category, status }) {
     const router = useRouter(); // Initialize the router
     const userCreatedId = session?.user?.id;
     const editor = useRef(null);
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -58,17 +56,27 @@ export default function CreateFormPage({ attachments, category, status }) {
     };
 
     const config = useMemo(() => ({
-        license: 'C0522-23FK2-A96KK-2R1CX',
+        license: 'B74F2-13481-A9NJJ-97M9Z',
         readonly: false,
         toolbar: true,
         uploader: {
-          url: '/api/upload/',  // URL to handle the file upload
-          method: 'POST',
-          format: 'json',
-          filesVariableName: () => "file",
-       
+            url: '/api/upload/',  // URL to handle the file upload
+            method: 'POST',
+            format: 'json',
+            filesVariableName: () => "file",
         },
       }), []);
+
+
+    //   const config = useMemo(() => ({
+    //     license: 'C0522-23FK2-A96KK-2R1CX',
+    //     readonly: false,
+    //     toolbar: true,
+    //     uploader: {
+    //         url: 'https://xdsoft.net/jodit/finder/?action=fileUpload'
+    //     },
+    //   }), []);
+
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">

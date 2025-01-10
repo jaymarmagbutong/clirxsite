@@ -65,21 +65,14 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
 
     
     const config = useMemo(() => ({
+        license: 'B74F2-13481-A9NJJ-97M9Z',
         readonly: false,
         toolbar: true,
         uploader: {
-            insertImageAsBase64URI: true,
-            url: '/api/upload/',
+            url: '/api/upload/',  // URL to handle the file upload
             method: 'POST',
+            format: 'json',
             filesVariableName: () => "file",
-            isSuccess: (resp) => resp.link,
-            process: (resp) => ({
-                files: [{ url: resp.link }],
-            }),
-            onError: (error) => {
-                console.error("Upload failed:", error);
-                toast.error("Image upload failed");
-            },
         },
     }), []);
     

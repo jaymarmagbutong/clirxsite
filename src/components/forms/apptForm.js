@@ -92,17 +92,16 @@ const ApptForm = ({ contents, apptDetails }) => {
 
     
     const config = useMemo(() => ({
+        license: 'B74F2-13481-A9NJJ-97M9Z',
         readonly: false,
         toolbar: true,
         uploader: {
-            insertImageAsBase64URI: false,
-            url: '/api/upload/',
+            url: '/api/upload/',  // URL to handle the file upload
             method: 'POST',
+            format: 'json',
             filesVariableName: () => "file",
-          
         },
     }), []);
-
     
     return (
         <div>
