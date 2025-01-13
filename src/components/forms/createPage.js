@@ -60,22 +60,13 @@ export default function CreateFormPage({ attachments, category, status }) {
         readonly: false,
         toolbar: true,
         uploader: {
-            url: '/api/upload/',  // URL to handle the file upload
+            url: 'http://192.168.5.110/api/storage/upload/',  // URL to handle the file upload
             method: 'POST',
             format: 'json',
             filesVariableName: () => "file",
         },
       }), []);
 
-
-    //   const config = useMemo(() => ({
-    //     license: 'C0522-23FK2-A96KK-2R1CX',
-    //     readonly: false,
-    //     toolbar: true,
-    //     uploader: {
-    //         url: 'https://xdsoft.net/jodit/finder/?action=fileUpload'
-    //     },
-    //   }), []);
 
 
     return (

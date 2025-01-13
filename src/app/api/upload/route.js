@@ -42,17 +42,6 @@ export async function POST(req) {
 			fileName: uniqueFilename, // Unique file name
 			folder: '/uploaded', // Folder on ImageKit
 		});
-		// console.log(uploadResponse)
-		// const response = NextResponse.json({
-		// 	message: 'File uploaded successfully',
-		// 	filePath: `/img/uploaded/${uniqueFilename}`,
-		// 	link_upload: `/img/uploaded/${uniqueFilename}`,
-		// 	files : `/img/uploaded/${uniqueFilename}`,
-		// 	link: uploadResponse.url,
-		// 	url: uploadResponse.url
-		// });
-
-		
 
 
 		const response = NextResponse.json({
@@ -85,16 +74,3 @@ export async function POST(req) {
 		return NextResponse.json({ error: 'Unexpected server error' }, { status: 500 });
 	}
 }
-// {
-// 	fileId: '677f6bda432c476416e8ea75',
-// 	name: '1736403928790_de6ab8d0-ebf1-47db-8008-5b1edd3b35f6_9tBAUND3c.jpg',
-// 	size: 49065,
-// 	versionInfo: { id: '677f6bda432c476416e8ea75', name: 'Version 1' },
-// 	filePath: '/uploaded/1736403928790_de6ab8d0-ebf1-47db-8008-5b1edd3b35f6_9tBAUND3c.jpg',
-// 	url: 'https://ik.imagekit.io/pwem9qodf/uploaded/1736403928790_de6ab8d0-ebf1-47db-8008-5b1edd3b35f6_9tBAUND3c.jpg',
-// 	fileType: 'image',
-// 	height: 600,
-// 	width: 478,
-// 	thumbnailUrl: 'https://ik.imagekit.io/pwem9qodf/tr:n-ik_ml_thumbnail/uploaded/1736403928790_de6ab8d0-ebf1-47db-8008-5b1edd3b35f6_9tBAUND3c.jpg',
-// 	AITags: null
-//   }

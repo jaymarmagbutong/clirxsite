@@ -69,7 +69,7 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
         readonly: false,
         toolbar: true,
         uploader: {
-            url: '/api/upload/',  // URL to handle the file upload
+            url: 'http://192.168.5.110/api/storage/upload/',  // URL to handle the file upload
             method: 'POST',
             format: 'json',
             filesVariableName: () => "file",

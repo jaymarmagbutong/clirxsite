@@ -38,6 +38,11 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'ik.imagekit.io', // Facebook CDN domain for images
 			},
+			{
+				protocol: 'http',
+				hostname: 'localhost', // Facebook CDN domain for images
+				port: '8000'
+			},
 		],
 	},
   
