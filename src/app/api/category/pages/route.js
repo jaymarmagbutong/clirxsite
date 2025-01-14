@@ -16,8 +16,8 @@ export async function GET() {
                 p.reference_number AS page_reference_number, 
                 p.description AS page_content,
                 p.status AS page_status,
-                COUNT(CASE WHEN  appt.response IS NOT NULL THEN 1 ELSE NULL END) AS interaction_count,
-                COUNT(appt.id) AS sent_count,
+                COUNT( DISTINCT CASE WHEN  appt.response IS NOT NULL THEN 1 ELSE NULL END) AS interaction_count,
+                COUNT( DISTINCT appt.id) AS sent_count,
                 COUNT( DISTINCT  com.id ) as comment_count
             FROM 
                 category c
@@ -85,10 +85,10 @@ export async function GET() {
                     }] : [] // Initialize with an empty array if no pages exist
                 });
             }
-
+            
             return acc;
         }, []);
-
+  
         // Return the grouped categories with pages
         return NextResponse.json(categoriesWithPages, { status: 200 });
     } catch (error) {
