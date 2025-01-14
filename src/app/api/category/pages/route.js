@@ -16,7 +16,7 @@ export async function GET() {
                 p.reference_number AS page_reference_number, 
                 p.description AS page_content,
                 p.status AS page_status,
-                COUNT( DISTINCT CASE WHEN  appt.response IS NOT NULL THEN 1 ELSE NULL END) AS interaction_count,
+                COUNT( DISTINCT appt.response) AS interaction_count,
                 COUNT( DISTINCT appt.id) AS sent_count,
                 COUNT( DISTINCT  com.id ) as comment_count
             FROM 
