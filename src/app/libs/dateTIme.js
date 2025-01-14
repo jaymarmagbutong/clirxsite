@@ -11,4 +11,4 @@ export function getCurrentDateTime() {
   
     // Combine into the desired format
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  }
+}

@@ -73,6 +73,7 @@ export default function Comment({ commentData, pageId }) {
         // Validate file size if a file is selected
         if (file && file.size > MAX_FILE_SIZE) {
             alert("File size exceeds the 7MB limit. Please upload a smaller file.");
+            setButtonSubmit(true)
             return;
         }
     
@@ -100,8 +101,6 @@ export default function Comment({ commentData, pageId }) {
                     pageId: pageId
                 } ); 
 
-
-             
                 setComments((prevComments) => [...prevComments, newComment]);
                 setCommentText("");
                 if (fileInput.current) fileInput.current.value = ""; // Clear file input

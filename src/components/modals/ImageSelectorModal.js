@@ -15,10 +15,16 @@ export default function ImageSelectorModal({ isOpen, onRequestClose, onSelectIma
     useEffect(()=> {
         const fetchImageList = async () => {
             try {
-                const res = await fetch('/api/image/');
+                const res = await fetch(`${process.env.NEXT_PUBLIC_STORAGE_FILE_URL}/api/storage/files`, {
+                    method: 'GET',
+                    headers:{
+                        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_APP_BEARER_TOKEN}`
+                    }
+                });
                 if (res.ok) {
                     const data = await res.json();
-                    setImages(data.images);
+                    setImages(data);
+
                 } else {
                     console.log("Failed to fetch the data");
                 }
@@ -49,6 +55,8 @@ export default function ImageSelectorModal({ isOpen, onRequestClose, onSelectIma
         return null;
     }
 
+  
+
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={customStyles}>
             <h2>Select an Image</h2>
@@ -58,13 +66,13 @@ export default function ImageSelectorModal({ isOpen, onRequestClose, onSelectIma
                         images.map((src, index) => (
                             <div key={index} className="w-40 h-40 overflow-hidden m-1 bg-gray-100 border border-gray-300 flex flex-wrap justify-center items-center">
                                 <Image
-                                    src={src.url}
+                                    src={src.filePath}
                                     alt={`Image ${index}`}
                                     width={388}
                                     height={388}
                                     className="object-cover"
                                     style={{ objectFit: 'cover' }}
-                                    onClick={() => { onSelectImage(src.url); }}
+                                    onClick={() => { onSelectImage(src.filePath); }}
                                 />
                             </div>
                         ))

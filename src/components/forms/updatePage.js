@@ -12,7 +12,6 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
     const [description, setDescription] = useState('');
     const [referenceNumber, setReferenceNumber] = useState('');
     const [id, setId]= useState('');
-    const [page, setPage] = useState([])
 
     const [loading, setLoading] = useState(false);
 
@@ -69,11 +68,15 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
         readonly: false,
         toolbar: true,
         uploader: {
-            url: 'http://192.168.5.110/api/storage/upload/',  // URL to handle the file upload
+            url: `${process.env.NEXT_PUBLIC_STORAGE_FILE_URL}/api/storage/upload/`,  // URL to handle the file upload
             method: 'POST',
             format: 'json',
             filesVariableName: () => "file",
-        },
+            headers: {
+                Authorization: `Bearer ${process.env.NEXT_PUBLIC_APP_BEARER_TOKEN}`, // Add Bearer token here
+            },
+        }
+        
     }), []);
     
 
@@ -112,8 +115,8 @@ const UpdatePageForm = ({attachments,  category, status, pageDetails}) => {
                 <div className="flex flex-col">
                     <JoditEditor
                         config={config} 
-                            value={description}
-                            onChange={(newdescription) => setDescription(newdescription)}
+                        value={description}
+                        onChange={(newdescription) => setDescription(newdescription)}
                     />
                 </div>
             </div>
