@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import { trimHtml } from '@/app/libs/trimHTML';
 
-function AppResponse({ appt_response }) {
+function AppResponse({ appt_response, modalAction, setModalContent }) {
   const [apptResponse, setApptResponse] = useState([]);
 
+  const setModalAction = (vals) => {
+    modalAction()
+  }
   // Update state only when appt_response changes
   useEffect(() => {
     if (appt_response) {
@@ -45,7 +48,8 @@ function AppResponse({ appt_response }) {
                         dangerouslySetInnerHTML={{ __html: trimHtml(card?.response, 10) }} 
                     /> 
                      {card?.response?.split(' ').length > 50 && (
-                      <button
+                      <button 
+                        onClick={setModalAction}
                         className="text-blue-500 mt-2 focus:outline-none"
                       >
                        Review 

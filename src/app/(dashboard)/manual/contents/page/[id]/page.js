@@ -117,7 +117,7 @@ export default function Page({ params }) {
 
 				<div className='col-span-1 md:col-span-3'>
 					<SingleContent pages={pages} modalAction={showModal} />
-					<ApptResponse appt_response={apptResponse}/>
+					{/* <ApptResponse appt_response={apptResponse} modalAction={showModal}/> */}
 					<div className="mt-4">
 					<Comment commentData='' pageId={id} />
 					</div>

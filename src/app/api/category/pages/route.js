@@ -18,7 +18,7 @@ export async function GET() {
                 p.status AS page_status,
                 COUNT( DISTINCT appt.response) AS interaction_count,
                 COUNT( DISTINCT appt.id) AS sent_count,
-                COUNT( DISTINCT  com.id ) as comment_count
+                COUNT( DISTINCT com.id ) as comment_count
             FROM 
                 category c
             LEFT JOIN 
