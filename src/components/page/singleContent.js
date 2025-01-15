@@ -67,8 +67,15 @@ const SingleContent = ({ pages }) => {
             filesVariableName: () => "file",
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_APP_BEARER_TOKEN}`, // Add Bearer token here
+            }
+        },
+        filebrowser: {
+            url: `${process.env.NEXT_PUBLIC_STORAGE_FILE_URL}`, // File browser endpoint
+            headers: {
+                Authorization: `Bearer ${process.env.NEXT_PUBLIC_APP_BEARER_TOKEN}`,
             },
         },
+        
     }), []);
 
     return (

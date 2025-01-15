@@ -44,6 +44,11 @@
   border: 1px solid #dadada !important;
 }
 
+.jodit-wysiwyg p a {
+  color: #6087df;
+  text-decoration: underline;
+}
+
 /* .fr-wrapper > :first-child{
   display: none !important;
 }

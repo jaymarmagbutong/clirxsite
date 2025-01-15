@@ -67,8 +67,8 @@ export default function CreateFormPage({ attachments, category, status }) {
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_APP_BEARER_TOKEN}`, // Add Bearer token here
             },
-        },
-      }), []);
+        }
+    }), []);
 
 
 

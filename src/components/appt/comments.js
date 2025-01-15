@@ -96,10 +96,11 @@ export default function Comment({ commentData, pageId }) {
             if (response.ok) {
                 setButtonSubmit(true)
                 const newComment = await response.json();
+                
                 socket.emit('comment', {
                     datas: newComment,
                     pageId: pageId
-                } ); 
+                }); 
 
                 setComments((prevComments) => [...prevComments, newComment]);
                 setCommentText("");

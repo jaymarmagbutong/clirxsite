@@ -13,14 +13,14 @@ const CategoryPerPage = () => {
 	
 
 	const socket = useSocket();
-        
-	console.log(categoryListWithPage);
 
-	useEffect(() => {
-		if (!socket) return;
-    
+	if(socket) { console.log('socket connected')}
   
 
+	useEffect(() => {
+		      
+	
+		if (!socket) return;
 		const getAllCategoryWithPages = async () => {
 			try {
 				const response = await fetch("/api/category/pages", { next: { revalidate: 3600 } });
@@ -39,6 +39,10 @@ const CategoryPerPage = () => {
 		
 
 		getAllCategoryWithPages();
+		socket.on('triggerComment', (message) => {
+			console.log('Message from server:', message);
+			getAllCategoryWithPages();
+		});
 
 	}, [socket]);
 
