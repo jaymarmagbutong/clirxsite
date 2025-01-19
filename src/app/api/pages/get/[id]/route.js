@@ -91,7 +91,7 @@ export async function GET(request, { params }) {
                 ON 
                     appt.page_id = pages.id
                 WHERE 
-                    page_id = ? AND response !=''  ORDER BY pages.reference_number DESC`,
+                    page_id = ? AND response !=''  ORDER BY appt.response_created DESC`,
                 [id, user_id],
                 (err, results) => {
                     if (err) {

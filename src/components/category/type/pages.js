@@ -36,8 +36,6 @@ const CategoryPerPage = () => {
 			}
 		};
 
-		
-
 		getAllCategoryWithPages();
 		socket.on('triggerComment', (message) => {
 			console.log('Message from server:', message);

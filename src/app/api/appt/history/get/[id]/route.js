@@ -20,9 +20,8 @@ export async function GET(request, { params }) {
                     user as usr
                 ON 
                     his.from_user_id = usr.id
-
                 WHERE 
-                    his.page_id = ? ORDER BY id ASC `,
+                    his.page_id = ? ORDER BY id DESC `,
                 [id],
                 (err, results) => {
                     if (err) {
