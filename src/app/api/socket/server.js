@@ -34,7 +34,6 @@ io.on('connection', (socket) => {
 	
 		socket.broadcast.emit(commentPageEvent, data); // Broadcasting to all other clients
 		socket.broadcast.emit('triggerComment', data);
-		
 	});
 
 	socket.on('disconnect', () => {

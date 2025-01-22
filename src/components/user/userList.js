@@ -61,11 +61,13 @@ export default function UsersList({option, page_id}) {
 		
 		return (
 			<>
-			{userLists?.map(user => (
-				<div key={user.id}>
-				<PageUserItem key={user.id}  user={user} page_id={page_id} users_id={appt}/>
-				</div>
-			))}
+				 <h1 className="font-bold text-2xl mb-4">Contributor</h1>
+										<hr className='mb-4'></hr>
+				{userLists?.map(user => (
+					<div key={user.id}>
+					<PageUserItem key={user.id}  user={user} page_id={page_id} users_id={appt}/>
+					</div>
+				))}
 			</>
 		)
 	} else if(option=='userlist')

@@ -26,7 +26,6 @@ export async function middleware(req) {
         case 3:
             role = 'viewer';
             break;
-    
         default:
             role = 'viewer';
     }
