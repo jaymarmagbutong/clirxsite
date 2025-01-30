@@ -54,8 +54,8 @@ export default function Page({ params }) {
 	const { id } = React.use(params); // Unwrap params to get id
 	// Fetch both page details and page history
 	useEffect(() => {
-		const fetchData = async () => {
 
+		const fetchData = async () => {
 			try {
 				// Fetch Page Details
 				const pageResponse = await fetch(`/api/pages/get/${id}`, {
@@ -79,6 +79,7 @@ export default function Page({ params }) {
 		};
 
 		fetchData();
+		
 	}, [id, modalStatus, socketAction]); // Dependencies to refetch when these values change
 
 	if (!loading) {
@@ -120,12 +121,10 @@ export default function Page({ params }) {
 					<div className="mt-4">
 						<Comment commentData='' pageId={id} />
 					</div>
-
 				</div>
 
 				<div className='mt-5'>
 					<div className='bg-white  rounded-md p-4'>
-						
 						<UsersList option={'singlepage'} page_id={id} />
 					</div>
 					<ActivityPage appt_response={apptResponse} modalAction={showModal} setModalContent={setModalContent} />

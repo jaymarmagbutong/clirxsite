@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import DB from "@/app/api/config/db";
 import { getCurrentDateTime } from "@/app/libs/dateTIme";
 import getUserServerInfo from "@/app/libs/getServerUser";
+import { createNotification } from "@/app/api/service/notificationService";
 
 export async function POST(request){
     try {
@@ -25,11 +26,26 @@ export async function POST(request){
             )
         });
 
-        
+        var  notificationResponse = null;
+        if(response.affectedRows) {
+            // Call the notification function
+            const notificationType = "assign-page"; // Replace with your type
+            const notificationMessage = `[${user.id}] Assign [${user.id}]`;
+            notificationResponse = await createNotification({
+                userId: user_id,
+                userCreated: user.id,
+                pageId: page_id,
+                type: notificationType,
+                message: notificationMessage,
+            });
+
+        }
+
 
         return NextResponse.json(
             {id: response.insertId},
-            {status:200}
+            {status:200},
+            {Notification: notificationResponse}
         )
     } catch (error) {
        console.error('Error creating Appt:', error); // Log error details for debugging

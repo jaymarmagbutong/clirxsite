@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import DB from "@/app/api/config/db";
 import { getCurrentDateTime } from "@/app/libs/dateTIme";
+import { createNotification } from "@/app/api/service/notificationService";
 
 // Handle PUT requests (update existing appt)
 
@@ -24,9 +25,26 @@ export async function PUT(request) {
             );
         });
 
+
+
+
         if (response.affectedRows === 0) {
             return NextResponse.json({ error: 'No appt found to update' }, { status: 404 });
         }
+
+        // Call the notification function
+        if(response.affectedRows){
+            const notificationType = "modify-page"; // Replace with your type
+            const notificationMessage = `[${user_id}] Modify Page [${page_id}]`;
+            const notificationResponse = await createNotification({
+                userId: 0,
+                userCreated: user_id,
+                pageId: page_id,
+                type: notificationType,
+                message: notificationMessage,
+            });    
+        }
+     
 
         return NextResponse.json({ message: 'appt updated successfully' }, { status: 200 });
         

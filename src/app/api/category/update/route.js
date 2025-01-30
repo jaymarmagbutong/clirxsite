@@ -1,7 +1,15 @@
 import { NextResponse } from "next/server";
 import DB from "@/app/api/config/db";
+import getUserServerInfo from "@/app/libs/getServerUser";
+import { createNotification } from "@/app/api/service/notificationService";
+
+
 
 export async function PUT(request) {
+
+    const userInfo = await getUserServerInfo(request);
+    const user_id = userInfo.id;
+
   try {
       // Parse the incoming request body
       const { id, categoryName } = await request.json();
@@ -31,7 +39,7 @@ export async function PUT(request) {
       }
 
       // Update the category in the database
-      await new Promise((resolve, reject) => {
+      const result = await new Promise((resolve, reject) => {
           DB.query(
               'UPDATE category SET name = ? WHERE id = ?',
               [categoryName, id],
@@ -44,6 +52,21 @@ export async function PUT(request) {
               }
           );
       });
+
+
+
+             
+      if (result.affectedRows) {
+        const notificationType = "update-category"; // Replace with your type
+        const notificationMessage = `[${user_id}] Update Category [${id}]`;
+        const notificationResponse = await createNotification({
+            userId: 0,
+            userCreated: user_id,
+            pageId: '',
+            type: notificationType,
+            message: notificationMessage,
+        });
+    }
 
       // Return a success response
       return NextResponse.json(

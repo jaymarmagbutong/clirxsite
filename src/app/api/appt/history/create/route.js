@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import DB from "@/app/api/config/db";
 import getUserServerInfo from "@/app/libs/getServerUser";
 import { getCurrentDateTime } from "@/app/libs/dateTIme";
+import { createNotification } from "@/app/api/service/notificationService";
 
 
 export async function POST(request){
@@ -26,6 +27,21 @@ export async function POST(request){
             );
         });
 
+
+        if(response.affectedRows) {
+            // Call the notification function
+            const notificationType = "approved-page"; // Replace with your type
+            const notificationMessage = `[${user_id}] Approved Page From [${from_user_id}]`;
+            const notificationResponse = await createNotification({
+                userId: from_user_id,
+                userCreated: user_id,
+                pageId: pageId,
+                type: notificationType,
+                message: notificationMessage,
+            });
+        }
+
+        
  
         const result = await new Promise((resolve, reject) => {
             DB.query(
@@ -40,6 +56,7 @@ export async function POST(request){
                 }
             );
         });
+
         return NextResponse.json(result,
             {status:200}
         )

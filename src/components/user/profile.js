@@ -1,24 +1,45 @@
-"use client"
-import React, {useEffect, useState} from 'react'
+"use client";
+import React, { useEffect, useState } from "react";
 import { useUser } from "@/app/context/UserContext";
-import Image from 'next/image';
+import Image from "next/image";
 
-const ProfileComponent = ({profileData}) => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('')
-    
-    const [userData, setUserData] = useState([]); 
+const ProfileComponent = ({ profileData }) => {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState("");
+    const [birthday, setBirthday] = useState("");
+    const [gender, setGender] = useState("");
+    const [userData, setUserData] = useState({});
     const [isEditing, setIsEditing] = useState(false);
-    
+
     const user = useUser(); // Get user_id from the context
 
-    useEffect(()=>{
-        setUserData(user.userData)
+    useEffect(() => {
+        if (user.userData) {
+            setUserData(user.userData);
+            setName(user.userData.user?.name || "");
+            setEmail(user.userData.user?.email || "");
+            setPhone("+09123205738"); // Default phone number
+            setAddress("525 E 68th Street, New York, NY"); // Default address
+            setBirthday("June 5, 1992"); // Default birthday
+            setGender("Male"); // Default gender
+        }
+    }, [user.userData]);
 
-    }, [user.userData])
-
-
-    console.log(user)
+    const handleSave = () => {
+        // Save the updated data (you can send it to an API or update the context)
+        const updatedData = {
+            ...userData,
+            user: {
+                ...userData.user,
+                name,
+                email,
+            },
+        };
+        setUserData(updatedData);
+        setIsEditing(false); // Exit edit mode
+    };
 
     return (
         <div>
@@ -28,7 +49,16 @@ const ProfileComponent = ({profileData}) => {
                     <Image src="/img/profile.png" alt="Profile Picture" layout="fill" objectFit="cover" />
                 </div>
                 <div className="ml-6">
-                    <h1 className="text-2xl font-semibold text-gray-800">{userData?.user?.name}</h1>
+                    {isEditing ? (
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="text-2xl font-semibold text-gray-800 border rounded-md p-1"
+                        />
+                    ) : (
+                        <h1 className="text-2xl font-semibold text-gray-800">{name}</h1>
+                    )}
                     <p className="text-clirxColor">Web Developer</p>
                     <p className="text-gray-500">New York, NY</p>
                 </div>
@@ -39,7 +69,8 @@ const ProfileComponent = ({profileData}) => {
                 <span className="text-xl font-bold text-gray-800">8.6</span>
                 <div className="ml-2 text-yellow-400">
                     {/* Render stars dynamically if needed */}
-                    {'\u2605'.repeat(4)}{'\u2606'.repeat(1)}
+                    {"\u2605".repeat(4)}
+                    {"\u2606".repeat(1)}
                 </div>
             </div>
 
@@ -51,6 +82,21 @@ const ProfileComponent = ({profileData}) => {
                 <button className="px-4 py-2 bg-gray-100 text-gray-800 rounded-md shadow-md hover:bg-gray-200">
                     Contacts
                 </button>
+                {isEditing ? (
+                    <button
+                        onClick={handleSave}
+                        className="px-4 py-2 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600"
+                    >
+                        Save
+                    </button>
+                ) : (
+                    <button
+                        onClick={() => setIsEditing(true)}
+                        className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600"
+                    >
+                        Edit
+                    </button>
+                )}
             </div>
 
             {/* Tabs */}
@@ -67,16 +113,51 @@ const ProfileComponent = ({profileData}) => {
                 <h2 className="text-xl font-bold mb-4 text-gray-800">Contact Information</h2>
                 <ul className="space-y-2">
                     <li>
-                        <strong>Phone:</strong> <span className="text-gray-600">+09123205738</span>
+                        <strong>Phone:</strong>{" "}
+                        {isEditing ? (
+                            <input
+                                type="text"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                className="border rounded-md p-1"
+                            />
+                        ) : (
+                            <span className="text-gray-600">{phone}</span>
+                        )}
                     </li>
                     <li>
-                        <strong>Address:</strong> <span className="text-gray-600">525 E 68th Street, New York, NY</span>
+                        <strong>Address:</strong>{" "}
+                        {isEditing ? (
+                            <input
+                                type="text"
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                                className="border rounded-md p-1"
+                            />
+                        ) : (
+                            <span className="text-gray-600">{address}</span>
+                        )}
                     </li>
                     <li>
-                        <strong>Email:</strong> <a href={`mailto:${userData?.user?.email}`} className="text-blue-500">{userData?.user?.email}</a>
+                        <strong>Email:</strong>{" "}
+                        {isEditing ? (
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="border rounded-md p-1"
+                            />
+                        ) : (
+                            <a href={`mailto:${email}`} className="text-blue-500">
+                                {email}
+                            </a>
+                        )}
                     </li>
                     <li>
-                        <strong>Site:</strong> <a href="https://www.jeremyrose.com" className="text-blue-500">www.jaymar.com</a>
+                        <strong>Site:</strong>{" "}
+                        <a href="https://www.jaymar.com" className="text-blue-500">
+                            www.jaymar.com
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -86,15 +167,38 @@ const ProfileComponent = ({profileData}) => {
                 <h2 className="text-xl font-bold mb-4 text-gray-800">Basic Information</h2>
                 <ul className="space-y-2">
                     <li>
-                        <strong>Birthday:</strong> <span className="text-gray-600">June 5, 1992</span>
+                        <strong>Birthday:</strong>{" "}
+                        {isEditing ? (
+                            <input
+                                type="text"
+                                value={birthday}
+                                onChange={(e) => setBirthday(e.target.value)}
+                                className="border rounded-md p-1"
+                            />
+                        ) : (
+                            <span className="text-gray-600">{birthday}</span>
+                        )}
                     </li>
                     <li>
-                        <strong>Gender:</strong> <span className="text-gray-600">Male</span>
+                        <strong>Gender:</strong>{" "}
+                        {isEditing ? (
+                            <select
+                                value={gender}
+                                onChange={(e) => setGender(e.target.value)}
+                                className="border rounded-md p-1"
+                            >
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        ) : (
+                            <span className="text-gray-600">{gender}</span>
+                        )}
                     </li>
                 </ul>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default ProfileComponent
+export default ProfileComponent;

@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./Providers";
 import { SocketProvider } from "./context/SocketContext";
-
+import { UserProvider } from "./context/UserContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
       <body>
         <AuthProvider>
           <SocketProvider>
+              
             {children}
           </SocketProvider>
         </AuthProvider>

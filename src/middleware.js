@@ -8,7 +8,7 @@ export async function middleware(req) {
     const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
     const url = req.nextUrl.clone();
     const pathname = url.pathname;
-
+    
     // Get the roleID from the token
     const roleID = token?.role;
 
@@ -44,6 +44,7 @@ export async function middleware(req) {
             '/settings',
 			'/dashboard',
             '/accreditation',
+            '/appt-interaction'
         ],
         'editor': [
 			'/api',
@@ -52,13 +53,15 @@ export async function middleware(req) {
             '/posts', 
             '/profile',
 			'/dashboard',
-            '/accreditation'
+            '/accreditation',
+            '/appt-interaction'
         ],
         'viewer': [
             '/profile',
 			'/dashboard',
             '/accreditation',
             '/api',
+            '/appt-interaction'
         ]
     };
 
@@ -96,5 +99,6 @@ export const config = {
         '/settings/:path*',
 		'/dashboard/:path*',
         '/accreditation/:path*',
+        '/appt-interaction/:path*',
     ],
 };

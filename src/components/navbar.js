@@ -41,7 +41,7 @@ const Navbar = ({ profile }) => {
                     <AiOutlineMessage size={25} />
                 </div>
                 {/* Notification */}
-                <NotificationAdmin/>
+                <NotificationAdmin userInfo={session}/>
                 <div className='flex flex-col'>
                     <span className='text-xs leading-3 font-medium'>{profile?.user.name}</span>
                     <span className='text-[10px] text-gray-500 text-right'>{userRole[session?.user?.role]}</span>

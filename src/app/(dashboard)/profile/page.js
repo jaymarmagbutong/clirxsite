@@ -19,7 +19,6 @@ export default function Page() {
                 const response = await fetch(`/api/user/get/${user.id}`, {
                     next: { revalidate: 3600 },
                 });
-
                 const data = await response.json();
                 setUserData(data); // Save user data in state
             } catch (error) {
@@ -27,8 +26,12 @@ export default function Page() {
             }
         };
 
-        fetchUserData();
-    }, [user.userData]); // Re-run when `user` changes
+
+        if(user.userData === !null){
+            fetchUserData();
+        }
+
+    }, [user.userData, user.id]); // Re-run when `user` changes
 
     return (
         <div className="mx-auto bg-white rounded-md shadow-sm p-8">

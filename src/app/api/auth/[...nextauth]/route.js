@@ -9,6 +9,7 @@ import DB from "@/app/api/config/db";
 const authOptions = {
     
     providers: [
+
         CredentialsProvider({
             id: "credentials",
             name: "credentials",
@@ -36,12 +37,11 @@ const authOptions = {
             
 
                     if (user) {
-
                       
                         // Compare the provided password with the stored hashed password
                         const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
+
                         if (isPasswordCorrect) {
-                        
                             return user; // Return user if the password is correct
                         } 
                     }
@@ -56,6 +56,7 @@ const authOptions = {
                
             }
         }),
+
         FacebookProvider({
             clientId: process.env.FACEBOOK_CLIENT_ID,
             clientSecret: process.env.FACEBOOK_CLIENT_SECRET

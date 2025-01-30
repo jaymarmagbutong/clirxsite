@@ -4,7 +4,8 @@ import { useSession } from 'next-auth/react';
 
 const UserContext = createContext();
 
-export const UserProvider = ({ children }) => {
+export const  UserProvider = ({ children }) => {
+
   const { data: session } = useSession();
   const [userData, setUserData] = useState(null);
 
