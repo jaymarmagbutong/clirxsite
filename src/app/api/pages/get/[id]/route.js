@@ -55,7 +55,7 @@ export async function GET(request, { params }) {
         // Fetch page details from the database
         const results = await new Promise((resolve, reject) => {
             DB.query(
-                `SELECT * FROM pages WHERE id = ?  ORDER BY reference_number DESC`,
+                `SELECT * FROM pages WHERE id = ? AND pages.deleted != 1 ORDER BY reference_number DESC`,
                 [id],
                 (err, results) => {
                     if (err) {
@@ -85,13 +85,18 @@ export async function GET(request, { params }) {
                     user as user
                 ON
                     appt.user_id = user.id
-
                 INNER JOIN 
                     pages as pages
                 ON 
                     appt.page_id = pages.id
                 WHERE 
-                    page_id = ? AND response !=''  ORDER BY appt.response_created DESC`,
+                    page_id = ? 
+                AND 
+                    response !='' 
+                AND 
+                    pages.deleted != 1
+                ORDER BY 
+                    appt.response_created DESC`,
                 [id, user_id],
                 (err, results) => {
                     if (err) {

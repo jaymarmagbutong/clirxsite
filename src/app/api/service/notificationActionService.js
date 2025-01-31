@@ -16,11 +16,20 @@ export  function  NotificationActionService(action, user_id) {
     switch (action.type) {
         
         case "create-page":
-            return actionMap[action.type] || action.type.replace(/-/g, ' ');
+            return `
+                <span style='font-weight: 600;'>${ ( action.user_created == user_id ) ? 'You': action.created_by_username}</span> created page
+                <span style='font-weight: 600;'>${ action.page_title }</span>
+            `;
         case "update-page":
-            return actionMap[action.type] || action.type.replace(/-/g, ' ');
+            return `
+                <span style='font-weight: 600;'>${ ( action.user_created == user_id ) ? 'You': action.created_by_username}</span> updated page
+                <span style='font-weight: 600;'>${ action.page_title }</span>
+            `;
         case "delete-page":
-            return actionMap[action.type] || action.type.replace(/-/g, ' ');
+            return `
+                <span style='font-weight: 600;'>${ ( action.user_created == user_id ) ? 'You': action.created_by_username}</span> deleted page
+                <span style='font-weight: 600;'>${ action.page_title }</span>
+            `;
         case "assign-page":
             return `
                 <span style='font-weight: 600;'>${ ( action.user_created == user_id ) ? 'You': action.created_by_username}</span> assigned
@@ -42,8 +51,5 @@ export  function  NotificationActionService(action, user_id) {
             return actionMap[action.type] || action.type.replace(/-/g, ' ');
 
     } 
-
-    // // Return the mapped action or fallback to a default
-    // return actionMap[action.type] || action.type.replace(/-/g, ' ');
 }
 

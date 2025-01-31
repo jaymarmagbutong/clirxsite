@@ -27,8 +27,12 @@ export async function GET() {
                 appt appt ON p.id = appt.page_id
             LEFT JOIN
                 comments com ON p.id = com.page_id
+             WHERE
+               p.deleted != 1
+
             GROUP BY 
                 c.id, p.id
+           
             ORDER BY 
                 c.id, p.reference_number 
             ASC;

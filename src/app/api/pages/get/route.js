@@ -15,8 +15,12 @@ export async function GET(request, { params }) {
                     pages AS pages
                 INNER JOIN 
                     user AS user ON pages.user_created = user.id
+                WHERE 
+                    pages.deleted != 1
                 ORDER BY 
-                    pages.reference_number ASC`, // Removed WHERE since no condition is specified
+                    pages.reference_number ASC`
+                
+                    , // Removed WHERE since no condition is specified
                 (err, results) => {
                     if (err) {
                         reject(err);

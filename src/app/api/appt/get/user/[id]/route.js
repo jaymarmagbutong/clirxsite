@@ -27,7 +27,7 @@ export async function GET(request, { params }) {
                 ON 
                    Pgs.category = Cat.id
                 WHERE 
-                    user_id = ? 
+                    user_id = ? AND Pgs.deleted != 1
                     `,
                 [id],
                 (err, results) => {
