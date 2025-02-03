@@ -19,7 +19,7 @@ function  NotificationAdmin ({ userInfo }) {
         unread_count: 0
     });
 
-    console.log(userInfo?.user.role );
+    console.log(notification);
  
     const fetchNotification = useCallback(async (pageNumber = 1) => {
         if (!userInfo || !hasMore) return;
@@ -144,29 +144,40 @@ function  NotificationAdmin ({ userInfo }) {
                         onScroll={handleScroll}
                     >
                         {notification.data.map((notif) => (
+
+
+                           
                            <div
+                         
                                 key={notif.id}
                                 onClick={() => !notif.is_read && markNotificationAsRead(notif.id)}
                                 className={`flex items-center justify-between p-4 space-x-3 py-3 ${notif.id} ${
-                                    notif.is_read ? 'bg-white opacity-50' : 'bg-gray-100'
+                                    notif.is_read ? 'bg-white opacity-70' : 'bg-gray-100'
                                 }`}
                             >
                                 <div className='w-10 h-10 rounded-full bg-gray-200'></div>
                                  
-                                    <div className='text-sm w-60 text-gray-700'>
-
-                                        { (userInfo?.user.role == 1) ? (   
-                                            <Link key={notif.item} target='_blank' href={`/manual/contents/page/${notif.page_id}`}>
-                                                <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
-                                                <p className='text-xs text-gray-500'>{notif.time}</p>
-                                            </Link>
+                                <div className='text-sm w-60 text-gray-700'>
+                                    {userInfo?.user.role == 1 || userInfo?.user.role == 2  ? (
+                                        notif.action_type == 'delete-page' ? (
+                                        <>
+                                            <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
+                                            <p className='text-xs text-gray-500'>{notif.time}</p>
+                                        </>
                                         ) : (
-                                            <Link key={notif.item} target='_blank' href={`/appt-interaction/page/${notif.page_id}`}>
-                                                <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
-                                                <p className='text-xs text-gray-500'>{notif.time}</p>
-                                            </Link>
-                                        )}
-                                    </div>
+                                        <Link key={notif.item} target='_blank' href={`/manual/contents/page/${notif.page_id}`}>
+                                            <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
+                                            <p className='text-xs text-gray-500'>{notif.time}</p>
+                                        </Link>
+                                        )
+                                    ) : (
+                                        <Link key={notif.item} target='_blank' href={`/appt-interaction/page/${notif.page_id}`}>
+                                        <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
+                                        <p className='text-xs text-gray-500'>{notif.time}</p>
+                                        </Link>
+                                    )}
+                                </div>
+
                                
                             </div>
                            

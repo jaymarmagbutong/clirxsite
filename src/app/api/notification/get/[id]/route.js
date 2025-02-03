@@ -99,6 +99,7 @@ export async function GET(request, { params }) {
                 time: formatTime(notification.created_at),
                 page_id: notification.page_id,
                 is_read: notification.user_read || 0,
+                action_type: notification.type,
             }
         ));
 

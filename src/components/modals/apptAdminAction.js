@@ -99,7 +99,7 @@ const ApptAdminAction = ({ modalFunction, modalStatus, content, pageId, oldPageC
 							<button className=" bg-clirxColor px-4 py-2 rounded text-white" onClick={haddleApproved}>Approved</button>
 							<button className="bg-white bg-transparent border px-4 py-2 rounded" onClick={copyToClipboard}>Copy</button>
 						</div>
-						<button onClick={modalFunction} className="bg-white bg-transparent border px-4 py-2 rounded ">Close Modal</button>
+						<button onClick={modalFunction} className="bg-white bg-transparent border px-4 py-2 rounded ">Close</button>
 					</div>
 				</div>
 			</Modal>

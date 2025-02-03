@@ -39,7 +39,11 @@ export  function  NotificationActionService(action, user_id) {
         case "update-category":
             return actionMap[action.type] || action.type.replace(/-/g, ' ');
         case "approved-page":
-            return actionMap[action.type] || action.type.replace(/-/g, ' ');
+            return `
+                <span style='font-weight: 600;'>${ ( action.user_created == user_id ) ? 'You': action.created_by_username}</span> approved page
+                <span style='font-weight: 600;'>${ action.page_title }</span> from
+                <span style='font-weight: 600;'>${ ( action.user_id == user_id ) ? 'You' : action.assigned_to_username}</span>
+            `;
         case "create-category":
             return actionMap[action.type] || action.type.replace(/-/g, ' ');
         case "modify-page":
