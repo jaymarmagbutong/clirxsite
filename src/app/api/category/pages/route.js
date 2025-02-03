@@ -94,7 +94,13 @@ export async function GET() {
         }, []);
   
         // Return the grouped categories with pages
-        return NextResponse.json(categoriesWithPages, { status: 200 });
+        return NextResponse.json(
+            categoriesWithPages, { status: 200 },
+            {
+                query: error.sql, // Return the executed SQL query
+                params: error.params, // Return the query parameters
+            }
+        );
     } catch (error) {
         console.error('Error fetching categories with pages:', error);
         return NextResponse.json(
@@ -102,7 +108,9 @@ export async function GET() {
                 error: 'Failed to fetch categories with pages', 
                 details: error.sqlMessage || error.message,
             }, 
-            { status: 500 });
+            { status: 500 },
+           
+        );
     }
 }
 
