@@ -65,39 +65,12 @@ export async function POST(request) {
         );
     } catch (error) {
         console.error('Error creating page:', error); // Log error details for debugging
-        return NextResponse.json({ error: 'Failed to create page' }, { status: 500 });
+        return NextResponse.json(
+            {
+                error: "Failed to create page",
+                details: error.sqlMessage || error.message, // Return MySQL error details
+            },
+            { status: 500 }
+        );
     }
 }
-
-
-
-// import connectMongoDB from "../../../../../libs/mongodb";
-// import Pages from "@/app/model/pages";
-
-// export async function POST(request) {
-//   try {
-//     // Parse the incoming request body
-//     const { title, description, category, attachments } = await request.json();
-
-//     // Validate the required fields
-//     if (!title || !description) {
-//       return NextResponse.json({ error: 'All fields are required' }, { status: 400 });
-//     }
-
-//     // Ensure the MongoDB connection is established
-//     await connectMongoDB();
-
-//     // Create a new post in the database
-//     const newPage = await Pages.create({
-//       title,
-//       description,
-//       category,
-//       attachments // Corrected spelling from 'attactments' to 'attachments'
-//     });
-
-//     // Return the newly created post
-//     return NextResponse.json(newPage, { status: 201 }); // Status 201 for successful creation
-//   } catch (error) {
-//     return NextResponse.json({ error: 'Failed to create page' }, { status: 500 });
-//   }
-// }
