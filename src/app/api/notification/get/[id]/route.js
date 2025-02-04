@@ -21,7 +21,7 @@ export async function GET(request, { params }) {
         // Main data query
         let dataQuery, dataParams;
         
-        if (role === '1') { // Admin
+        if (role === '1' || role === '2') { // Admin
             dataQuery = `
                 SELECT 
                     n.*, 
@@ -61,7 +61,7 @@ export async function GET(request, { params }) {
         }
 
         // Unread count query
-        const countQuery = role === '1' 
+        const countQuery = ( role === '1' || role === '2')  
             ? `SELECT COUNT(*) as count
                FROM notifications n
                LEFT JOIN notification_isread nr ON n.id = nr.notification_id AND nr.user_id = ?
@@ -94,7 +94,7 @@ export async function GET(request, { params }) {
             {
                 id: notification.id,
                 name: notification.username,
-                action: NotificationActionService(notification, userId),
+                action: NotificationActionService(notification, user),
                 item: notification.page_title || null,
                 time: formatTime(notification.created_at),
                 page_id: notification.page_id,

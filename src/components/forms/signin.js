@@ -73,7 +73,10 @@ const SignIn = () => {
                 )}
                 {!isLogin && (
                     <>
-                    <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Sign In</h2>
+
+                    <h2 className="text-xl font-bold text-center text-gray-800 mb-0 uppercase">Welcome to APPT portal</h2>
+                    <h2 className="text-sm font-bold text-center text-gray-800 mb-6 uppercase">( Accreditation Policy & Procedure Tool )</h2>
+                    <h2 className="text-xl font-bold text-center text-gray-800 mb-6">SIGN IN</h2>
 
                     <form onSubmit={formSubmitFunction}>
                         <div className="mb-4">
@@ -113,7 +116,7 @@ const SignIn = () => {
                             Sign In
                         </button>
 
-                        <Link href="/signup" className='flex items-center justify-center mt-3'>Don't have an account <span className='underline ml-2'> Register</span></Link>
+                        {/* <Link href="/signup" className='flex items-center justify-center mt-3'>Don't have an account <span className='underline ml-2'> Register</span></Link> */}
 
                     </form>
                 </>

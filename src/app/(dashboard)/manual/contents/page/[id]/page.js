@@ -62,6 +62,13 @@ export default function Page({ params }) {
 					next: { revalidate: 3600 },
 				});
 				const pageData = await pageResponse.json();
+
+				if(pageData.error){
+						console.error('Page not found');
+						alert("Error: This page was deleted!!!");
+						window.close(); // Close the tab
+				}
+				
 				setPages(pageData.pages || "");
 				setApptResponse(pageData.appt_response || "");
 
