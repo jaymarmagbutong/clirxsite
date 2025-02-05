@@ -53,8 +53,8 @@ const CategoryItem = ({ category, searchTerm, autoOpen }) => {
                                         
                                             {(page.interaction_count > 0) && (
                                                  <div className="px-3 flex gap-1 ">
-                                                 <FaUsers size={18} color="orange" /> <span className="text-sm font-semibold">{page.interaction_count}</span>
-                                              </div>
+                                                    <FaUsers size={18} color="orange" /> <span className="text-sm font-semibold">{page.interaction_count}</span>
+                                                </div>
                                             )}
                                            
                                            {(page.sent_count > 0) && (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import toast from 'react-hot-toast';
-const ApptAdminAction = ({ modalFunction, modalStatus, content, pageId, oldPageContent }) => {
+const ApptAdminAction = ({ modalFunction, modalStatus, content, pageId, oldPageContent  }) => {
 
 	const [apptContent, setaApptContent] = useState([]);
 
@@ -36,6 +36,7 @@ const ApptAdminAction = ({ modalFunction, modalStatus, content, pageId, oldPageC
 			if (res.ok) {
 				toast.success('History added successfully!');
 				modalFunction()
+		
 			}
 			if (res.status == 400) {
 				toast.error('Error Creating History');

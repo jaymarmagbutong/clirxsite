@@ -144,8 +144,6 @@ function  NotificationAdmin ({ userInfo }) {
                         onScroll={handleScroll}
                     >
                         {notification.data.map((notif) => (
-
-
                            
                            <div
                          

@@ -24,6 +24,7 @@ export default function Page({ params }) {
 	const [pageHistory, setPageHistory] = useState();
 	const [socketAction, setSocketAction] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const [refreshTrigger, setRefreshTrigger] = useState(false);
 
 	useEffect(() => {
 		socket.on('connect', () => {
@@ -42,6 +43,10 @@ export default function Page({ params }) {
 		};
 
 	}, [])
+
+	const refreshHistory = () => {
+		setRefreshTrigger(prev => !prev);
+	}
 
 	const showModal = () => {
 		setModalStatus(prevModalStatus => !prevModalStatus);
@@ -87,7 +92,7 @@ export default function Page({ params }) {
 
 		fetchData();
 		
-	}, [id, modalStatus, socketAction]); // Dependencies to refetch when these values change
+	}, [id, modalStatus, socketAction, refreshTrigger]); // Dependencies to refetch when these values change
 
 	if (!loading) {
 		return (
@@ -109,7 +114,14 @@ export default function Page({ params }) {
 
 	return (
 		<>
-			<ApptAdminAction modalFunction={showModal} modalStatus={modalStatus} content={modalContent} pageId={id} oldPageContent={pages.description} />
+			<ApptAdminAction 
+				modalFunction={showModal} 
+				modalStatus={modalStatus} 
+				content={modalContent} 
+				pageId={id} 
+				oldPageContent={pages.description} 
+				setRefreshTrigger={setRefreshTrigger}
+			/>
 			<div className='flex items-center justify-between bg-white py-2 px-4 rounded-md shadow-sm'>
 				<div>
 					<h1 className='font-bold text-2xl'>Page Details</h1>
@@ -123,7 +135,10 @@ export default function Page({ params }) {
 			<div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
 
 				<div className='col-span-1 md:col-span-3'>
-					<SingleContent pages={pages} modalAction={showModal} />
+					<SingleContent 
+						pages={pages} 
+						refreshHistory={refreshHistory} 
+					/>
 					{/* <ApptResponse appt_response={apptResponse} modalAction={showModal}/> */}
 					<div className="mt-4">
 						<Comment commentData='' pageId={id} />

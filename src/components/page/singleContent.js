@@ -10,7 +10,7 @@ const JoditEditor = dynamic(() => import('jodit-pro-react'), { ssr: false });
 
 
 
-const SingleContent = ({ pages }) => {
+const SingleContent = ({ pages, refreshHistory }) => {
     const [editable, setEditable] = useState(false)
     const [pageDescription, setPageDescription] = useState();
     const { data: session, status } =  useSession();
@@ -43,6 +43,7 @@ const SingleContent = ({ pages }) => {
 
             if (res.ok) {
                 toast.success('History added successfully!');
+                refreshHistory()
             }
 
         } catch (error) {
