@@ -15,8 +15,6 @@ const ApptAdminAction = ({ modalFunction, modalStatus, content, pageId, oldPageC
         Modal.setAppElement('body');
       }, []); 
 
-
-
 	const haddleApproved = async () => {
 		const from_user_id = content.user_id;
 		try {
@@ -70,8 +68,6 @@ const ApptAdminAction = ({ modalFunction, modalStatus, content, pageId, oldPageC
 		}
 	};
 	
-
-
 	return (
 		<div>
 			<Modal

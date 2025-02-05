@@ -45,8 +45,8 @@ export async function POST(request){
  
         const result = await new Promise((resolve, reject) => {
             DB.query(
-                'INSERT INTO appt_history (page_id, user_id, new_content, old_content, from_user_id) VALUES (?, ?, ?, ?, ?)',
-                [pageId, user_id, content.response, oldPageContent, from_user_id],
+                'INSERT INTO appt_history (page_id, user_id, old_content, from_user_id) VALUES (?, ?, ?, ?)',
+                [pageId, user_id, oldPageContent, from_user_id],
                 (err, results) => {
                     if (err) {
                         reject(err);
