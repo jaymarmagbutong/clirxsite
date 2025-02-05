@@ -80,12 +80,6 @@ export function NotificationActionService(action, user) {
             return generateMessage(action.type, action, user_id);
         case 3:
             // Viewer sees simplified notifications
-      
-            // if (action.type === "delete-page" || action.type === "assign-page") {
-            //     return `
-            //         <span style='font-weight: 600;'>${action.created_by_username}</span> performed a restricted action.
-            //     `;
-            // }
             return generateMessage(action.type, action, user_id);
         default:
             // Default handling for unknown roles

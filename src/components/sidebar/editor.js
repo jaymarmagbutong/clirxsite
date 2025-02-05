@@ -55,16 +55,23 @@ const  Editor =  () => {
         <Image src="/img/site-logo.png" alt="Logo" width={210} height={210} priority/>
       </div>
       <ul className='flex flex-col border-t border-clirxLightColor pt-5'>
+
         {menuItems.map((item, index) => (
           <div key={index}>
-            <MenuItem
-              href={item.href}
-              icon={item.icon}
-              label={item.label}
-              submenu={item.submenu}
-              onToggle={() => handleToggle(index)}
-              isExpanded={expandedMenu === index}
-            />
+           {console.log(item.label)} 
+            {
+              ( item.label !=='Users' && item.label !== 'Admin' ) && (
+                <MenuItem
+                  href={item.href}
+                  icon={item.icon}
+                  label={item.label}
+                  submenu={item.submenu}
+                  onToggle={() => handleToggle(index)}
+                />
+              )
+            }
+
+            
           </div>
         ))}
       </ul>
