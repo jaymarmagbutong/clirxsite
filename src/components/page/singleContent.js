@@ -6,9 +6,9 @@ import dynamic from 'next/dynamic';
 import toast from 'react-hot-toast';
 import { formatDate } from '../../../libs/dateUtils';
 import { FaGlobeAmericas } from "react-icons/fa"
+
+
 const JoditEditor = dynamic(() => import('jodit-pro-react'), { ssr: false });
-
-
 
 const SingleContent = ({ pages, refreshHistory }) => {
     const [editable, setEditable] = useState(false)
@@ -85,7 +85,6 @@ const SingleContent = ({ pages, refreshHistory }) => {
             <div className="w-full mt-5 p-4 bg-white rounded-md shadow-sm flex jodit-wysiwyg flex-col">
                 <h1 className='font-bold text-3xl flex items-center justify-between w-full'><span>{pages.title}</span> <span>{(pages.reference_number !== '' && pages.reference_number !== undefined) ? `(${pages?.reference_number})` : ''}</span></h1>
                 <div className={(editable) ? 'w-full flex flex-col mt-6 ' : `border p-4 mt-6 shadow-sm flex w-full flex-col items-end`}>
-                  
 
                     {editable ? (
                         
@@ -118,9 +117,6 @@ const SingleContent = ({ pages, refreshHistory }) => {
                             </div>
                         )
                     }
-                        
-                       
-
                     </div>
                 </div>
                 

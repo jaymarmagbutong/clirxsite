@@ -83,8 +83,6 @@ const ApptAdminAction = ({ modalFunction, modalStatus, content, pageId, oldPageC
 				overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-99999"
 			>
 				<div className='bg-gray-100'>
-
-
 					<div className='w-full'>
 						<div className='p-4'>
 							<h1 className='font-bold text-2xl'>{apptContent.title}</h1>
