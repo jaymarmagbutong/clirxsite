@@ -25,44 +25,44 @@ export function NotificationActionService(action, user) {
         switch (actionType) {
             case "create-page":
                 return `
-                    <span style='font-weight: 600;'>${actor}</span> created page
+                    <span style='font-weight: 600;'>${actor}</span> <span style='font-weight: 600;font-style: italic;'>created</span> page
                     <span style='font-weight: 600;'>${pageTitle}</span>
                 `;
             case "update-page":
                 return `
-                    <span style='font-weight: 600;'>${actor}</span> updated page
+                    <span style='font-weight: 600;'>${actor}</span> <span style='font-weight: 600;font-style: italic;'>updated</span> page
                     <span style='font-weight: 600;'>${pageTitle}</span>
                 `;
             case "delete-page":
                 return `
-                    <span style='font-weight: 600;'>${actor}</span> deleted page
+                    <span style='font-weight: 600;'>${actor}</span> <span style='font-weight: 600;font-style: italic;'>deleted</span> page
                     <span style='font-weight: 600;'>${pageTitle}</span>
                 `;
             case "assign-page":
                 return `
-                    <span style='font-weight: 600;'>${actor}</span> assigned
-                    <span style='font-weight: 600;'>${pageTitle}</span> page to 
+                    <span style='font-weight: 600;'>${actor}</span> <span style='font-weight: 600;font-style: italic;'>assigned</span> page
+                    <span style='font-weight: 600;'>${pageTitle}</span>  to 
                     <span style='font-weight: 600;'>${assignee}</span>
                 `;
             case "update-category":
                 return `
-                    <span style='font-weight: 600;'>${actor}</span> updated category
+                    <span style='font-weight: 600;'>${actor}</span> <span style='font-weight: 600;font-style: italic;'>updated category</span>
                     <span style='font-weight: 600;'>${categoryName}</span>
                 `;
             case "approved-page":
                 return `
-                    <span style='font-weight: 600;'>${actor}</span> approved page
+                    <span style='font-weight: 600;'>${actor}</span> <span style='font-weight: 600;font-style: italic;'>approved page</span>
                     <span style='font-weight: 600;'>${pageTitle}</span> from
                     <span style='font-weight: 600;'>${assignee}</span>
                 `;
             case "create-category":
                 return `
-                    <span style='font-weight: 600;'>${actor}</span> created category
+                    <span style='font-weight: 600;'>${actor}</span> <span style='font-weight: 600;font-style: italic;'>created category</span>
                     <span style='font-weight: 600;'>${categoryName}</span>
                 `;
             case "modify-page":
                 return `
-                    <span style='font-weight: 600;'>${actor}</span> modified
+                    <span style='font-weight: 600;'>${actor}</span> <span style='font-weight: 600;font-style: italic;'>modified</span>
                     <span style='font-weight: 600;'>${pageTitle}</span> page
                 `;
             default:

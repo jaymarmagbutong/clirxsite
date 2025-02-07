@@ -163,13 +163,13 @@ function  NotificationAdmin ({ userInfo }) {
                                             <p className='text-xs text-gray-500'>{notif.time}</p>
                                         </>
                                         ) : (
-                                        <Link key={notif.item} target='_blank' href={`/manual/contents/page/${notif.page_id}`}>
+                                        <Link key={notif.item}  href={`/manual/contents/page/${notif.page_id}`}>
                                             <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
                                             <p className='text-xs text-gray-500'>{notif.time}</p>
                                         </Link>
                                         )
                                     ) : (
-                                        <Link key={notif.item} target='_blank' href={`/appt-interaction/page/${notif.page_id}`}>
+                                        <Link key={notif.item}  href={`/appt-interaction/page/${notif.page_id}`}>
                                         <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
                                         <p className='text-xs text-gray-500'>{notif.time}</p>
                                         </Link>
