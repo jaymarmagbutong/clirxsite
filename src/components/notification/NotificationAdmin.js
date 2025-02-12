@@ -14,12 +14,12 @@ function  NotificationAdmin ({ userInfo }) {
     const [hasMore, setHasMore] = useState(true);
 
     const socket = useSocket();
+
     const [notification, setNotification] = useState({
         data: [],
         unread_count: 0
     });
 
-    console.log(notification);
  
     const fetchNotification = useCallback(async (pageNumber = 1) => {
         if (!userInfo || !hasMore) return;
@@ -72,6 +72,7 @@ function  NotificationAdmin ({ userInfo }) {
 
         socket.on('new-notification', handleNewNotification);
         return () => socket.off('new-notification', handleNewNotification);
+        
     }, [socket, fetchNotification]);
 
     // Scroll handler
@@ -156,23 +157,30 @@ function  NotificationAdmin ({ userInfo }) {
                                 <div className='w-10 h-10 rounded-full bg-gray-200'></div>
                                  
                                 <div className='text-sm w-60 text-gray-700'>
-                                    {userInfo?.user.role == 1 || userInfo?.user.role == 2  ? (
+                                    { userInfo?.user.role == 1 || userInfo?.user.role == 2  ? (
                                         notif.action_type == 'delete-page' ? (
-                                        <>
-                                            <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
-                                            <p className='text-xs text-gray-500'>{notif.time}</p>
-                                        </>
+                                            <>
+                                                <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
+                                                <p className='text-xs text-gray-500'>{notif.time}</p>
+                                            </>
                                         ) : (
-                                        <Link key={notif.item}  href={`/manual/contents/page/${notif.page_id}`}>
-                                            <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
-                                            <p className='text-xs text-gray-500'>{notif.time}</p>
-                                        </Link>
+                                            <Link key={notif.item}  href={`/manual/contents/page/${notif.page_id}`}>
+                                                <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
+                                                <p className='text-xs text-gray-500'>{notif.time}</p>
+                                            </Link>
                                         )
                                     ) : (
-                                        <Link key={notif.item}  href={`/appt-interaction/page/${notif.page_id}`}>
-                                        <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
-                                        <p className='text-xs text-gray-500'>{notif.time}</p>
-                                        </Link>
+                                            notif.action_type == 'create-page' ? (
+                                            <Link key={notif.item}  href={`/page/view//${notif.page_id}`}>
+                                                <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
+                                                <p className='text-xs text-gray-500'>{notif.time}</p>
+                                            </Link>
+                                        ): (
+                                            <Link key={notif.item}  href={`/appt-interaction/page/${notif.page_id}`}>
+                                            <div dangerouslySetInnerHTML={{ __html: notif.action }}></div>
+                                            <p className='text-xs text-gray-500'>{notif.time}</p>
+                                            </Link>
+                                        )
                                     )}
                                 </div>
 

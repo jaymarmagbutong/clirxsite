@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Breadcrumbs from "@/components/breadcrumbs";
 import BackButton from "@/components/backButton";
 import ModifyPage from '@/components/appt/modifyPage';
@@ -8,6 +9,7 @@ import { FaGlobeAmericas } from "react-icons/fa"
 import { formatDate } from '../../../../../../libs/dateUtils';
 
 export default function Page({ params }) {
+    const router = useRouter();
     const [content, setContent] = useState(''); // Initialize with an empty string
     const [title, setTitle] = useState('');
     const [apptDetails, setApptDetails] = useState([]);
@@ -21,10 +23,16 @@ export default function Page({ params }) {
             try {
                 const page = await fetch(`/api/pages/get/${pageId}`, { next: { revalidate: 3600 } });
                 const data = await page.json();
+
+                if (!data.appt_interaction) {
+                    router.push('/appt-interaction');
+                }
                 console.log(data)
                 setContent(data.pages?.description || ''); // Handle case if description is undefined
                 setTitle(data.pages?.title || ''); // Handle case if title is undefined
                 setApptDetails(data.pages || {});
+
+
             } catch (error) {
                 console.error('Failed to fetch page details:', error);
             }
@@ -68,8 +76,7 @@ export default function Page({ params }) {
                 </div>
                 
                 <div className='mt-5'>
-                    
-                   
+
                 </div>
             </div>
         </>

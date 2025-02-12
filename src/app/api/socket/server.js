@@ -13,7 +13,7 @@ const server = createServer((req, res) => {
 // Enable CORS for Socket.IO
 const io = new Server(server, {
 	cors: {
-		origin: "http://localhost:3000", // Specify the origin(s) allowed to connect
+		origin: "*", // Specify the origin(s) allowed to connect
 		methods: ["GET", "POST"],        // Specify the allowed methods
 		credentials: true                // Enable cookies and headers sent by the client
 	}
@@ -29,11 +29,17 @@ io.on('connection', (socket) => {
 	});
 
 	socket.on('comment', (data) => {
+		console.log('Message comment received:');
 		const { pageId } = data;
 		const commentPageEvent = `page_event_${pageId}`;
 	
 		socket.broadcast.emit(commentPageEvent, data); // Broadcasting to all other clients
 		socket.broadcast.emit('triggerComment', data);
+	});
+
+
+	socket.on('new-notification', (data) => {
+		console.log('Message new-notificatio received:');
 	});
 
 	socket.on('disconnect', () => {
@@ -42,7 +48,9 @@ io.on('connection', (socket) => {
 });
 
 const PORT = process.env.PORT || 8080;
+
 server.listen(PORT, (err) => {
 	if (err) throw err;
 	console.log(`> Server running on http://localhost:${PORT}`);
 });
+

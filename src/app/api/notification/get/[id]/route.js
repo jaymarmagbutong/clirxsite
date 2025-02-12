@@ -49,10 +49,14 @@ export async function GET(request, { params }) {
                     p.title AS page_title, 
                     nr.is_read AS user_read
                 FROM notifications n
-                LEFT JOIN user u1 ON n.user_created = u1.id  
-                LEFT JOIN user u2 ON n.user_id = u2.id       
-                LEFT JOIN pages p ON n.page_id = p.id
-                LEFT JOIN notification_isread nr ON n.id = nr.notification_id AND nr.user_id = ?
+                LEFT JOIN user u1
+                    ON n.user_created = u1.id  
+                LEFT JOIN user u2 
+                    ON n.user_id = u2.id       
+                LEFT JOIN pages p 
+                    ON n.page_id = p.id
+                LEFT JOIN notification_isread nr 
+                    ON n.id = nr.notification_id AND nr.user_id = ?
                 WHERE n.user_id = ? || n.type = 'create-page'
                 ORDER BY n.created_at DESC
                 LIMIT ? OFFSET ?;
@@ -71,27 +75,30 @@ export async function GET(request, { params }) {
             : `SELECT COUNT(*) as count 
                FROM notifications n
                LEFT JOIN notification_isread nr ON n.id = nr.notification_id AND nr.user_id = ?
-               WHERE n.user_id = ?  || n.type = 'create-page' AND (nr.is_read IS NULL OR nr.is_read = 0)`;
+               WHERE (n.user_id = ? OR n.type = 'create-page') 
+               AND (nr.is_read IS NULL OR nr.is_read = 0)`;
 
-        const countParams = role === '1' ? [userId] : [userId, id];
+        const countParams = (role === '1' || role === '2' ) ? [userId] : [userId, id];
 
         // Execute queries
         const [dataResults, countResult] = await Promise.all([
+
             new Promise((resolve, reject) => {
                 DB.query(dataQuery, dataParams, (err, results) => {
                     err ? reject(err) : resolve(results);
                 });
             }),
+
             new Promise((resolve, reject) => {
                 DB.query(countQuery, countParams, (err, results) => {
                     err ? reject(err) : resolve(results[0]?.count || 0);
                 });
             })
+
         ]);
 
         // Transform data
         const notifications = dataResults.map(notification => (
-            
             {
                 id: notification.id,
                 name: notification.username,

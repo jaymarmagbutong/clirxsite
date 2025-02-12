@@ -3,7 +3,7 @@ import DB from "@/app/api/config/db";
 import getUserServerInfo from "@/app/libs/getServerUser";
 import { getCurrentDateTime } from "@/app/libs/dateTIme";
 import { createNotification } from "@/app/api/service/notificationService";
-
+import { io } from 'socket.io-client'
 
 export async function POST(request){
 
@@ -41,12 +41,17 @@ export async function POST(request){
             });
         }
 
+        const socket = io(); // Initialize the socket connection
+
+
+
+        socket.emit("new-notification", 'New Notification'); // Emit the event to the server
         
  
         const result = await new Promise((resolve, reject) => {
             DB.query(
-                'INSERT INTO appt_history (page_id, user_id, old_content, from_user_id) VALUES (?, ?, ?, ?)',
-                [pageId, user_id, oldPageContent, from_user_id],
+                'INSERT INTO appt_history (page_id, user_id, new_content, old_content, from_user_id) VALUES (?, ?, ?, ?, ?)',
+                [pageId, user_id, content.response, oldPageContent, from_user_id],
                 (err, results) => {
                     if (err) {
                         reject(err);

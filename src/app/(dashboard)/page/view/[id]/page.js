@@ -6,11 +6,13 @@ import CategoryOption from '@/components/category/categoryOption';
 import BackButton from '@/components/backButton';
 import Comment from '@/components/appt/comments';
 import Skeleton from 'react-loading-skeleton';
+import { FaEdit } from "react-icons/fa";
+import Link from 'next/link';
 
 export default function Page({ params }) {
 
     const [pageDetails, setPageDetails] = useState([]);
-  
+    const [canInteract, setCanInteract] = useState(false);
     const [attachment, setAttachment] = useState('');
     const [category, setCategory] = useState('');
     const [status, setStatus] = useState('')
@@ -34,6 +36,7 @@ export default function Page({ params }) {
                     setCategory(response.pages.category);
                     setTitle(response.pages.title)
                     setDescription(response.pages.description)
+                    setCanInteract(response?.appt_interaction); 
                 }
 
                 if (response?.pages?.attachments) {
@@ -80,11 +83,20 @@ export default function Page({ params }) {
             <div className='col-span-1 md:col-span-3'>
                 <div className="w-full mt-5 p-4 bg-white rounded-md">
 
-                    <div className='pb-4'>
+                    <div className='pb-4 flex items-center justify-between'>
                         <p className='text-lg font-bold' >{title}</p>
+                        {
+                            canInteract && (
+                                <div>
+                                    <span className='mt-2  text-clirxColor ' > <Link href={`/appt-interaction/page/${id}`} className='flex items-center gap-1'><FaEdit/> Modify</Link> </span>
+                                </div>
+                            )
+                        }
                     </div>
                     <div className='mt-6'>
+                   
                         <div className="flex flex-col jodit-wysiwyg">
+                           
                             <div className='w-full fr-view '
                                 dangerouslySetInnerHTML={{ __html: description }}
                             />

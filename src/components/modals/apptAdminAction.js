@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import toast from 'react-hot-toast';
+
+
 const ApptAdminAction = ({ modalFunction, modalStatus, content, pageId, oldPageContent  }) => {
 
 	const [apptContent, setaApptContent] = useState([]);
