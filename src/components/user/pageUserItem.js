@@ -45,16 +45,16 @@ const PageUserItem = ({ user, page_id, users_id }) => {
             <div className="flex items-center space-x-4">
                 <div>
                     <div className="text-sm font-medium text-clirxColor">{user.username}</div>
-                    <div className="text-sm font-thin text-gray-400">{user.email}</div>
+                    <div className="text-xs font-thin text-gray-400 max-w-[150px] truncate">{user.email}</div>
                 </div>
             </div>
 
             {status ? (
-                <button className="text-white px-3 py-1 rounded bg-green-500 hover:bg-green-600 disabled:bg-green-400 disabled:cursor-not-allowed" disabled>
-                    <FaCheck/>
+                <button className="text-white px-2 py-0 text-sm rounded bg-green-500 hover:bg-green-600 disabled:bg-green-400 disabled:cursor-not-allowed" disabled>
+                   Allowed
                 </button>
             ) : (
-                <button className="text-white bg-clirxColor hover:bg-clirxLightColor px-3 py-1 rounded text-sm" onClick={sendAccreditation}>
+                <button className="text-white bg-clirxColor hover:bg-clirxLightColor px-2 py-0 rounded text-sm" onClick={sendAccreditation}>
                   Allow
                 </button>
             )}

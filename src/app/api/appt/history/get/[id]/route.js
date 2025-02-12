@@ -35,7 +35,7 @@ export async function GET(request, { params }) {
                     his.user_id = usr_approve.id
               
                 WHERE 
-                    his.page_id = ? ORDER BY id DESC `,
+                    his.page_id = ? ORDER BY id ASC `,
                 [id],
                 (err, results) => {
                     if (err) {
