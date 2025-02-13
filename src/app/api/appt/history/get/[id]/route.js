@@ -24,7 +24,7 @@ export async function GET(request, { params }) {
                 INNER JOIN
                     pages as pgs 
                 ON
-                    his.page_id = Pgs.id
+                    his.page_id = pgs.id
                 INNER JOIN 
                     user as usr_from
                 ON 
