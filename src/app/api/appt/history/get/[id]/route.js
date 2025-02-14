@@ -33,7 +33,6 @@ export async function GET(request, { params }) {
                     user as usr_approve
                 ON  
                     his.user_id = usr_approve.id
-              
                 WHERE 
                     his.page_id = ? ORDER BY id ASC `,
                 [id],
@@ -53,11 +52,6 @@ export async function GET(request, { params }) {
             user_from: result.from_user_id === user.id ? "You" : result.user_from,
             approve_user: result.user_id === user.id ? "You" : result.approve_user, // Change user_to if it matches logged-in user
         }));
-
-
-
-
-
 
         return NextResponse.json(modifiedResults, { status: 200 }); // Status 200 for success
     } catch (error) {

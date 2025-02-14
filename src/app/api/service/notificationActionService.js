@@ -65,6 +65,11 @@ export function NotificationActionService(action, user) {
                     <span style='font-weight: 600;'>${actor}</span> <span style='font-weight: 600;font-style: italic;'>modified</span>
                     <span style='font-weight: 600;'>${pageTitle}</span> page
                 `;
+            case "seen-page":
+                return `
+                    <span style='font-weight: 600;'>${actor}</span> <span style='font-weight: 600;font-style: italic;'>seen</span>
+                    <span style='font-weight: 600;'>${pageTitle}</span> page
+                `;
             default:
                 return actionMap[actionType] || actionType.replace(/-/g, ' ');
         }

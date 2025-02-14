@@ -57,7 +57,7 @@ export async function GET(request, { params }) {
                     ON n.page_id = p.id
                 LEFT JOIN notification_isread nr 
                     ON n.id = nr.notification_id AND nr.user_id = ?
-                WHERE n.user_id = ? || n.type = 'create-page'
+                WHERE n.user_id = ? || n.type = 'create-page' || n.type = 'approved-page' || n.type = 'seen-page'
                 ORDER BY n.created_at DESC
                 LIMIT ? OFFSET ?;
             `;
@@ -75,7 +75,7 @@ export async function GET(request, { params }) {
             : `SELECT COUNT(*) as count 
                FROM notifications n
                LEFT JOIN notification_isread nr ON n.id = nr.notification_id AND nr.user_id = ?
-               WHERE (n.user_id = ? OR n.type = 'create-page') 
+               WHERE (n.user_id = ? OR n.type = 'create-page' OR n.type = 'approved-page' OR n.type = 'seen-page') 
                AND (nr.is_read IS NULL OR nr.is_read = 0)`;
 
         const countParams = (role === '1' || role === '2' ) ? [userId] : [userId, id];

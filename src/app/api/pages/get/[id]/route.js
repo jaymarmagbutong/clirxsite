@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import DB from "@/app/api/config/db"; // Adjust import path as needed
 import getUserServerInfo from "@/app/libs/getServerUser";
+import { createNotification } from "@/app/api/service/notificationService";
 // Function to get page details by ID
 export async function GET(request, { params }) {
    
@@ -33,8 +34,6 @@ export async function GET(request, { params }) {
         });
 
         if(!checkIfSeen.length) {
-
-
             const updateStatus = await new Promise((resolve, reject) => {
                 const status = 'seen';
                 DB.query(
@@ -49,6 +48,20 @@ export async function GET(request, { params }) {
                     }
                 );
             });
+
+
+            if(updateStatus.affectedRows) {
+                // Call the notification function
+                const notificationType = "seen-page"; // Replace with your type
+                const notificationMessage = `Page seen by [${user_id}]`;
+                const notificationResponse = await createNotification({
+                    userId: user_id,
+                    userCreated: user_id,
+                    pageId: page_id,
+                    type: notificationType,
+                    message: notificationMessage,
+                });
+            }
         }
 
 

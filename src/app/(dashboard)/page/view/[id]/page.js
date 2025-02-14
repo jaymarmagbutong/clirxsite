@@ -63,7 +63,10 @@ export default function Page({ params }) {
 
     if(loading){
         return (
-            <Skeleton count={5} />
+            <div className="w-full mt-5 p-4 bg-white rounded-md">
+                  <Skeleton count={5} />
+            </div>
+          
         )
     }
 

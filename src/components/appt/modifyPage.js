@@ -71,7 +71,7 @@ const ModifyPage = ({content, title, apptDetails}) => {
                         </div>
                     </div>
                     <div className='w-full border-t-2 p-4 bg-gray-400'>
-                       <button onClick={handleRequestClose} className="bg-white bg-transparent border px-4 py-2 rounded ">Close Modal</button>
+                       <button onClick={handleRequestClose} className="bg-white bg-transparent border px-4 py-2 rounded ">Close</button>
                     </div>
                    
                 </div>

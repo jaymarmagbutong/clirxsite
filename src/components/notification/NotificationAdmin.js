@@ -8,6 +8,7 @@ import Link from 'next/link';
 function  NotificationAdmin ({ userInfo }) {
 
     const [notificationDropdown, setNotificationDropdown] = useState(false);
+    const [processingIds, setProcessingIds] = useState(new Set());
     const dropdownRef = useRef(null);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
@@ -85,6 +86,8 @@ function  NotificationAdmin ({ userInfo }) {
 
     // Mark as read
     const markNotificationAsRead = async (id) => {
+        if (processingIds.has(id)) return; // Prevent duplicate requests
+        setProcessingIds(prev => new Set(prev).add(id));
         try {
             await fetch(`/api/notification/mark-as-read/`, {
                 method: 'POST',
@@ -104,6 +107,12 @@ function  NotificationAdmin ({ userInfo }) {
             }));
         } catch (error) {
             console.error('Mark read error:', error);
+        } finally {
+            setProcessingIds(prev => {
+                const newSet = new Set(prev);
+                newSet.delete(id);
+                return newSet;
+            });
         }
     };
 
