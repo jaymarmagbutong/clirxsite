@@ -117,15 +117,10 @@ const ProfileComponent = ({ profileData }) => {
                     <Image src="/img/profile.png" alt="Profile Picture" layout="fill" objectFit="cover" />
                 </div>
                 <div className="ml-6">
-                    {isEditing ? (
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            className="text-2xl font-semibold text-gray-800 border rounded-md p-1"
-                        />
+                    {(firstname !='' || lastname !='') ? (
+                        <h1 className="text-2xl font-semibold text-gray-800"> {firstname} {lastname}</h1>
                     ) : (
-                        <h1 className="text-2xl font-semibold text-gray-800">{name}</h1>
+                        <h1 className="text-2xl font-semibold text-gray-800"> {name}</h1>
                     )}
                     <p className="text-clirxColor">Web Developer</p>
                     <p className="text-gray-500">New York, NY</p>
