@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import ProfileComponent from "@/components/user/profile";
 import { useUser } from "@/app/context/UserContext";
+import toast from 'react-hot-toast';
 
 export default function Page() {
     const user = useUser(); // Use the hook inside the component body

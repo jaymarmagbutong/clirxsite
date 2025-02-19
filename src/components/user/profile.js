@@ -102,6 +102,7 @@ const ProfileComponent = ({ profileData }) => {
     };
     const handleChange = (address) => {
         setAddress(address);
+        
     }
     const handleSelect = (address) => {
         setAddress(address);
