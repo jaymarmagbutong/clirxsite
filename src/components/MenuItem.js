@@ -72,7 +72,7 @@ const MenuItem = ({ href, icon: iconName, label, exact = false, submenu = [] }) 
                             className={`my-2 p-2 pl-3 rounded-md ${pathname === subItem.href ? 'font-bold text-white text-md' : 'text-white text-sm'
                                 }`}
                         >
-                            <Link href={subItem.href} className="flex items-center gap-2">
+                            <Link href={subItem.href} className={`flex items-center gap-2 ${(subItem.label === 'Compliance Review' || subItem.label === 'Overview' ) ? 'text-gray-400' : ''} `}>
                                 <span>{subItem.label}</span>
                             </Link>
                         </li>
