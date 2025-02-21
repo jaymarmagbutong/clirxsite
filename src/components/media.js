@@ -39,9 +39,9 @@ export default function Media({ onUploadSuccess }) {
       try {
         const res = await fetch('/api/upload', {
           method: 'POST',
-          body: formData,
+          body: formData, 
         });
-
+ 
   
         if (res.ok) {
           const data = await res.json();
