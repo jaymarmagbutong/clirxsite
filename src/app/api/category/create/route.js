@@ -71,4 +71,4 @@ export async function POST(request) {
         console.error("Database error:", error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
-}
+} 
