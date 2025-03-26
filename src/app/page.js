@@ -55,7 +55,7 @@ export default function LandingPage() {
             transition={{ duration: 1 }}
             className="text-center"
           >
-            <h2 className="text-4xl font-bold mb-4">Welcome to The Health Care Centre Morwell</h2>
+            <h2 className="text-4xl font-bold mb-4">Welcome to Saint Lukes Medical Centre</h2>
             <p className="text-8xl mb-6 font-bold">cLiRx</p>
             <p className="text-lg mb-6">Accreditation, Policy & Procedure Tool (APPT)</p>
             <Link to="services" smooth className="bg-white text-indigo-600 px-4 py-2 rounded-lg">
