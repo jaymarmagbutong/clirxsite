@@ -14,7 +14,7 @@ export default function LandingPage() {
       {/* Header */}
       <header className="bg-indigo-600 p-4">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl text-white font-bold">Saint Lukes Medical Centre</h1>
+          <h1 className="text-3xl text-white font-bold">The Health Care Centre</h1>
           <div className="sm:hidden">
             <button onClick={() => setIsOpen(true)}>
               <FaBars className="h-6 w-6 text-white" />
